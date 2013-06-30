@@ -16,14 +16,14 @@ then
 fi
 
 
-echo "#ifndef GIT_VERSION_HPP" > src/arcemu-shared/git_version.h
-echo "#define GIT_VERSION_HPP" >> src/arcemu-shared/git_version.h
-echo "" >> src/arcemu-shared/git_version.h
-echo "#define BUILD_TAG \"$tag\"" >> src/arcemu-shared/git_version.h
-echo "#define BUILD_HASH 0x$version" >> src/arcemu-shared/git_version.h
-echo "#define COMMIT_TIMESTAMP $timestamp" >> src/arcemu-shared/git_version.h
-echo "#define BUILD_HASH_STR \"$version\"" >> src/arcemu-shared/git_version.h
-echo "#define BUILD_USER_STR \"$username\"" >> src/arcemu-shared/git_version.h
-echo "#define BUILD_HOST_STR \"$hostname\"" >> src/arcemu-shared/git_version.h
-echo "" >> src/arcemu-shared/git_version.h
-echo "#endif" >> src/arcemu-shared/git_version.h
+echo "#ifndef GIT_VERSION_HPP" > src/arcpro-shared/git_version.h
+echo "#define GIT_VERSION_HPP" >> src/arcpro-shared/git_version.h
+echo "" >> src/arcpro-shared/git_version.h
+echo "#define BUILD_TAG \"$tag\"" >> src/arcpro-shared/git_version.h
+echo "#define BUILD_HASH 0x$version" >> src/arcpro-shared/git_version.h
+echo "#define COMMIT_TIMESTAMP $timestamp" >> src/arcpro-shared/git_version.h
+echo "#define BUILD_HASH_STR \"$version\"" >> src/arcpro-shared/git_version.h
+echo "#define BUILD_USER_STR \"$username\"" >> src/arcpro-shared/git_version.h
+echo "#define BUILD_HOST_STR \"$hostname\"" >> src/arcpro-shared/git_version.h
+echo "" >> src/arcpro-shared/git_version.h
+echo "#endif" >> src/arcpro-shared/git_version.h
