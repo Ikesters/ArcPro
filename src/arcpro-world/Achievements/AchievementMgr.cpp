@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2011-2013 ArcPro Speculation <http://www.arcpro.sexyi.am/>
  * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *
@@ -75,9 +76,9 @@ namespace Trinity
 
 bool AchievementCriteriaData::IsValid(AchievementCriteriaEntry const* criteria)
 {
-    if (dataType >= MAX_ACHIEVEMENT_CRITERIA_DATA_TYPE)
+    if (dataType >= MAX_character_achievement_progress_TYPE)
     {
-        sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` for criteria (Entry: %u) has wrong data type (%u), ignored.", criteria->ID, dataType);
+        sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` for criteria (Entry: %u) has wrong data type (%u), ignored.", criteria->ID, dataType);
         return false;
     }
 
@@ -107,9 +108,9 @@ bool AchievementCriteriaData::IsValid(AchievementCriteriaEntry const* criteria)
         case ACHIEVEMENT_CRITERIA_TYPE_REACH_LEVEL:
             break;
         default:
-            if (dataType != ACHIEVEMENT_CRITERIA_DATA_TYPE_SCRIPT)
+            if (dataType != character_achievement_progress_TYPE_SCRIPT)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` has data for non-supported criteria type (Entry: %u Type: %u), ignored.", criteria->ID, criteria->type);
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` has data for non-supported criteria type (Entry: %u Type: %u), ignored.", criteria->ID, criteria->type);
                 return false;
             }
             break;
@@ -117,129 +118,129 @@ bool AchievementCriteriaData::IsValid(AchievementCriteriaEntry const* criteria)
 
     switch (dataType)
     {
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_NONE:
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_VALUE:
-        case ACHIEVEMENT_CRITERIA_DATA_INSTANCE_SCRIPT:
+        case character_achievement_progress_TYPE_NONE:
+        case character_achievement_progress_TYPE_VALUE:
+        case character_achievement_progress_INSTANCE_SCRIPT:
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_CREATURE:
+        case character_achievement_progress_TYPE_T_CREATURE:
             if (!creature.id || !sObjectMgr->GetCreatureTemplate(creature.id))
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_CREATURE (%u) has non-existing creature id in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_CREATURE (%u) has non-existing creature id in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, creature.id);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_PLAYER_CLASS_RACE:
+        case character_achievement_progress_TYPE_T_PLAYER_CLASS_RACE:
             if (!classRace.class_id && !classRace.race_id)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_T_PLAYER_CLASS_RACE (%u) must not have 0 in either value field, ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_T_PLAYER_CLASS_RACE (%u) must not have 0 in either value field, ignored.",
                     criteria->ID, criteria->type, dataType);
                 return false;
             }
             if (classRace.class_id && ((1 << (classRace.class_id-1)) & CLASSMASK_ALL_PLAYABLE) == 0)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_T_PLAYER_CLASS_RACE (%u) has non-existing class in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_T_PLAYER_CLASS_RACE (%u) has non-existing class in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, classRace.class_id);
                 return false;
             }
             if (classRace.race_id && ((1 << (classRace.race_id-1)) & RACEMASK_ALL_PLAYABLE) == 0)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_T_PLAYER_CLASS_RACE (%u) has non-existing race in value2 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_T_PLAYER_CLASS_RACE (%u) has non-existing race in value2 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, classRace.race_id);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_PLAYER_LESS_HEALTH:
+        case character_achievement_progress_TYPE_T_PLAYER_LESS_HEALTH:
             if (health.percent < 1 || health.percent > 100)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_PLAYER_LESS_HEALTH (%u) has wrong percent value in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_PLAYER_LESS_HEALTH (%u) has wrong percent value in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, health.percent);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_S_AURA:
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_AURA:
+        case character_achievement_progress_TYPE_S_AURA:
+        case character_achievement_progress_TYPE_T_AURA:
         {
             SpellInfo const* spellEntry = sSpellMgr->GetSpellInfo(aura.spell_id);
             if (!spellEntry)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type %s (%u) has wrong spell id in value1 (%u), ignored.",
-                    criteria->ID, criteria->type, (dataType == ACHIEVEMENT_CRITERIA_DATA_TYPE_S_AURA?"ACHIEVEMENT_CRITERIA_DATA_TYPE_S_AURA":"ACHIEVEMENT_CRITERIA_DATA_TYPE_T_AURA"), dataType, aura.spell_id);
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type %s (%u) has wrong spell id in value1 (%u), ignored.",
+                    criteria->ID, criteria->type, (dataType == character_achievement_progress_TYPE_S_AURA?"character_achievement_progress_TYPE_S_AURA":"character_achievement_progress_TYPE_T_AURA"), dataType, aura.spell_id);
                 return false;
             }
             if (aura.effect_idx >= 3)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type %s (%u) has wrong spell effect index in value2 (%u), ignored.",
-                    criteria->ID, criteria->type, (dataType == ACHIEVEMENT_CRITERIA_DATA_TYPE_S_AURA?"ACHIEVEMENT_CRITERIA_DATA_TYPE_S_AURA":"ACHIEVEMENT_CRITERIA_DATA_TYPE_T_AURA"), dataType, aura.effect_idx);
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type %s (%u) has wrong spell effect index in value2 (%u), ignored.",
+                    criteria->ID, criteria->type, (dataType == character_achievement_progress_TYPE_S_AURA?"character_achievement_progress_TYPE_S_AURA":"character_achievement_progress_TYPE_T_AURA"), dataType, aura.effect_idx);
                 return false;
             }
             if (!spellEntry->Effects[aura.effect_idx].ApplyAuraName)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type %s (%u) has non-aura spell effect (ID: %u Effect: %u), ignores.",
-                    criteria->ID, criteria->type, (dataType == ACHIEVEMENT_CRITERIA_DATA_TYPE_S_AURA?"ACHIEVEMENT_CRITERIA_DATA_TYPE_S_AURA":"ACHIEVEMENT_CRITERIA_DATA_TYPE_T_AURA"), dataType, aura.spell_id, aura.effect_idx);
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type %s (%u) has non-aura spell effect (ID: %u Effect: %u), ignores.",
+                    criteria->ID, criteria->type, (dataType == character_achievement_progress_TYPE_S_AURA?"character_achievement_progress_TYPE_S_AURA":"character_achievement_progress_TYPE_T_AURA"), dataType, aura.spell_id, aura.effect_idx);
                 return false;
             }
             return true;
         }
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_LEVEL:
+        case character_achievement_progress_TYPE_T_LEVEL:
             if (level.minlevel > STRONG_MAX_LEVEL)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_T_LEVEL (%u) has wrong minlevel in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_T_LEVEL (%u) has wrong minlevel in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, level.minlevel);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_GENDER:
+        case character_achievement_progress_TYPE_T_GENDER:
             if (gender.gender > GENDER_NONE)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_T_GENDER (%u) has wrong gender in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_T_GENDER (%u) has wrong gender in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, gender.gender);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_SCRIPT:
+        case character_achievement_progress_TYPE_SCRIPT:
             if (!ScriptId)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_SCRIPT (%u) does not have ScriptName set, ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_SCRIPT (%u) does not have ScriptName set, ignored.",
                     criteria->ID, criteria->type, dataType);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_MAP_PLAYER_COUNT:
+        case character_achievement_progress_TYPE_MAP_PLAYER_COUNT:
             if (map_players.maxcount <= 0)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_MAP_PLAYER_COUNT (%u) has wrong max players count in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_MAP_PLAYER_COUNT (%u) has wrong max players count in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, map_players.maxcount);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_TEAM:
+        case character_achievement_progress_TYPE_T_TEAM:
             if (team.team != ALLIANCE && team.team != HORDE)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_T_TEAM (%u) has unknown team in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_T_TEAM (%u) has unknown team in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, team.team);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_S_DRUNK:
+        case character_achievement_progress_TYPE_S_DRUNK:
             if (drunk.state >= MAX_DRUNKEN)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_S_DRUNK (%u) has unknown drunken state in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_S_DRUNK (%u) has unknown drunken state in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, drunk.state);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_HOLIDAY:
+        case character_achievement_progress_TYPE_HOLIDAY:
             if (!sHolidaysStore.LookupEntry(holiday.id))
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_HOLIDAY (%u) has unknown holiday in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_HOLIDAY (%u) has unknown holiday in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, holiday.id);
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_BG_LOSS_TEAM_SCORE:
+        case character_achievement_progress_TYPE_BG_LOSS_TEAM_SCORE:
             return true;                                    // not check correctness node indexes
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_S_EQUIPED_ITEM:
+        case character_achievement_progress_TYPE_S_EQUIPED_ITEM:
             if (equipped_item.item_quality >= MAX_ITEM_QUALITY)
             {
                 sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_requirement` (Entry: %u Type: %u) for requirement ACHIEVEMENT_CRITERIA_REQUIRE_S_EQUIPED_ITEM (%u) has unknown quality state in value1 (%u), ignored.",
@@ -247,28 +248,28 @@ bool AchievementCriteriaData::IsValid(AchievementCriteriaEntry const* criteria)
                 return false;
             }
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_S_PLAYER_CLASS_RACE:
+        case character_achievement_progress_TYPE_S_PLAYER_CLASS_RACE:
             if (!classRace.class_id && !classRace.race_id)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_S_PLAYER_CLASS_RACE (%u) must not have 0 in either value field, ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_S_PLAYER_CLASS_RACE (%u) must not have 0 in either value field, ignored.",
                     criteria->ID, criteria->type, dataType);
                 return false;
             }
             if (classRace.class_id && ((1 << (classRace.class_id-1)) & CLASSMASK_ALL_PLAYABLE) == 0)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_S_PLAYER_CLASS_RACE (%u) has non-existing class in value1 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_S_PLAYER_CLASS_RACE (%u) has non-existing class in value1 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, classRace.class_id);
                 return false;
             }
             if (classRace.race_id && ((1 << (classRace.race_id-1)) & RACEMASK_ALL_PLAYABLE) == 0)
             {
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) for data type ACHIEVEMENT_CRITERIA_DATA_TYPE_S_PLAYER_CLASS_RACE (%u) has non-existing race in value2 (%u), ignored.",
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) for data type character_achievement_progress_TYPE_S_PLAYER_CLASS_RACE (%u) has non-existing race in value2 (%u), ignored.",
                     criteria->ID, criteria->type, dataType, classRace.race_id);
                 return false;
             }
             return true;
         default:
-            sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` (Entry: %u Type: %u) has data for non-supported data type (%u), ignored.", criteria->ID, criteria->type, dataType);
+            sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` (Entry: %u Type: %u) has data for non-supported data type (%u), ignored.", criteria->ID, criteria->type, dataType);
             return false;
     }
 }
@@ -277,13 +278,13 @@ bool AchievementCriteriaData::Meets(uint32 criteria_id, Player const* source, Un
 {
     switch (dataType)
     {
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_NONE:
+        case character_achievement_progress_TYPE_NONE:
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_CREATURE:
+        case character_achievement_progress_TYPE_T_CREATURE:
             if (!target || target->GetTypeId() != TYPEID_UNIT)
                 return false;
             return target->GetEntry() == creature.id;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_PLAYER_CLASS_RACE:
+        case character_achievement_progress_TYPE_T_PLAYER_CLASS_RACE:
             if (!target || target->GetTypeId() != TYPEID_PLAYER)
                 return false;
             if (classRace.class_id && classRace.class_id != target->ToPlayer()->getClass())
@@ -291,7 +292,7 @@ bool AchievementCriteriaData::Meets(uint32 criteria_id, Player const* source, Un
             if (classRace.race_id && classRace.race_id != target->ToPlayer()->getRace())
                 return false;
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_S_PLAYER_CLASS_RACE:
+        case character_achievement_progress_TYPE_S_PLAYER_CLASS_RACE:
             if (!source || source->GetTypeId() != TYPEID_PLAYER)
                 return false;
             if (classRace.class_id && classRace.class_id != source->ToPlayer()->getClass())
@@ -299,37 +300,37 @@ bool AchievementCriteriaData::Meets(uint32 criteria_id, Player const* source, Un
             if (classRace.race_id && classRace.race_id != source->ToPlayer()->getRace())
                 return false;
             return true;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_PLAYER_LESS_HEALTH:
+        case character_achievement_progress_TYPE_T_PLAYER_LESS_HEALTH:
             if (!target || target->GetTypeId() != TYPEID_PLAYER)
                 return false;
             return !target->HealthAbovePct(health.percent);
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_S_AURA:
+        case character_achievement_progress_TYPE_S_AURA:
             return source->HasAuraEffect(aura.spell_id, aura.effect_idx);
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_AURA:
+        case character_achievement_progress_TYPE_T_AURA:
             return target && target->HasAuraEffect(aura.spell_id, aura.effect_idx);
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_VALUE:
+        case character_achievement_progress_TYPE_VALUE:
             return miscValue1 >= value.minvalue;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_LEVEL:
+        case character_achievement_progress_TYPE_T_LEVEL:
             if (!target)
                 return false;
             return target->getLevel() >= level.minlevel;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_GENDER:
+        case character_achievement_progress_TYPE_T_GENDER:
             if (!target)
                 return false;
             return target->getGender() == gender.gender;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_SCRIPT:
+        case character_achievement_progress_TYPE_SCRIPT:
             return sScriptMgr->OnCriteriaCheck(ScriptId, const_cast<Player*>(source), const_cast<Unit*>(target));
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_MAP_PLAYER_COUNT:
+        case character_achievement_progress_TYPE_MAP_PLAYER_COUNT:
             return source->GetMap()->GetPlayersCountExceptGMs() <= map_players.maxcount;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_T_TEAM:
+        case character_achievement_progress_TYPE_T_TEAM:
             if (!target || target->GetTypeId() != TYPEID_PLAYER)
                 return false;
             return target->ToPlayer()->GetTeam() == team.team;
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_S_DRUNK:
+        case character_achievement_progress_TYPE_S_DRUNK:
             return Player::GetDrunkenstateByValue(source->GetDrunkValue()) >= DrunkenState(drunk.state);
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_HOLIDAY:
+        case character_achievement_progress_TYPE_HOLIDAY:
             return IsHolidayActive(HolidayIds(holiday.id));
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_BG_LOSS_TEAM_SCORE:
+        case character_achievement_progress_TYPE_BG_LOSS_TEAM_SCORE:
         {
             Battleground* bg = source->GetBattleground();
             if (!bg)
@@ -338,27 +339,27 @@ bool AchievementCriteriaData::Meets(uint32 criteria_id, Player const* source, Un
             uint32 score = bg->GetTeamScore(source->GetTeamId() == TEAM_ALLIANCE ? TEAM_HORDE : TEAM_ALLIANCE);
             return score >= bg_loss_team_score.min_score && score <= bg_loss_team_score.max_score;
         }
-        case ACHIEVEMENT_CRITERIA_DATA_INSTANCE_SCRIPT:
+        case character_achievement_progress_INSTANCE_SCRIPT:
         {
             if (!source->IsInWorld())
                 return false;
             Map* map = source->GetMap();
             if (!map->IsDungeon())
             {
-                sLog->outError(LOG_FILTER_ACHIEVEMENTSYS, "Achievement system call ACHIEVEMENT_CRITERIA_DATA_INSTANCE_SCRIPT (%u) for achievement criteria %u for non-dungeon/non-raid map %u",
-                    ACHIEVEMENT_CRITERIA_DATA_INSTANCE_SCRIPT, criteria_id, map->GetId());
+                sLog->outError(LOG_FILTER_ACHIEVEMENTSYS, "Achievement system call character_achievement_progress_INSTANCE_SCRIPT (%u) for achievement criteria %u for non-dungeon/non-raid map %u",
+                    character_achievement_progress_INSTANCE_SCRIPT, criteria_id, map->GetId());
                     return false;
             }
             InstanceScript* instance = ((InstanceMap*)map)->GetInstanceScript();
             if (!instance)
             {
-                sLog->outError(LOG_FILTER_ACHIEVEMENTSYS, "Achievement system call ACHIEVEMENT_CRITERIA_DATA_INSTANCE_SCRIPT (%u) for achievement criteria %u for map %u but map does not have a instance script",
-                    ACHIEVEMENT_CRITERIA_DATA_INSTANCE_SCRIPT, criteria_id, map->GetId());
+                sLog->outError(LOG_FILTER_ACHIEVEMENTSYS, "Achievement system call character_achievement_progress_INSTANCE_SCRIPT (%u) for achievement criteria %u for map %u but map does not have a instance script",
+                    character_achievement_progress_INSTANCE_SCRIPT, criteria_id, map->GetId());
                 return false;
             }
             return instance->CheckAchievementCriteriaMeet(criteria_id, source, target, miscValue1);
         }
-        case ACHIEVEMENT_CRITERIA_DATA_TYPE_S_EQUIPED_ITEM:
+        case character_achievement_progress_TYPE_S_EQUIPED_ITEM:
         {
             ItemTemplate const* pProto = sObjectMgr->GetItemTemplate(miscValue1);
             if (!pProto)
@@ -3127,11 +3128,11 @@ void AchievementGlobalMgr::LoadAchievementCriteriaData()
 
     m_criteriaDataMap.clear();                              // need for reload case
 
-    QueryResult result = WorldDatabase.Query("SELECT criteria_id, type, value1, value2, ScriptName FROM achievement_criteria_data");
+    QueryResult result = WorldDatabase.Query("SELECT criteria_id, type, value1, value2, ScriptName FROM character_achievement_progress");
 
     if (!result)
     {
-        sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 additional achievement criteria data. DB table `achievement_criteria_data` is empty.");
+        sLog->outInfo(LOG_FILTER_SERVER_LOADING, ">> Loaded 0 additional achievement criteria data. DB table `character_achievement_progress` is empty.");
         return;
     }
 
@@ -3146,7 +3147,7 @@ void AchievementGlobalMgr::LoadAchievementCriteriaData()
 
         if (!criteria)
         {
-            sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` has data for non-existing criteria (Entry: %u), ignore.", criteria_id);
+            sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` has data for non-existing criteria (Entry: %u), ignore.", criteria_id);
             continue;
         }
 
@@ -3155,8 +3156,8 @@ void AchievementGlobalMgr::LoadAchievementCriteriaData()
         uint32 scriptId = 0;
         if (scriptName.length()) // not empty
         {
-            if (dataType != ACHIEVEMENT_CRITERIA_DATA_TYPE_SCRIPT)
-                sLog->outError(LOG_FILTER_SQL, "Table `achievement_criteria_data` has ScriptName set for non-scripted data type (Entry: %u, type %u), useless data.", criteria_id, dataType);
+            if (dataType != character_achievement_progress_TYPE_SCRIPT)
+                sLog->outError(LOG_FILTER_SQL, "Table `character_achievement_progress` has ScriptName set for non-scripted data type (Entry: %u, type %u), useless data.", criteria_id, dataType);
             else
                 scriptId = sObjectMgr->GetScriptId(scriptName.c_str());
         }
@@ -3171,7 +3172,7 @@ void AchievementGlobalMgr::LoadAchievementCriteriaData()
         dataSet.SetCriteriaId(criteria_id);
 
         // add real data only for not NONE data types
-        if (data.dataType != ACHIEVEMENT_CRITERIA_DATA_TYPE_NONE)
+        if (data.dataType != character_achievement_progress_TYPE_NONE)
             dataSet.Add(data);
 
         // counting data by and data types

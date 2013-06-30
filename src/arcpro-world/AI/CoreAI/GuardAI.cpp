@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2011-2013 ArcPro Speculation <http://www.arcpro.sexyi.am/>
  * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
  * Copyright (C) 2005-2009 MaNGOS <http://getmangos.com/>
  *

@@ -1,4 +1,6 @@
-/* Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
+/* 
+ * Copyright (C) 2011-2013 ArcPro Speculation <http://www.arcpro.sexyi.am/>
+ * Copyright (C) 2008-2013 TrinityCore <http://www.trinitycore.org/>
  *
  * Thanks to the original authors: ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
  *
