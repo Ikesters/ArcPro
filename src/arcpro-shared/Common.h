@@ -63,7 +63,7 @@ enum MsTimeVariables
 # include <config.h>
 #endif
 
-#include "arcemuConfig.h"
+#include "ArcproConfig.h"
 
 #include <cstdlib>
 #include <cstdio>

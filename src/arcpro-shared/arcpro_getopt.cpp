@@ -18,7 +18,7 @@
  */
 
 #include "Common.h"
-#include "arcemu_getopt.h"
+#include "arcpro_getopt.h"
 
 int arg_counter = 1;
 char arcemu_optarg[514];

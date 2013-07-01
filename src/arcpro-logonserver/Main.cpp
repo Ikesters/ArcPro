@@ -23,9 +23,9 @@
 #ifndef WIN32
 #include <sys/resource.h>
 #endif
-#include "../arcemu-shared/arcemu_getopt.h"
+#include "../arcpro-shared/arcpro_getopt.h"
 
-#define BANNER "ArcEmu %s %s/%s-%s (%s) :: Logon Server"
+#define BANNER "ArcPro %s %s/%s-%s (%s) :: Logon Server"
 
 #ifndef WIN32
 #include <sched.h>

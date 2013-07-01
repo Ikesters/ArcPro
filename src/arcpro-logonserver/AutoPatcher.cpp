@@ -18,7 +18,7 @@
  */
 
 #include "LogonStdAfx.h"
-#include "../arcemu-shared/Auth/MD5.h"
+#include "../arcpro-shared/Auth/MD5.h"
 
 #ifndef WIN32
 #include <fcntl.h>
