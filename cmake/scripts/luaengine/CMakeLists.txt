@@ -1,7 +1,7 @@
 if(NOT BUILD_LUAENGINE )
   message("\tLuaEngine was skipped because BUILD_LUAENGINE is unchecked.")
   return()
-endif(NOT BUILD_LUAENGINE
+endif(NOT BUILD_LUAENGINE)
 
 project(LuaEngine)
 
