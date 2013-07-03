@@ -37,7 +37,7 @@ ENDIF()
 add_library(${PROJECT_NAME} SHARED ${SRCS} ${HEADERS})
 add_dependencies( ${PROJECT_NAME} ${dependancies} lualib)
 target_link_libraries( ${PROJECT_NAME} ${linkages} lualib)
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${ARCEMU_SCRIPTLIB_PATH} LIBRARY DESTINATION ${ARCEMU_SCRIPTLIB_PATH})
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${ARCPRO_SCRIPTLIB_PATH} LIBRARY DESTINATION ${ARCPRO_SCRIPTLIB_PATH})
 
 #Cleap up our variables(Not required.)
 unset( prefix)

@@ -1,10 +1,10 @@
 #child CMakeLists use this variable to access the source file directories. 
 #e.g ${SCRIPTS_PATH}/LuaEngine to access the source files for LuaEngine.
 
-if( NOT BUILD_ARCEMUSCRIPTS )
-  message( WARNING, "BUILD_ARCEMUSCRIPTS option is set to false. Script libraries will not be built." )
+if( NOT BUILD_ARCPROSCRIPTS )
+  message( WARNING, "BUILD_ARCPROSCRIPTS option is set to false. Script libraries will not be built." )
   return()
-endif(NOT BUILD_ARCEMUSCRIPTS)
+endif(NOT BUILD_ARCPROSCRIPTS)
 message("Configuring scripts :")
 SET( SCRIPTS_PATH ${ROOT_PATH}/src/scripts/src )
 #common include directories that script libraries might include.

@@ -63,14 +63,14 @@ ENDIF(WIN32)
 
 #Our configurable variables.
 IF( WIN32 )
-	SET(ARCEMU_CONFIGSFILE_PATH configs CACHE PATH "Path where the arcemu config files are.")
+	SET(ARCPRO_CONFIGSFILE_PATH configs CACHE PATH "Path where the arcpro config files are.")
 ELSE( WIN32 )
-	SET(ARCEMU_CONFIGSFILE_PATH etc CACHE PATH "Path where the arcemu config files are.")
+	SET(ARCPRO_CONFIGSFILE_PATH etc CACHE PATH "Path where the arcpro config files are.")
 ENDIF( WIN32 )
 
-SET(ARCEMU_SCRIPTLIB_PATH "modules" CACHE PATH "The directory which contains the 'lib' directory that has the script libraries." )
-SET(BUILD_ARCEMUSCRIPTS TRUE CACHE BOOL "Set to false to NOT build script libraries." )
-SET(BUILD_TOOLS TRUE CACHE BOOL "Build Arcemu tools" )
+SET(ARCPRO_SCRIPTLIB_PATH "modules" CACHE PATH "The directory which contains the 'lib' directory that has the script libraries." )
+SET(BUILD_ARCPROSCRIPTS TRUE CACHE BOOL "Set to false to NOT build script libraries." )
+SET(BUILD_TOOLS TRUE CACHE BOOL "Build Arcpro tools" )
 SET(VISUALSTUDIO_COMPILERHEAPLIMIT 400 CACHE STRING "Visual Studio compiler heap limit. Ignore on darwin and unix platforms.")
 
 include(CompilerVersion)
@@ -106,7 +106,7 @@ ELSEIF( CMAKE_GENERATOR MATCHES Visual* )
 ENDIF()
 
 #Pass our configurable variables to the C++ preprocessor.
-add_definitions( ${GLOBAL_DEFINES} -DCONFDIR=\"${ARCEMU_CONFIGSFILE_PATH}\" -DPREFIX=\"${ARCEMU_SCRIPTLIB_PATH}\")
+add_definitions( ${GLOBAL_DEFINES} -DCONFDIR=\"${ARCPRO_CONFIGSFILE_PATH}\" -DPREFIX=\"${ARCPRO_SCRIPTLIB_PATH}\")
 
 #These are set by find_package or the zlib and pcre subprojects.
 set(ZLIB_LIBRARIES "" CACHE INTERNAL "Zlib libraries.")
