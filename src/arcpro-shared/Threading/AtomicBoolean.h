@@ -21,7 +21,7 @@
 #ifndef ATOMICBOOLEAN_HPP__
 #define ATOMICBOOLEAN_HPP__
 
-namespace arcpro
+namespace Arcpro
 {
 	namespace Threading
 	{

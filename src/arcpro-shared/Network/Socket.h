@@ -101,10 +101,10 @@ class SERVER_DECL Socket
 		Mutex m_readMutex;
 
 		// we are connected? stop from posting events.
-		arcpro::Threading::AtomicBoolean m_connected;
+		Arcpro::Threading::AtomicBoolean m_connected;
 
 		// We are deleted? Stop us from posting events.
-		arcpro::Threading::AtomicBoolean m_deleted;
+		Arcpro::Threading::AtomicBoolean m_deleted;
 
 		sockaddr_in m_client;
 

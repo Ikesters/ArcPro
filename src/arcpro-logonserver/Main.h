@@ -33,7 +33,7 @@ enum RealmFlags
     REALM_FLAG_FULL         = 0x80
 };
 
-extern arcpro::Threading::AtomicBoolean mrunning;
+extern Arcpro::Threading::AtomicBoolean mrunning;
 class AuthSocket;
 extern set<AuthSocket*> _authSockets;
 extern Mutex _authSocketLock;
