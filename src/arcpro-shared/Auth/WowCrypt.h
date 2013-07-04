@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -34,8 +35,8 @@ class WowCrypt
 		~WowCrypt();
 
 		void Init(uint8* K);
-		ARCEMU_INLINE void DecryptRecv(uint8* pData, size_t len) { if(!m_initialized) { return; } RC4(&m_clientDecrypt, (unsigned long)len, pData, pData); }
-		ARCEMU_INLINE void EncryptSend(uint8* pData, size_t len) { if(!m_initialized) { return; } RC4(&m_serverEncrypt, (unsigned long)len, pData, pData); }
+		arcpro_INLINE void DecryptRecv(uint8* pData, size_t len) { if(!m_initialized) { return; } RC4(&m_clientDecrypt, (unsigned long)len, pData, pData); }
+		arcpro_INLINE void EncryptSend(uint8* pData, size_t len) { if(!m_initialized) { return; } RC4(&m_serverEncrypt, (unsigned long)len, pData, pData); }
 		bool IsInitialized() { return m_initialized; }
 
 	private:

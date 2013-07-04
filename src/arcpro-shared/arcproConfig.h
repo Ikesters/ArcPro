@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,11 +18,11 @@
  *
  */
 
-// arcemu Configuration Header File
+// arcpro Configuration Header File
 // Feel free to customize to your needs.
 
-#ifndef __arcemuCONFIG_H
-#define __arcemuCONFIG_H
+#ifndef __arcproCONFIG_H
+#define __arcproCONFIG_H
 
 #ifndef ENABLE_IMPROVED_TICKETSYSTEM
 #define GM_TICKET_MY_MASTER_COMPATIBLE
@@ -75,5 +76,5 @@
 // LOGON_MAXBUILD maximum allowed build number that the logonserver will allow clients to connect with
 #define LOGON_MAXBUILD 12340
 
-#endif		// __arcemuCONFIG_H
+#endif		// __arcproCONFIG_H
 

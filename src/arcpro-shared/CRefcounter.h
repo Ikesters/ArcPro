@@ -1,7 +1,8 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,7 +22,7 @@
 #ifndef CREFCOUNTER_HPP
 #define CREFCOUNTER_HPP
 
-namespace Arcemu
+namespace arcpro
 {
 	namespace Shared
 	{
@@ -78,7 +79,7 @@ namespace Arcemu
 
 
 			private:
-				Arcemu::Threading::AtomicCounter Counter;
+				arcpro::Threading::AtomicCounter Counter;
 
 		};
 	}

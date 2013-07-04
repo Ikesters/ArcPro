@@ -1,5 +1,6 @@
 /*
- *
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * RC4 Encyption Class
  * Copyright (c) 2007 Burlex
  * Adapted from rc4.c to C++

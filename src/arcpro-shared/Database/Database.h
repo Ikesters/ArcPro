@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -51,7 +52,7 @@ class SERVER_DECL AsyncQuery
 		~AsyncQuery();
 		void AddQuery(const char* format, ...);
 		void Perform();
-		ARCEMU_INLINE void SetDB(Database* dbb) { db = dbb; }
+		arcpro_INLINE void SetDB(Database* dbb) { db = dbb; }
 };
 
 class SERVER_DECL QueryBuffer
@@ -98,9 +99,9 @@ class SERVER_DECL Database : public CThread
 		// Initialized on load: Database::Database() : CThread()
 		bool ThreadRunning;
 
-		ARCEMU_INLINE const string & GetHostName() { return mHostname; }
-		ARCEMU_INLINE const string & GetDatabaseName() { return mDatabaseName; }
-		ARCEMU_INLINE const uint32 GetQueueSize() { return queries_queue.get_size(); }
+		arcpro_INLINE const string & GetHostName() { return mHostname; }
+		arcpro_INLINE const string & GetDatabaseName() { return mDatabaseName; }
+		arcpro_INLINE const uint32 GetQueueSize() { return queries_queue.get_size(); }
 
 		virtual string EscapeString(string Escape) = 0;
 		virtual void EscapeLongString(const char* str, uint32 len, stringstream & out) = 0;
@@ -166,9 +167,9 @@ class SERVER_DECL QueryResult
 		virtual bool NextRow() = 0;
 		void Delete() { delete this; }
 
-		ARCEMU_INLINE Field* Fetch() { return mCurrentRow; }
-		ARCEMU_INLINE uint32 GetFieldCount() const { return mFieldCount; }
-		ARCEMU_INLINE uint32 GetRowCount() const { return mRowCount; }
+		arcpro_INLINE Field* Fetch() { return mCurrentRow; }
+		arcpro_INLINE uint32 GetFieldCount() const { return mFieldCount; }
+		arcpro_INLINE uint32 GetRowCount() const { return mRowCount; }
 
 	protected:
 		uint32 mFieldCount;

@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -76,15 +77,15 @@ class SERVER_DECL StorageContainerIterator
 
 		/** Returns the currently stored object
 		 */
-		ARCEMU_INLINE T* Get() { return Pointer; }
+		arcpro_INLINE T* Get() { return Pointer; }
 
 		/** Sets the current object to P
 		 */
-		ARCEMU_INLINE void Set(T* P) { Pointer = P; }
+		arcpro_INLINE void Set(T* P) { Pointer = P; }
 
 		/** Are we at the end of the storage container?
 		 */
-		ARCEMU_INLINE bool AtEnd() { return (Pointer == 0); }
+		arcpro_INLINE bool AtEnd() { return (Pointer == 0); }
 
 		/** Virtual function to increment to the next element
 		 */
@@ -489,8 +490,8 @@ class SERVER_DECL Storage
 		char* _formatString;
 	public:
 
-		ARCEMU_INLINE char* GetIndexName() { return _indexName; }
-		ARCEMU_INLINE char* GetFormatString() { return _formatString; }
+		arcpro_INLINE char* GetIndexName() { return _indexName; }
+		arcpro_INLINE char* GetFormatString() { return _formatString; }
 
 		/** False constructor to fool compiler
 		 */
@@ -592,7 +593,7 @@ class SERVER_DECL SQLStorage : public Storage<T, StorageType>
 
 		/** Loads the block using the format string.
 		 */
-		ARCEMU_INLINE void LoadBlock(Field* fields, T* Allocated, bool reload = false)
+		arcpro_INLINE void LoadBlock(Field* fields, T* Allocated, bool reload = false)
 		{
 			char* p = Storage<T, StorageType>::_formatString;
 			char* structpointer = (char*)Allocated;

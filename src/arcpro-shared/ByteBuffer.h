@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -334,7 +335,7 @@ class SERVER_DECL ByteBuffer
 
 		const uint8* contents() const { return &_storage[0]; };
 
-		ARCEMU_INLINE size_t size() const { return _storage.size(); };
+		arcpro_INLINE size_t size() const { return _storage.size(); };
 		// one should never use resize probably
 		void resize(size_t newsize)
 		{
@@ -479,7 +480,7 @@ class SERVER_DECL ByteBuffer
 			printf("\n");
 		}
 
-		ARCEMU_INLINE void reverse()
+		arcpro_INLINE void reverse()
 		{
 			std::reverse(_storage.begin(), _storage.end());
 		}

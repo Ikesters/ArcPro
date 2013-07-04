@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,12 +18,12 @@
  *
  */
 
-#ifndef ARCEMU_FINDFILES_HPP
-#define ARCEMU_FINDFILES_HPP
+#ifndef arcpro_FINDFILES_HPP
+#define arcpro_FINDFILES_HPP
 
 #include "FindFilesResult.hpp"
 
-namespace Arcemu{
+namespace arcpro{
 	//////////////////////////////////////////////////////////////////////////////////
 	//bool FindFiles( const char *where, const char *filename, FindFilesResult &r )
 	//  Searches for files with the name of *filename*, and

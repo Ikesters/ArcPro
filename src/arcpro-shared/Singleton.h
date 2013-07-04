@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -51,8 +52,8 @@ template < class type > class SERVER_DECL Singleton
 			this->mSingleton = 0;
 		}
 
-		ARCEMU_INLINE static type & getSingleton() { ASSERT(mSingleton); return *mSingleton; }
-		ARCEMU_INLINE static type* getSingletonPtr() { return mSingleton; }
+		arcpro_INLINE static type & getSingleton() { ASSERT(mSingleton); return *mSingleton; }
+		arcpro_INLINE static type* getSingletonPtr() { return mSingleton; }
 
 	protected:
 

@@ -1,4 +1,6 @@
 /*
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (c) 2001 Jani Kajala
  *
  * Permission to use, copy, modify, distribute and sell this

@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,21 +18,21 @@
  *
  */
 
-#ifndef _arcemu_GETOPT_H
-#define _arcemu_GETOPT_H
+#ifndef _arcpro_GETOPT_H
+#define _arcpro_GETOPT_H
 
 /* getopt() wrapper */
-#define arcemu_no_argument            0
-#define arcemu_required_argument      1
-#define arcemu_optional_argument      2
-struct arcemu_option
+#define arcpro_no_argument            0
+#define arcpro_required_argument      1
+#define arcpro_optional_argument      2
+struct arcpro_option
 {
 	const char* name;
 	int has_arg;
 	int* flag;
 	int val;
 };
-extern char arcemu_optarg[514];
-int arcemu_getopt_long_only(int ___argc, char* const* ___argv, const char* __shortopts, const struct arcemu_option* __longopts, int* __longind);
+extern char arcpro_optarg[514];
+int arcpro_getopt_long_only(int ___argc, char* const* ___argv, const char* __shortopts, const struct arcpro_option* __longopts, int* __longind);
 
 #endif

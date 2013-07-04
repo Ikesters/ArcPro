@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 <http://arcpro.sexyi.am/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -96,7 +97,7 @@ class PeriodicFunctionCaller : public ThreadBase
 			/* wait for the thread to exit */
 			while(thread_active)
 			{
-				Arcemu::Sleep(100);
+				arcpro::Sleep(100);
 			}
 			LOG_DETAIL("PFC thread exited.");
 #else
@@ -107,7 +108,7 @@ class PeriodicFunctionCaller : public ThreadBase
 	private:
 		CallbackBase* cb;
 		uint32 interval;
-		Arcemu::Threading::AtomicBoolean running;
+		arcpro::Threading::AtomicBoolean running;
 #ifdef WIN32
 		bool thread_active;
 		HANDLE hEvent;

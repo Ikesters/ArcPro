@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -125,7 +126,7 @@ class SERVER_DECL StackBuffer : public StackBufferBase
 		/** Ensures the buffer is big enough to fit the specified number of bytes.
 		 * @param bytes number of bytes to fit
 		 */
-		ARCEMU_INLINE void EnsureBufferSize(uint32 Bytes)
+		arcpro_INLINE void EnsureBufferSize(uint32 Bytes)
 		{
 			if(m_writePos + Bytes > m_space)
 				ReallocateOnHeap();

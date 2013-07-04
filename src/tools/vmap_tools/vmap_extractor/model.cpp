@@ -1,5 +1,8 @@
 /*
- * Copyright (C) 2005-2011 MaNGOS <http://getmangos.com/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
+ * Copyright (C) 2005 - 2011 <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

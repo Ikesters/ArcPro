@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.com/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008-2012 <http://www.arcpro.com/>
  *
  * Circular Buffer Class
  * Based on the Bip Buffer concept, from http://www.codeproject.com/KB/IP/bipbuffer.aspx

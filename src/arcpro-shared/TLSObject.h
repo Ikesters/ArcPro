@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +21,7 @@
 #pragma once
 #include "Common.h"
 
-namespace Arcemu
+namespace arcpro
 {
 	namespace Utility
 	{
@@ -59,7 +60,7 @@ namespace Arcemu
 				// Parameter:	T - value to store in the tls slot
 				// Return : void
 				//************************************
-				ARCEMU_INLINE void set(T val)
+				arcpro_INLINE void set(T val)
 				{
 #if PLATFORM == PLATFORM_APPLE || PLATFORM == PLATFORM_UNIX
 					pthread_setspecific(key_, static_cast<const void*>(val));
@@ -72,7 +73,7 @@ namespace Arcemu
 				// Purpose : Returns a reference to the stored tls value.
 				// Return : T
 				//************************************
-				ARCEMU_INLINE T get() const
+				arcpro_INLINE T get() const
 				{
 #if PLATFORM == PLATFORM_APPLE || PLATFORM == PLATFORM_UNIX
 					return static_cast<T>(pthread_getspecific(key_));

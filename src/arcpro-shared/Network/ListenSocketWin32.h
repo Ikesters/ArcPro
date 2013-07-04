@@ -1,4 +1,6 @@
 /*
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Multiplatform Async Network Library
  * Copyright (c) 2007 Burlex
  *
@@ -95,7 +97,7 @@ class SERVER_DECL ListenSocket : public ThreadBase
 				SocketOps::CloseSocket(m_socket);
 		}
 
-		ARCEMU_INLINE bool IsOpen() { return m_opened; }
+		arcpro_INLINE bool IsOpen() { return m_opened; }
 
 	private:
 		SOCKET m_socket;

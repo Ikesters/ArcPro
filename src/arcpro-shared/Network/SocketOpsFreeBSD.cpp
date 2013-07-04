@@ -1,4 +1,6 @@
 /*
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Multiplatform Async Network Library
  * Copyright (c) 2007 Burlex
  *

@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 <http://arcpro.sexyi.am/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -42,7 +43,7 @@ void AccountMgr::ReloadAccounts(bool silent)
 			AccountName = field[1].GetString();
 
 			// transform to uppercase
-			arcemu_TOUPPER(AccountName);
+			arcpro_TOUPPER(AccountName);
 
 			//Use private __GetAccount, for locks
 			acct = __GetAccount(AccountName);
@@ -140,8 +141,8 @@ void AccountMgr::AddAccount(Field* field)
 		sLogonSQL->Execute("UPDATE accounts SET muted = 0 WHERE acct=%u", acct->AccountId);
 	}
 	// Convert username/password to uppercase. this is needed ;)
-	arcemu_TOUPPER(Username);
-	arcemu_TOUPPER(Password);
+	arcpro_TOUPPER(Username);
+	arcpro_TOUPPER(Password);
 
 	// prefer encrypted passwords over nonencrypted
 	if(EncryptedPassword.size() > 0)
@@ -226,8 +227,8 @@ void AccountMgr::UpdateAccount(Account* acct, Field* field)
 		sLogonSQL->Execute("UPDATE accounts SET muted = 0 WHERE acct=%u", acct->AccountId);
 	}
 	// Convert username/password to uppercase. this is needed ;)
-	arcemu_TOUPPER(Username);
-	arcemu_TOUPPER(Password);
+	arcpro_TOUPPER(Username);
+	arcpro_TOUPPER(Password);
 
 	// prefer encrypted passwords over nonencrypted
 	if(EncryptedPassword.size() > 0)

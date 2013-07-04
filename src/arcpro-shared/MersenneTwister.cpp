@@ -1,7 +1,8 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,7 +25,7 @@
 #define NUMBER_OF_GENERATORS 5
 Mutex* m_locks[NUMBER_OF_GENERATORS];
 CRandomMersenne* m_generators[NUMBER_OF_GENERATORS];
-Arcemu::Threading::AtomicCounter counter;
+arcpro::Threading::AtomicCounter counter;
 
 uint32 generate_seed()
 {

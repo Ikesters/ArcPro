@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 <http://arcpro.sexyi.am/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -32,14 +33,14 @@ class LockedQueue
 
 		}
 
-		ARCEMU_INLINE void add(const TYPE & element)
+		Arcpro_INLINE void add(const TYPE & element)
 		{
 			mutex.Acquire();
 			queue.push_back(element);
 			mutex.Release();
 		}
 
-		ARCEMU_INLINE TYPE next()
+		Arcpro_INLINE TYPE next()
 		{
 			mutex.Acquire();
 			assert(queue.size() > 0);
@@ -49,7 +50,7 @@ class LockedQueue
 			return t;
 		}
 
-		ARCEMU_INLINE size_t size()
+		Arcpro_INLINE size_t size()
 		{
 			mutex.Acquire();
 			size_t c = queue.size();
@@ -57,7 +58,7 @@ class LockedQueue
 			return c;
 		}
 
-		ARCEMU_INLINE TYPE get_first_element()
+		Arcpro_INLINE TYPE get_first_element()
 		{
 			mutex.Acquire();
 			TYPE t;
@@ -69,7 +70,7 @@ class LockedQueue
 			return t;
 		}
 
-		ARCEMU_INLINE void pop()
+		Arcpro_INLINE void pop()
 		{
 			mutex.Acquire();
 			ASSERT(queue.size() > 0);
@@ -77,7 +78,7 @@ class LockedQueue
 			mutex.Release();
 		}
 
-		ARCEMU_INLINE void clear()
+		Arcpro_INLINE void clear()
 		{
 			mutex.Acquire();
 			queue.resize(0);

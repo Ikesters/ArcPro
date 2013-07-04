@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 <http://arcpro.sexyi.am/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -59,12 +60,12 @@ class AuthSocket : public Socket
 
 		void SendChallengeError(uint8 Error);
 		void SendProofError(uint8 Error, uint8* M2);
-		ARCEMU_INLINE sAuthLogonChallenge_C* GetChallenge() { return &m_challenge; }
-		ARCEMU_INLINE void SendPacket(const uint8* data, const uint16 len) { Send(data, len); }
+		arcpro_INLINE sAuthLogonChallenge_C* GetChallenge() { return &m_challenge; }
+		arcpro_INLINE void SendPacket(const uint8* data, const uint16 len) { Send(data, len); }
 		void OnDisconnect();
-		ARCEMU_INLINE time_t GetLastRecv() { return last_recv; }
+		arcpro_INLINE time_t GetLastRecv() { return last_recv; }
 		bool removedFromSet;
-		ARCEMU_INLINE uint32 GetAccountID() { return m_account ? m_account->AccountId : 0; }
+		arcpro_INLINE uint32 GetAccountID() { return m_account ? m_account->AccountId : 0; }
 
 	protected:
 

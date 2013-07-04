@@ -1,4 +1,6 @@
 /*
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Multiplatform Async Network Library
  * Copyright (c) 2007 Burlex
  *
@@ -19,7 +21,7 @@ class SERVER_DECL SocketMgr : public Singleton<SocketMgr>
 		SocketMgr();
 		~SocketMgr();
 
-		ARCEMU_INLINE HANDLE GetCompletionPort() { return m_completionPort; }
+		arcpro_INLINE HANDLE GetCompletionPort() { return m_completionPort; }
 		void SpawnWorkerThreads();
 		void CloseAll();
 		void ShowStatus();
@@ -46,7 +48,7 @@ class SERVER_DECL SocketMgr : public Singleton<SocketMgr>
 		HANDLE m_completionPort;
 		set<Socket*> _sockets;
 		Mutex socketLock;
-		Arcemu::Threading::AtomicCounter socket_count;
+		arcpro::Threading::AtomicCounter socket_count;
 };
 
 #define sSocketMgr SocketMgr::getSingleton()

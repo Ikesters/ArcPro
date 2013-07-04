@@ -1,4 +1,6 @@
 /*
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Multiplatform Async Network Library
  * Copyright (c) 2007 Burlex
  *
@@ -46,7 +48,7 @@ class SERVER_DECL Socket
 		bool Send(const uint8* Bytes, uint32 Size);
 
 		// Burst system - Locks the sending mutex.
-		ARCEMU_INLINE void BurstBegin() { m_writeMutex.Acquire(); }
+		arcpro_INLINE void BurstBegin() { m_writeMutex.Acquire(); }
 
 		// Burst system - Adds bytes to output buffer.
 		bool BurstSend(const uint8* Bytes, uint32 Size);
@@ -55,14 +57,14 @@ class SERVER_DECL Socket
 		void BurstPush();
 
 		// Burst system - Unlocks the sending mutex.
-		ARCEMU_INLINE void BurstEnd() { m_writeMutex.Release(); }
+		arcpro_INLINE void BurstEnd() { m_writeMutex.Release(); }
 
 		/* Client Operations */
 
 		// Get the client's ip in numerical form.
 		string GetRemoteIP();
-		ARCEMU_INLINE uint32 GetRemotePort() { return ntohs(m_client.sin_port); }
-		ARCEMU_INLINE SOCKET GetFd() { return m_fd; }
+		arcpro_INLINE uint32 GetRemotePort() { return ntohs(m_client.sin_port); }
+		arcpro_INLINE SOCKET GetFd() { return m_fd; }
 
 		/* Platform-specific methods */
 
@@ -70,19 +72,19 @@ class SERVER_DECL Socket
 		void ReadCallback(uint32 len);
 		void WriteCallback();
 
-		ARCEMU_INLINE bool IsDeleted()
+		arcpro_INLINE bool IsDeleted()
 		{
 			return m_deleted.GetVal();
 		}
-		ARCEMU_INLINE bool IsConnected()
+		arcpro_INLINE bool IsConnected()
 		{
 			return m_connected.GetVal();
 		}
-		ARCEMU_INLINE sockaddr_in & GetRemoteStruct() { return m_client; }
+		arcpro_INLINE sockaddr_in & GetRemoteStruct() { return m_client; }
 
 		void Delete();
 
-		ARCEMU_INLINE in_addr GetRemoteAddress() { return m_client.sin_addr; }
+		arcpro_INLINE in_addr GetRemoteAddress() { return m_client.sin_addr; }
 
 
 		CircularBuffer readBuffer;
@@ -99,10 +101,10 @@ class SERVER_DECL Socket
 		Mutex m_readMutex;
 
 		// we are connected? stop from posting events.
-		Arcemu::Threading::AtomicBoolean m_connected;
+		arcpro::Threading::AtomicBoolean m_connected;
 
 		// We are deleted? Stop us from posting events.
-		Arcemu::Threading::AtomicBoolean m_deleted;
+		arcpro::Threading::AtomicBoolean m_deleted;
 
 		sockaddr_in m_client;
 
@@ -111,9 +113,9 @@ class SERVER_DECL Socket
 
 	public:
 		// Atomic wrapper functions for increasing read/write locks
-		ARCEMU_INLINE void IncSendLock() { ++m_writeLock; }
-		ARCEMU_INLINE void DecSendLock() { --m_writeLock; }
-		ARCEMU_INLINE bool AcquireSendLock()
+		arcpro_INLINE void IncSendLock() { ++m_writeLock; }
+		arcpro_INLINE void DecSendLock() { --m_writeLock; }
+		arcpro_INLINE bool AcquireSendLock()
 		{
 			if(m_writeLock.SetVal(1) != 0)
 				return false;
@@ -123,7 +125,7 @@ class SERVER_DECL Socket
 
 	private:
 		// Write lock, stops multiple write events from being posted.
-		Arcemu::Threading::AtomicCounter m_writeLock;
+		arcpro::Threading::AtomicCounter m_writeLock;
 
 		/* Win32 - IOCP Specific Calls */
 #ifdef CONFIG_USE_IOCP
@@ -131,7 +133,7 @@ class SERVER_DECL Socket
 	public:
 
 		// Set completion port that this socket will be assigned to.
-		ARCEMU_INLINE void SetCompletionPort(HANDLE cp) { m_completionPort = cp; }
+		arcpro_INLINE void SetCompletionPort(HANDLE cp) { m_completionPort = cp; }
 
 		OverlappedStruct m_readEvent;
 		OverlappedStruct m_writeEvent;
@@ -151,7 +153,7 @@ class SERVER_DECL Socket
 		// Posts a epoll event with the specifed arguments.
 		void PostEvent(uint32 events);
 
-		ARCEMU_INLINE bool HasSendLock()
+		arcpro_INLINE bool HasSendLock()
 		{
 			bool res;
 			res = (m_writeLock.GetVal() != 0);
@@ -164,7 +166,7 @@ class SERVER_DECL Socket
 	public:
 		// Posts a epoll event with the specifed arguments.
 		void PostEvent(int events, bool oneshot);
-		ARCEMU_INLINE bool HasSendLock()
+		arcpro_INLINE bool HasSendLock()
 		{
 			bool res;
 			res = (m_writeLock.GetVal() != 0);

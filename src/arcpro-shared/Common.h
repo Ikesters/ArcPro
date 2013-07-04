@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -53,11 +54,11 @@ enum MsTimeVariables
 };
 
 #ifdef WIN32
-#define ARCEMU_FORCEINLINE __forceinline
+#define arcpro_FORCEINLINE __forceinline
 #else
-#define ARCEMU_FORCEINLINE inline
+#define arcpro_FORCEINLINE inline
 #endif
-#define ARCEMU_INLINE inline
+#define arcpro_INLINE inline
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
@@ -494,7 +495,7 @@ static inline int long2int32(const double value)
 #include <sys/timeb.h>
 #endif
 
-ARCEMU_INLINE uint32 now()
+arcpro_INLINE uint32 now()
 {
 #ifdef WIN32
 	return GetTickCount();
@@ -544,7 +545,7 @@ struct spawn_timed_emotes
 };
 typedef std::list<spawn_timed_emotes*> TimedEmoteList;
 
-ARCEMU_INLINE void reverse_array(uint8* pointer, size_t count)
+arcpro_INLINE void reverse_array(uint8* pointer, size_t count)
 {
 	size_t x;
 	uint8* temp = (uint8*)malloc(count);
@@ -562,13 +563,13 @@ std::string ConvertTimeStampToDataTime(uint32 timestamp);
 
 uint32 DecimalToMask(uint32 dec);
 
-ARCEMU_INLINE void arcemu_TOLOWER(std::string & str)
+arcpro_INLINE void arcpro_TOLOWER(std::string & str)
 {
 	for(size_t i = 0; i < str.length(); ++i)
 		str[i] = (char)tolower(str[i]);
 }
 
-ARCEMU_INLINE void arcemu_TOUPPER(std::string & str)
+arcpro_INLINE void arcpro_TOUPPER(std::string & str)
 {
 	for(size_t i = 0; i < str.length(); ++i)
 		str[i] = (char)toupper(str[i]);

@@ -1,7 +1,8 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,27 +23,27 @@
 #include "PerformanceCounter.hpp"
 #include "SysInfo.hpp"
 
-namespace Arcemu
+namespace arcpro
 {
 
 	PerformanceCounter::PerformanceCounter()
 	{
-		cpu_count = Arcemu::SysInfo::GetCPUCount();
-		last_update = Arcemu::SysInfo::GetTickCount();
-		last_cpu_usage = Arcemu::SysInfo::GetCPUUsage();
+		cpu_count = arcpro::SysInfo::GetCPUCount();
+		last_update = arcpro::SysInfo::GetTickCount();
+		last_cpu_usage = arcpro::SysInfo::GetCPUUsage();
 	}
 
 	float PerformanceCounter::GetCurrentRAMUsage()
 	{
-		unsigned long long usage = Arcemu::SysInfo::GetRAMUsage();
+		unsigned long long usage = arcpro::SysInfo::GetRAMUsage();
 
 		return static_cast< float >(usage / (1024.0 * 1024.0));
 	}
 
 	float PerformanceCounter::GetCurrentCPUUsage()
 	{
-		unsigned long long now = Arcemu::SysInfo::GetTickCount();
-		unsigned long long now_cpu_usage = Arcemu::SysInfo::GetCPUUsage();
+		unsigned long long now = arcpro::SysInfo::GetTickCount();
+		unsigned long long now_cpu_usage = arcpro::SysInfo::GetCPUUsage();
 		unsigned long long cpu_usage = now_cpu_usage - last_cpu_usage; // micro seconds
 		unsigned long long time_elapsed = now - last_update; // milli seconds
 

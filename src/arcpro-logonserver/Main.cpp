@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 <http://arcpro.sexyi.am/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -34,7 +35,7 @@
 // Database impl
 Database* sLogonSQL;
 initialiseSingleton(LogonServer);
-Arcemu::Threading::AtomicBoolean mrunning(true);
+arcpro::Threading::AtomicBoolean mrunning(true);
 Mutex _authSocketLock;
 set<AuthSocket*> _authSockets;
 
@@ -289,25 +290,25 @@ void LogonServer::Run(int argc, char** argv)
 	int do_check_conf = 0;
 	int do_version = 0;
 
-	struct arcemu_option longopts[] =
+	struct arcpro_option longopts[] =
 	{
-		{ "checkconf",			arcemu_no_argument,				&do_check_conf,			1		},
-		{ "screenloglevel",		arcemu_required_argument,		&screen_log_level,		1		},
-		{ "fileloglevel",		arcemu_required_argument,		&file_log_level,		1		},
-		{ "version",			arcemu_no_argument,				&do_version,			1		},
-		{ "conf",				arcemu_required_argument,		NULL,					'c'		},
+		{ "checkconf",			arcpro_no_argument,				&do_check_conf,			1		},
+		{ "screenloglevel",		arcpro_required_argument,		&screen_log_level,		1		},
+		{ "fileloglevel",		arcpro_required_argument,		&file_log_level,		1		},
+		{ "version",			arcpro_no_argument,				&do_version,			1		},
+		{ "conf",				arcpro_required_argument,		NULL,					'c'		},
 		{ 0, 0, 0, 0 }
 	};
 
 	int c;
-	while((c = arcemu_getopt_long_only(argc, argv, ":f:", longopts, NULL)) != -1)
+	while((c = arcpro_getopt_long_only(argc, argv, ":f:", longopts, NULL)) != -1)
 	{
 		switch(c)
 		{
 			case 'c':
 				/* Log filename was set */
-				config_file = new char[strlen(arcemu_optarg)];
-				strcpy(config_file, arcemu_optarg);
+				config_file = new char[strlen(arcpro_optarg)];
+				strcpy(config_file, arcpro_optarg);
 				break;
 			case 0:
 				break;
@@ -477,7 +478,7 @@ void LogonServer::Run(int argc, char** argv)
 			}
 
 			PatchMgr::getSingleton().UpdateJobs();
-			Arcemu::Sleep(1000);
+			arcpro::Sleep(1000);
 		}
 
 		sLog.outString("Shutting down...");

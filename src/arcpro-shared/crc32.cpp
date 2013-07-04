@@ -1,4 +1,6 @@
 /*
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * $Id: crc32.c,v 1.1.1.1 1996/02/18 21:38:12 ylo Exp $
  * $Log: crc32.c,v $
  * Revision 1.1.1.1  1996/02/18 21:38:12  ylo

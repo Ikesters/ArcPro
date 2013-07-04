@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 <http://arcpro.sexyi.am/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,22 +26,22 @@
 class RWLock
 {
 	public:
-		ARCEMU_INLINE void AcquireReadLock()
+		Arcpro_INLINE void AcquireReadLock()
 		{
 			_lock.Acquire();
 		}
 
-		ARCEMU_INLINE void ReleaseReadLock()
+		Arcpro_INLINE void ReleaseReadLock()
 		{
 			_lock.Release();
 		}
 
-		ARCEMU_INLINE void AcquireWriteLock()
+		Arcpro_INLINE void AcquireWriteLock()
 		{
 			_lock.Acquire();
 		}
 
-		ARCEMU_INLINE void ReleaseWriteLock()
+		Arcpro_INLINE void ReleaseWriteLock()
 		{
 			_lock.Release();
 		}

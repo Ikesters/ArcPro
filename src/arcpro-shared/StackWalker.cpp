@@ -1,5 +1,8 @@
 /**********************************************************************
  *
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ *
  * StackWalker.cpp
  *
  *
@@ -37,7 +40,7 @@
 #if _MSC_VER >= 1300
 #include <dbghelp.h>
 #else
-// ARCEMU_INLINE the important dbghelp.h-declarations...
+// arcpro_INLINE the important dbghelp.h-declarations...
 typedef enum
 {
 	SymNone = 0,

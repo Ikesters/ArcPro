@@ -1,5 +1,7 @@
 /**********************************************************************
  *
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * StackWalker.h
  *
  *

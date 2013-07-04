@@ -1,7 +1,8 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,10 +20,10 @@
  */
 
 
-#ifndef ARCEMU_PERFORMANCECOUNTER_HPP
-#define ARCEMU_PERFORMANCECOUNTER_HPP
+#ifndef arcpro_PERFORMANCECOUNTER_HPP
+#define arcpro_PERFORMANCECOUNTER_HPP
 
-namespace Arcemu{
+namespace arcpro{
 
 	/////////////////////////////////////////////////////////
 	//class PerformanceCounter

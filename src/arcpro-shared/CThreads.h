@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -53,8 +54,8 @@ class SERVER_DECL CThread : public ThreadBase
 		CThread();
 		~CThread();
 
-		ARCEMU_INLINE void SetThreadState(CThreadState thread_state) { ThreadState.SetVal(thread_state); }
-		ARCEMU_INLINE CThreadState GetThreadState()
+		arcpro_INLINE void SetThreadState(CThreadState thread_state) { ThreadState.SetVal(thread_state); }
+		arcpro_INLINE CThreadState GetThreadState()
 		{
 			unsigned long val = ThreadState.GetVal();
 			return static_cast<CThreadState>(val);
@@ -73,7 +74,7 @@ class SERVER_DECL CThread : public ThreadBase
 			return *this;
 		}
 
-		Arcemu::Threading::AtomicCounter ThreadState;
+		arcpro::Threading::AtomicCounter ThreadState;
 		time_t start_time;
 		int ThreadId;
 };

@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,17 +25,17 @@ class Field
 {
 	public:
 
-		ARCEMU_INLINE void SetValue(char* value) { mValue = value; }
+		arcpro_INLINE void SetValue(char* value) { mValue = value; }
 
-		ARCEMU_INLINE const char* GetString() { return mValue; }
-		ARCEMU_INLINE float GetFloat() { return mValue ? static_cast<float>(atof(mValue)) : 0; }
-		ARCEMU_INLINE bool GetBool() { return mValue ? atoi(mValue) > 0 : false; }
-		ARCEMU_INLINE uint8 GetUInt8() { return mValue ? static_cast<uint8>(atol(mValue)) : 0; }
-		ARCEMU_INLINE int8 GetInt8() { return mValue ? static_cast<int8>(atol(mValue)) : 0; }
-		ARCEMU_INLINE uint16 GetUInt16() { return mValue ? static_cast<uint16>(atol(mValue)) : 0; }
-		ARCEMU_INLINE int16 GetInt16() { return mValue ? static_cast<int16>(atol(mValue)) : 0; }
-		ARCEMU_INLINE uint32 GetUInt32() { return mValue ? static_cast<uint32>(atol(mValue)) : 0; }
-		ARCEMU_INLINE int32 GetInt32() { return mValue ? static_cast<int32>(atol(mValue)) : 0; }
+		arcpro_INLINE const char* GetString() { return mValue; }
+		arcpro_INLINE float GetFloat() { return mValue ? static_cast<float>(atof(mValue)) : 0; }
+		arcpro_INLINE bool GetBool() { return mValue ? atoi(mValue) > 0 : false; }
+		arcpro_INLINE uint8 GetUInt8() { return mValue ? static_cast<uint8>(atol(mValue)) : 0; }
+		arcpro_INLINE int8 GetInt8() { return mValue ? static_cast<int8>(atol(mValue)) : 0; }
+		arcpro_INLINE uint16 GetUInt16() { return mValue ? static_cast<uint16>(atol(mValue)) : 0; }
+		arcpro_INLINE int16 GetInt16() { return mValue ? static_cast<int16>(atol(mValue)) : 0; }
+		arcpro_INLINE uint32 GetUInt32() { return mValue ? static_cast<uint32>(atol(mValue)) : 0; }
+		arcpro_INLINE int32 GetInt32() { return mValue ? static_cast<int32>(atol(mValue)) : 0; }
 		uint64 GetUInt64()
 		{
 			if(mValue)

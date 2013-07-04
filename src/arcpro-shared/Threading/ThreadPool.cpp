@@ -1,5 +1,6 @@
 /*
  * Thread Pool Class
+ * Copyright (C) 2011 - 2013 <http://arcpro.sexyi.am/>
  * Copyright (C) Burlex <burlex@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -249,7 +250,7 @@ void CThreadPool::Shutdown()
 			}
 			Log.Debug("ThreadPool", "%u active and %u free threads remaining...", m_activeThreads.size(), m_freeThreads.size());
 			_mutex.Release();
-			Arcemu::Sleep(1000);
+			Arcpro::Sleep(1000);
 			continue;
 		}
 

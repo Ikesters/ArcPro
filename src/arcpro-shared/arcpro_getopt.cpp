@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,8 +22,8 @@
 #include "arcpro_getopt.h"
 
 int arg_counter = 1;
-char arcemu_optarg[514];
-int arcemu_getopt_long_only(int ___argc, char* const* ___argv, const char* __shortopts, const struct arcemu_option* __longopts, int* __longind)
+char arcpro_optarg[514];
+int arcpro_getopt_long_only(int ___argc, char* const* ___argv, const char* __shortopts, const struct arcpro_option* __longopts, int* __longind)
 {
 	// burlex todo: handle the shortops, at the moment it only works with longopts.
 
@@ -61,7 +62,7 @@ int arcemu_getopt_long_only(int ___argc, char* const* ___argv, const char* __sho
 			arg_counter++;
 
 			// determine action based on type
-			if(__longopts[i].has_arg == arcemu_required_argument)
+			if(__longopts[i].has_arg == arcpro_required_argument)
 			{
 				if(!par)
 					return 1;
@@ -76,7 +77,7 @@ int arcemu_getopt_long_only(int ___argc, char* const* ___argv, const char* __sho
 
 			// store argument in optarg
 			if(par)
-				strncpy(arcemu_optarg, par, 514);
+				strncpy(arcpro_optarg, par, 514);
 
 			if(__longopts[i].flag != 0)
 			{
@@ -98,4 +99,3 @@ int arcemu_getopt_long_only(int ___argc, char* const* ___argv, const char* __sho
 	// return 1 (invalid argument)
 	return 1;
 }
-

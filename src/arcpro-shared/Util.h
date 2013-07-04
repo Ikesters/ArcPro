@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -58,7 +59,7 @@ typedef struct tagTHREADNAME_INFO
 
 #endif
 
-namespace Arcemu
+namespace arcpro
 {
 	SERVER_DECL float round(float f);
 	SERVER_DECL double round(double d);
@@ -92,7 +93,7 @@ namespace Arcemu
 //
 //
 /////////////////////////////////////////////////////////
-ARCEMU_INLINE uint32 getMSTime()
+arcpro_INLINE uint32 getMSTime()
 {
 	uint32 MSTime = 0;
 #ifdef WIN32

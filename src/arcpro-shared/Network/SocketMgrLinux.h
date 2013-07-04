@@ -1,4 +1,6 @@
 /*
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Multiplatform Async Network Library
  * Copyright (c) 2007 Burlex
  *
@@ -34,7 +36,7 @@ class SocketMgr : public Singleton<SocketMgr>
 		ListenSocketBase* listenfds[SOCKET_HOLDER_SIZE];
 
 		/// socket counter
-		Arcemu::Threading::AtomicCounter socket_count;
+		arcpro::Threading::AtomicCounter socket_count;
 
 		int max_fd;
 

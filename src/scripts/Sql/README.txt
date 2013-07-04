@@ -1,1 +1,1 @@
-Execute arcscripts_full.sql in your ArcEmu World Database.
+Execute arcscripts_full.sql in your ArcPro World Database.

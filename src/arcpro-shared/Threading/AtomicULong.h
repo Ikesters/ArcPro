@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 <http://arcpro.sexyi.am/>
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +21,7 @@
 #ifndef ATOMICULONG_HPP_
 #define ATOMICULONG_HPP_
 
-namespace Arcemu
+namespace Arcpro
 {
 	namespace Threading
 	{
@@ -28,7 +29,7 @@ namespace Arcemu
 		/////////////////////////////////////////////////
 		//class AtomicULong
 		//  Stores an unsigned long atomically.
-		//  Base class for all Arcemu atomics.
+		//  Base class for all Arcpro atomics.
 		//
 		////////////////////////////////////////////////
 		class AtomicULong

@@ -1,6 +1,7 @@
 /*
- * ArcEmu MMORPG Server
- * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
+ * Copyright (C) 2008 - 2013 <http://www.arcemu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,13 +18,13 @@
  *
  */
 
-#ifndef ARCEMU_FFR_HPP
-#define ARCEMU_FFR_HPP
+#ifndef arcpro_FFR_HPP
+#define arcpro_FFR_HPP
 
 #include <string>
 #include <vector>
 
-namespace Arcemu{
+namespace arcpro{
 	///////////////////////////////////////////////////////
 	//class FindFilesResult
 	//  Contains the FindFile result.
