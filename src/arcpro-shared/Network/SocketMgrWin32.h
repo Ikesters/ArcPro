@@ -21,7 +21,7 @@ class SERVER_DECL SocketMgr : public Singleton<SocketMgr>
 		SocketMgr();
 		~SocketMgr();
 
-		arcpro_INLINE HANDLE GetCompletionPort() { return m_completionPort; }
+		ARCPRO_INLINE HANDLE GetCompletionPort() { return m_completionPort; }
 		void SpawnWorkerThreads();
 		void CloseAll();
 		void ShowStatus();

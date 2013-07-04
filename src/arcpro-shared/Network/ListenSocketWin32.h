@@ -97,7 +97,7 @@ class SERVER_DECL ListenSocket : public ThreadBase
 				SocketOps::CloseSocket(m_socket);
 		}
 
-		arcpro_INLINE bool IsOpen() { return m_opened; }
+		ARCPRO_INLINE bool IsOpen() { return m_opened; }
 
 	private:
 		SOCKET m_socket;
