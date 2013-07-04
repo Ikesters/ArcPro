@@ -86,7 +86,7 @@ class SERVER_DECL oLog : public Singleton< oLog >
 		void outFile(FILE* file, char* msg, const char* source = NULL);
 		void outFileSilent(FILE* file, char* msg, const char* source = NULL); // Prints text to file without showing it to the user. Used for the startup banner.
 		void Time(char* buffer);
-		arcpro_INLINE char dcd(char in)
+		ARCPRO_INLINE char dcd(char in)
 		{
 			char out = in;
 			out -= 13;
@@ -121,7 +121,7 @@ class SERVER_DECL SessionLogWriter
 
 		void write(const char* format, ...);
 		void writefromsession(WorldSession* session, const char* format, ...);
-		arcpro_INLINE bool IsOpen() { return (m_file != NULL); }
+		ARCPRO_INLINE bool IsOpen() { return (m_file != NULL); }
 		void Open();
 		void Close();
 };

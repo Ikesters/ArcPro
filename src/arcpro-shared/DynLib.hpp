@@ -23,7 +23,7 @@
 
 #include <string>
 
-namespace arcpro{
+namespace Arcpro{
 	//////////////////////////////////////////////////////
 	//class DynLib
 	//  Dynamic Library ( dll / so / dylib ) handler class

@@ -23,7 +23,7 @@
 
 #include "Common.h"
 using namespace std;
-namespace arcpro
+namespace Arcpro
 {
 	namespace Utility
 	{

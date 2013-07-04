@@ -27,7 +27,7 @@
 #include "DynLib.hpp"
 
 
-namespace arcpro
+namespace Arcpro
 {
 
 	DynLib::DynLib(const char* libfilename)

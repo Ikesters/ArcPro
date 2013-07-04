@@ -54,8 +54,8 @@ class SERVER_DECL CThread : public ThreadBase
 		CThread();
 		~CThread();
 
-		arcpro_INLINE void SetThreadState(CThreadState thread_state) { ThreadState.SetVal(thread_state); }
-		arcpro_INLINE CThreadState GetThreadState()
+		ARCPRO_INLINE void SetThreadState(CThreadState thread_state) { ThreadState.SetVal(thread_state); }
+		ARCPRO_INLINE CThreadState GetThreadState()
 		{
 			unsigned long val = ThreadState.GetVal();
 			return static_cast<CThreadState>(val);

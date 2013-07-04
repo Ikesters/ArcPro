@@ -23,7 +23,7 @@
 #ifndef arcpro_SYSINFO_HPP
 #define arcpro_SYSINFO_HPP
 
-namespace arcpro{
+namespace Arcpro{
 	////////////////////////////////////////////////////////
 	//class SysInfo
 	//  Class with static methods capable of retrieving

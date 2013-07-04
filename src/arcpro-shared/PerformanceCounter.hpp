@@ -20,10 +20,10 @@
  */
 
 
-#ifndef arcpro_PERFORMANCECOUNTER_HPP
-#define arcpro_PERFORMANCECOUNTER_HPP
+#ifndef ARCPRO_PERFORMANCECOUNTER_HPP
+#define ARCPRO_PERFORMANCECOUNTER_HPP
 
-namespace arcpro{
+namespace Arcpro{
 
 	/////////////////////////////////////////////////////////
 	//class PerformanceCounter

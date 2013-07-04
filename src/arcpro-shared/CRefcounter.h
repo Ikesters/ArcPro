@@ -22,7 +22,7 @@
 #ifndef CREFCOUNTER_HPP
 #define CREFCOUNTER_HPP
 
-namespace arcpro
+namespace Arcpro
 {
 	namespace Shared
 	{

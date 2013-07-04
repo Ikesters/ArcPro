@@ -26,8 +26,8 @@
 class DummyLock
 {
 	public:
-		arcpro_INLINE void Acquire() { }
-		arcpro_INLINE void Release() { }
+		ARCPRO_INLINE void Acquire() { }
+		ARCPRO_INLINE void Release() { }
 };
 
 /** linked-list style queue

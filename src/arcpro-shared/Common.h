@@ -54,17 +54,17 @@ enum MsTimeVariables
 };
 
 #ifdef WIN32
-#define arcpro_FORCEINLINE __forceinline
+#define ARCPRO_FORCEINLINE __forceinline
 #else
-#define arcpro_FORCEINLINE inline
+#define ARCPRO_FORCEINLINE inline
 #endif
-#define arcpro_INLINE inline
+#define ARCPRO_INLINE inline
 
 #ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 
-#include "ArcproConfig.h"
+#include "ArcProConfig.h"
 
 #include <cstdlib>
 #include <cstdio>
@@ -495,7 +495,7 @@ static inline int long2int32(const double value)
 #include <sys/timeb.h>
 #endif
 
-arcpro_INLINE uint32 now()
+ARCPRO_INLINE uint32 now()
 {
 #ifdef WIN32
 	return GetTickCount();
@@ -545,7 +545,7 @@ struct spawn_timed_emotes
 };
 typedef std::list<spawn_timed_emotes*> TimedEmoteList;
 
-arcpro_INLINE void reverse_array(uint8* pointer, size_t count)
+ARCPRO_INLINE void reverse_array(uint8* pointer, size_t count)
 {
 	size_t x;
 	uint8* temp = (uint8*)malloc(count);
@@ -563,13 +563,13 @@ std::string ConvertTimeStampToDataTime(uint32 timestamp);
 
 uint32 DecimalToMask(uint32 dec);
 
-arcpro_INLINE void arcpro_TOLOWER(std::string & str)
+ARCPRO_INLINE void arcpro_TOLOWER(std::string & str)
 {
 	for(size_t i = 0; i < str.length(); ++i)
 		str[i] = (char)tolower(str[i]);
 }
 
-arcpro_INLINE void arcpro_TOUPPER(std::string & str)
+ARCPRO_INLINE void arcpro_TOUPPER(std::string & str)
 {
 	for(size_t i = 0; i < str.length(); ++i)
 		str[i] = (char)toupper(str[i]);

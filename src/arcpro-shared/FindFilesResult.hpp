@@ -18,13 +18,13 @@
  *
  */
 
-#ifndef arcpro_FFR_HPP
-#define arcpro_FFR_HPP
+#ifndef ARCPRO_FFR_HPP
+#define ARCPRO_FFR_HPP
 
 #include <string>
 #include <vector>
 
-namespace arcpro{
+namespace Arcpro{
 	///////////////////////////////////////////////////////
 	//class FindFilesResult
 	//  Contains the FindFile result.

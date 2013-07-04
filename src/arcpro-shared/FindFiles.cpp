@@ -28,7 +28,7 @@
 #include <dirent.h>
 #endif
 
-namespace arcpro
+namespace Arcpro
 {
 
 #ifdef WIN32

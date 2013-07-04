@@ -21,7 +21,7 @@
 #pragma once
 #include "Common.h"
 
-namespace arcpro
+namespace Arcpro
 {
 	namespace Utility
 	{
@@ -60,7 +60,7 @@ namespace arcpro
 				// Parameter:	T - value to store in the tls slot
 				// Return : void
 				//************************************
-				arcpro_INLINE void set(T val)
+				ARCPRO_INLINE void set(T val)
 				{
 #if PLATFORM == PLATFORM_APPLE || PLATFORM == PLATFORM_UNIX
 					pthread_setspecific(key_, static_cast<const void*>(val));
@@ -73,7 +73,7 @@ namespace arcpro
 				// Purpose : Returns a reference to the stored tls value.
 				// Return : T
 				//************************************
-				arcpro_INLINE T get() const
+				ARCPRO_INLINE T get() const
 				{
 #if PLATFORM == PLATFORM_APPLE || PLATFORM == PLATFORM_UNIX
 					return static_cast<T>(pthread_getspecific(key_));

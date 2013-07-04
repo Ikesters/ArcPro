@@ -23,7 +23,7 @@
 #include "PerformanceCounter.hpp"
 #include "SysInfo.hpp"
 
-namespace arcpro
+namespace Arcpro
 {
 
 	PerformanceCounter::PerformanceCounter()

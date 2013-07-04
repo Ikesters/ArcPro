@@ -18,12 +18,12 @@
  *
  */
 
-#ifndef arcpro_FINDFILES_HPP
-#define arcpro_FINDFILES_HPP
+#ifndef ARCPRO_FINDFILES_HPP
+#define ARCPRO_FINDFILES_HPP
 
 #include "FindFilesResult.hpp"
 
-namespace arcpro{
+namespace Arcpro{
 	//////////////////////////////////////////////////////////////////////////////////
 	//bool FindFiles( const char *where, const char *filename, FindFilesResult &r )
 	//  Searches for files with the name of *filename*, and

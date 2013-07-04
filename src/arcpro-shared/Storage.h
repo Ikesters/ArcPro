@@ -77,15 +77,15 @@ class SERVER_DECL StorageContainerIterator
 
 		/** Returns the currently stored object
 		 */
-		arcpro_INLINE T* Get() { return Pointer; }
+		ARCPRO_INLINE T* Get() { return Pointer; }
 
 		/** Sets the current object to P
 		 */
-		arcpro_INLINE void Set(T* P) { Pointer = P; }
+		ARCPRO_INLINE void Set(T* P) { Pointer = P; }
 
 		/** Are we at the end of the storage container?
 		 */
-		arcpro_INLINE bool AtEnd() { return (Pointer == 0); }
+		ARCPRO_INLINE bool AtEnd() { return (Pointer == 0); }
 
 		/** Virtual function to increment to the next element
 		 */
@@ -490,8 +490,8 @@ class SERVER_DECL Storage
 		char* _formatString;
 	public:
 
-		arcpro_INLINE char* GetIndexName() { return _indexName; }
-		arcpro_INLINE char* GetFormatString() { return _formatString; }
+		ARCPRO_INLINE char* GetIndexName() { return _indexName; }
+		ARCPRO_INLINE char* GetFormatString() { return _formatString; }
 
 		/** False constructor to fool compiler
 		 */
@@ -593,7 +593,7 @@ class SERVER_DECL SQLStorage : public Storage<T, StorageType>
 
 		/** Loads the block using the format string.
 		 */
-		arcpro_INLINE void LoadBlock(Field* fields, T* Allocated, bool reload = false)
+		ARCPRO_INLINE void LoadBlock(Field* fields, T* Allocated, bool reload = false)
 		{
 			char* p = Storage<T, StorageType>::_formatString;
 			char* structpointer = (char*)Allocated;
