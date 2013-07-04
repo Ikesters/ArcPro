@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -115,22 +116,22 @@ class SERVER_DECL Map
 		Map(uint32 mapid, MapInfo* inf);
 		~Map();
 
-		ARCEMU_INLINE string GetNameString() { return name; }
-		ARCEMU_INLINE const char* GetName() { return name.c_str(); }
-		ARCEMU_INLINE MapEntry* GetDBCEntry() { return me; }
+		ARCPRO_INLINE string GetNameString() { return name; }
+		ARCPRO_INLINE const char* GetName() { return name.c_str(); }
+		ARCPRO_INLINE MapEntry* GetDBCEntry() { return me; }
 
-		ARCEMU_INLINE CellSpawns* GetSpawnsList(uint32 cellx, uint32 celly)
+		ARCPRO_INLINE CellSpawns* GetSpawnsList(uint32 cellx, uint32 celly)
 		{
-			ARCEMU_ASSERT(cellx < _sizeX);
-			ARCEMU_ASSERT(celly < _sizeY);
+			ARCPRO_ASSERT(cellx < _sizeX);
+			ARCPRO_ASSERT(celly < _sizeY);
 			if(spawns[cellx] == NULL) return NULL;
 
 			return spawns[cellx][celly];
 		}
-		ARCEMU_INLINE CellSpawns* GetSpawnsListAndCreate(uint32 cellx, uint32 celly)
+		ARCPRO_INLINE CellSpawns* GetSpawnsListAndCreate(uint32 cellx, uint32 celly)
 		{
-			ARCEMU_ASSERT(cellx < _sizeX);
-			ARCEMU_ASSERT(celly < _sizeY);
+			ARCPRO_ASSERT(cellx < _sizeX);
+			ARCPRO_ASSERT(celly < _sizeY);
 			if(spawns[cellx] == NULL)
 			{
 				spawns[cellx] = new CellSpawns*[_sizeY];
@@ -146,11 +147,11 @@ class SERVER_DECL Map
 		uint32 CreatureSpawnCount;
 		uint32 GameObjectSpawnCount;
 
-		ARCEMU_INLINE void CellGoneActive(uint32 x, uint32 y)
+		ARCPRO_INLINE void CellGoneActive(uint32 x, uint32 y)
 		{
 		}
 
-		ARCEMU_INLINE void CellGoneIdle(uint32 x, uint32 y)
+		ARCPRO_INLINE void CellGoneIdle(uint32 x, uint32 y)
 		{
 		}
 

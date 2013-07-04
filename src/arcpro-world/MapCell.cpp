@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -295,7 +296,7 @@ void MapCell::CancelPendingUnload()
 void MapCell::Unload()
 {
 	Log.Debug("MapCell", "Unloading cell %u %u", _x, _y);
-	ARCEMU_ASSERT(_unloadpending);
+	ARCPRO_ASSERT(_unloadpending);
 	if(_active)
 	{
 		_unloadpending = false;
@@ -310,7 +311,7 @@ void MapCell::Unload()
 	//in CellHandler. ~MapCell is called, RemoveObjects() is called and despawns A which despawns B, calling Object::RemoveFromWorld()
 	//which calls MapMgr::RemoveObject(B) which calls cell->RemoveObject(obj) ONLY if cell is not NULL, but in this case is NULL, leaving
 	//a reference to a deleted Object in MapCell::_objects, iterated in RemoveObjects(). Calling it here fixes this issue.
-	//Note: RemoveObjects() is still called in ~MapCell, due to fancy ArcEmu behaviors, like the in-game command ".mapcell delete <x> <y>
+	//Note: RemoveObjects() is still called in ~MapCell, due to fancy ArcPro behaviors, like the in-game command ".mapcell delete <x> <y>
 
 	RemoveObjects();
 

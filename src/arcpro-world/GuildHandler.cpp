@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -652,7 +653,7 @@ void WorldSession::HandleCharterBuy(WorldPacket & recv_data)
 			return;			// error message needed here
 
 		ItemPrototype* ip = ItemPrototypeStorage.LookupEntry(item_ids[arena_type]);
-		ARCEMU_ASSERT(ip != NULL);
+		ARCPRO_ASSERT(ip != NULL);
 		SlotResult res = _player->GetItemInterface()->FindFreeInventorySlot(ip);
 		if(res.Result == 0)
 		{
@@ -726,7 +727,7 @@ void WorldSession::HandleCharterBuy(WorldPacket & recv_data)
 		}
 
 		ItemPrototype* ip = ItemPrototypeStorage.LookupEntry(ITEM_ENTRY_GUILD_CHARTER);
-		ARCEMU_ASSERT(ip != NULL);
+		ARCPRO_ASSERT(ip != NULL);
 		SlotResult res = _player->GetItemInterface()->FindFreeInventorySlot(ip);
 		if(res.Result == 0)
 		{

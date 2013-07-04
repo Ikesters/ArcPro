@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -21,25 +22,25 @@
 #include "StdAfx.h"
 #include <iostream>
 
-uint32 Arcemu::Util::GUID_HIPART(uint64 GUID)
+uint32 Arcpro::Util::GUID_HIPART(uint64 GUID)
 {
 	uint32 higuid = *(reinterpret_cast< const uint32* >(&GUID) + 1);
 
 	return higuid;
 }
 
-uint32 Arcemu::Util::GUID_LOPART(uint64 GUID)
+uint32 Arcpro::Util::GUID_LOPART(uint64 GUID)
 {
 	uint32 loguid = *(reinterpret_cast< const uint32* >(&GUID));
 
 	return loguid;
 }
 
-void Arcemu::Util::ArcemuAssert(bool condition)
+void Arcpro::Util::ArcproAssert(bool condition)
 {
 	if(!condition)
 	{
-		LOG_ERROR("Assertion failed. Please submit the callstack on ArcEmu IssueTracker (unless you are using a repack).");
+		LOG_ERROR("Assertion failed. Please submit the callstack on ArcPro IssueTracker (unless you are using a repack).");
 		sLog.Close();
 
 		// bogus null function call to make sure we stop and make a core dump / crash dump
@@ -47,7 +48,7 @@ void Arcemu::Util::ArcemuAssert(bool condition)
 	}
 }
 
-uint64 Arcemu::Util::MAKE_PET_GUID(uint32 entry, uint32 lowGUID)
+uint64 Arcpro::Util::MAKE_PET_GUID(uint32 entry, uint32 lowGUID)
 {
 	uint64 val = 0;
 
@@ -58,7 +59,7 @@ uint64 Arcemu::Util::MAKE_PET_GUID(uint32 entry, uint32 lowGUID)
 	return val;
 }
 
-uint64 Arcemu::Util::MAKE_ITEM_GUID(uint32 lowguid)
+uint64 Arcpro::Util::MAKE_ITEM_GUID(uint32 lowguid)
 {
 	uint64 GUID = 0;
 
@@ -70,12 +71,12 @@ uint64 Arcemu::Util::MAKE_ITEM_GUID(uint32 lowguid)
 	return GUID;
 }
 
-uint32 Arcemu::Util::GET_CREATURE_ENTRY_FROM_GUID(uint64 guid)
+uint32 Arcpro::Util::GET_CREATURE_ENTRY_FROM_GUID(uint64 guid)
 {
 	return ( guid >> 24) & 0x0FFFFFFF;
 }
 
-uint32 Arcemu::Util::MAKE_UNIT_ACTION_BUTTON( uint32 spell, uint32 unk ){
+uint32 Arcpro::Util::MAKE_UNIT_ACTION_BUTTON( uint32 spell, uint32 unk ){
 	return ( uint32( spell ) | ( uint32( unk ) << 24 ) );
 }
 
@@ -107,7 +108,7 @@ unk	     = 0xE0000000                  11100000000000000000000000000000
 #define YEAR_SHIFTMASK      24
 #define UNK_SHIFTMASK       29
 
-uint32 Arcemu::Util::MAKE_GAME_TIME()
+uint32 Arcpro::Util::MAKE_GAME_TIME()
 {
 	uint32 gameTime = 0;
 

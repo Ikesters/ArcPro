@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -62,7 +63,7 @@ bool HandleInfoCommand(BaseConsole* pConsole, int argc, const char* argv[])
 	pConsole->Write("======================================================================\r\n");
 	pConsole->Write("Server Information: \r\n");
 	pConsole->Write("======================================================================\r\n");
-	pConsole->Write("Server Revision: ArcEmu %s/%s-%s-%s (www.arcemu.org)\r\n", BUILD_HASH_STR, CONFIG, PLATFORM_TEXT, ARCH);
+	pConsole->Write("Server Revision: ArcPro %s/%s-%s-%s (www.arcpro.sexyi.am)\r\n", BUILD_HASH_STR, CONFIG, PLATFORM_TEXT, ARCH);
 	pConsole->Write("Server Uptime: %s\r\n", sWorld.GetUptimeString().c_str());
 	pConsole->Write("Current Players: %d (%d GMs, %d queued)\r\n", clientsNum, gm,  0);
 	pConsole->Write("Active Thread Count: %u\r\n", ThreadPool.GetActiveThreadCount());
@@ -389,7 +390,7 @@ bool HandleClearConsoleCommand(BaseConsole* pConsole, int argc, const char* argv
 
 bool HandleReloadConsoleCommand(BaseConsole* pConsole, int argc, const char* argv[])
 {
-	sWorld.SendWorldText("Support for reloading tables on the fly was disabled in Arcemu revision 3621. You are seeing this message because apparently reading SVN changelog or using forums search is way over the head of some of our users.", 0);
+	sWorld.SendWorldText("Support for reloading tables on the fly will be available soon for ArcPro, but for experimental purposes only.", 0);
 	return true;
 
 	/*

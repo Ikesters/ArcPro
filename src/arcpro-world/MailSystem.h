@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -129,9 +130,9 @@ class Mailbox
 
 		WorldPacket* BuildMailboxListingPacket();
 		void CleanupExpiredMessages();
-		ARCEMU_INLINE size_t MessageCount() { return Messages.size(); }
+		ARCPRO_INLINE size_t MessageCount() { return Messages.size(); }
 		void FillTimePacket(WorldPacket & data);
-		ARCEMU_INLINE uint64 GetOwner() { return owner; }
+		ARCPRO_INLINE uint64 GetOwner() { return owner; }
 		void Load(QueryResult* result);
 };
 
@@ -151,7 +152,7 @@ class SERVER_DECL MailSystem : public Singleton<MailSystem>, public EventableObj
 		void SendAutomatedMessage(uint32 type, uint64 sender, uint64 receiver, string subject, string body, uint32 money,
 		                          uint32 cod, uint64 item_guid, uint32 stationery, MailCheckMask checked = MAIL_CHECK_MASK_HAS_BODY, uint32 deliverdelay = 0);
 
-		ARCEMU_INLINE bool MailOption(uint32 flag)
+		ARCPRO_INLINE bool MailOption(uint32 flag)
 		{
 			return (config_flags & flag) ? true : false;
 		}

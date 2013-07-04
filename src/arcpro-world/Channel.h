@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -131,7 +132,7 @@ class SERVER_DECL Channel
 		bool m_muted;
 		bool m_announce;
 		uint32 m_team;
-		ARCEMU_INLINE size_t GetNumMembers() { return m_members.size(); }
+		ARCPRO_INLINE size_t GetNumMembers() { return m_members.size(); }
 		uint32 m_minimumLevel;
 	public:
 		Channel(const char* name, uint32 team, uint32 type_id);
@@ -184,7 +185,7 @@ class ChannelIterator
 		void BeginSearch()
 		{
 			// iteminterface doesn't use mutexes, maybe it should :P
-			ARCEMU_ASSERT(!m_searchInProgress);
+			ARCPRO_ASSERT(!m_searchInProgress);
 			m_target->m_lock.Acquire();
 			m_itr = m_target->m_members.begin();
 			m_endItr = m_target->m_members.end();
@@ -194,7 +195,7 @@ class ChannelIterator
 		void EndSearch()
 		{
 			// nothing here either
-			ARCEMU_ASSERT(m_searchInProgress);
+			ARCPRO_ASSERT(m_searchInProgress);
 			m_target->m_lock.Release();
 			m_searchInProgress = false;
 		}
@@ -220,8 +221,8 @@ class ChannelIterator
 			++m_itr;
 		}
 
-		ARCEMU_INLINE Player* Grab() { return m_itr->first; }
-		ARCEMU_INLINE bool End() { return (m_itr == m_endItr) ? true : false; }
+		ARCPRO_INLINE Player* Grab() { return m_itr->first; }
+		ARCPRO_INLINE bool End() { return (m_itr == m_endItr) ? true : false; }
 };
 
 #endif

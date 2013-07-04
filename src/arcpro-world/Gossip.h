@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2012 <http://www.ArcEmu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -22,11 +23,11 @@
 struct Quest;
 class Creature;
 class Item;
-namespace Arcemu
+namespace Arcpro
 {
 	namespace Gossip
 	{
-		using namespace Arcemu;
+		using namespace Arcpro;
 		const unsigned DEFAULT_TXTINDEX = 2;
 		const unsigned TRAINER_TALENTRESET_LVLIMIT = 10; //minimum
 		const unsigned PLAYER_TALENTRESET_LVLIMIT = 10; //
@@ -170,8 +171,8 @@ namespace Arcemu
 				uint32 getTextID() const { return textid_; }
 				uint32 getLanguage() const { return language_; }
 
-				ARCEMU_INLINE void setTextID(uint32 textid) { textid_ = textid; }
-				ARCEMU_INLINE void setLanguage(uint32 language) { language_ = language; }
+				ARCPRO_INLINE void setTextID(uint32 textid) { textid_ = textid; }
+				ARCPRO_INLINE void setLanguage(uint32 language) { language_ = language; }
 
 				//************************************
 				// Purpose : Creates an worldpacket SMSG_GOSSIP_MESSAGE packet, fills it and sends it to the specified player.

@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2012 <http://www.ArcEmu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -18,7 +19,7 @@
  */
 
 #include "StdAfx.h"
-using namespace Arcemu;
+using namespace Arcpro;
 
 Gossip::Item::Item(size_t itemid, uint8 icon)
 {
@@ -354,7 +355,7 @@ Gossip::Script* Gossip::Script::GetInterface(GameObject* go)
 /*
 	SPIRIT HEALER
 	*/
-void Arcemu::Gossip::SpiritHealer::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::SpiritHealer::OnHello(Object* pObject, Player* Plr)
 {
 	Plr->GetSession()->SendSpiritHealerRequest(TO_CREATURE(pObject));
 }
@@ -362,7 +363,7 @@ void Arcemu::Gossip::SpiritHealer::OnHello(Object* pObject, Player* Plr)
 /*
 	VENDORS
 	*/
-void Arcemu::Gossip::Vendor::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::Vendor::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* creature = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(creature->GetEntry());
@@ -383,7 +384,7 @@ void Arcemu::Gossip::Vendor::OnHello(Object* pObject, Player* Plr)
 	menu.StackSend<256>(Plr);
 }
 
-void Arcemu::Gossip::Vendor::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::Vendor::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	Plr->GetSession()->SendInventoryList(TO_CREATURE(pObject));
 }
@@ -392,7 +393,7 @@ void Arcemu::Gossip::Vendor::OnSelectOption(Object* pObject, Player* Plr, uint32
 	TRAINER
 	*/
 
-void Arcemu::Gossip::Trainer::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::Trainer::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* trainer = TO_CREATURE(pObject);
 	::Trainer* trainerinfo = trainer->GetTrainer();
@@ -430,7 +431,7 @@ void Arcemu::Gossip::Trainer::OnHello(Object* pObject, Player* Plr)
 	menu.StackSend<256>(Plr);
 }
 
-void Arcemu::Gossip::Trainer::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::Trainer::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	if(1 == Id)
 		Plr->GetSession()->SendTrainerList(TO_CREATURE(pObject));
@@ -442,7 +443,7 @@ void Arcemu::Gossip::Trainer::OnSelectOption(Object* pObject, Player* Plr, uint3
 	TAXIMASTER
 	*/
 
-void Arcemu::Gossip::FlightMaster::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::FlightMaster::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* flightmaster = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(flightmaster->GetEntry());
@@ -456,7 +457,7 @@ void Arcemu::Gossip::FlightMaster::OnHello(Object* pObject, Player* Plr)
 	menu.StackSend<256>(Plr);
 }
 
-void Arcemu::Gossip::FlightMaster::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::FlightMaster::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	Plr->GetSession()->SendTaxiList(TO_CREATURE(pObject));
 }
@@ -464,7 +465,7 @@ void Arcemu::Gossip::FlightMaster::OnSelectOption(Object* pObject, Player* Plr, 
 /*
 	AUCTIONEER
 	*/
-void Arcemu::Gossip::Auctioneer::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::Auctioneer::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* auctioneer = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(auctioneer->GetEntry());
@@ -474,7 +475,7 @@ void Arcemu::Gossip::Auctioneer::OnHello(Object* pObject, Player* Plr)
 	Gossip::Menu::SendQuickMenu(pObject->GetGUID(), Text, Plr, 1, Gossip::ICON_VENDOR, Plr->GetSession()->LocalizedWorldSrv(Gossip::AUCTIONEER));
 }
 
-void Arcemu::Gossip::Auctioneer::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::Auctioneer::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	Plr->GetSession()->SendAuctionList(TO_CREATURE(pObject));
 }
@@ -482,7 +483,7 @@ void Arcemu::Gossip::Auctioneer::OnSelectOption(Object* pObject, Player* Plr, ui
 /*
 	INN KEEPERS
 	*/
-void Arcemu::Gossip::InnKeeper::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::InnKeeper::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* innkeeper = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(innkeeper->GetEntry());
@@ -501,7 +502,7 @@ void Arcemu::Gossip::InnKeeper::OnHello(Object* pObject, Player* Plr)
 	menu.StackSend<256>(Plr);
 }
 
-void Arcemu::Gossip::InnKeeper::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::InnKeeper::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	if(1 == Id)
 		Plr->GetSession()->SendInnkeeperBind(TO_CREATURE(pObject));
@@ -513,7 +514,7 @@ void Arcemu::Gossip::InnKeeper::OnSelectOption(Object* pObject, Player* Plr, uin
 	BATTLE MASTER
 	*/
 
-void Arcemu::Gossip::BattleMaster::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::BattleMaster::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* battlemaster = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(battlemaster->GetEntry());
@@ -525,7 +526,7 @@ void Arcemu::Gossip::BattleMaster::OnHello(Object* pObject, Player* Plr)
 	menu.StackSend<256>(Plr);
 }
 
-void Arcemu::Gossip::BattleMaster::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::BattleMaster::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	Plr->GetSession()->SendBattlegroundList(TO_CREATURE(pObject), 0);
 }
@@ -534,12 +535,12 @@ void Arcemu::Gossip::BattleMaster::OnSelectOption(Object* pObject, Player* Plr, 
 	BANKER
 	*/
 
-void Arcemu::Gossip::Banker::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::Banker::OnHello(Object* pObject, Player* Plr)
 {
 	Plr->GetSession()->SendBankerList(TO_CREATURE(pObject));
 }
 
-void Arcemu::Gossip::Banker::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::Banker::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 
 }
@@ -548,7 +549,7 @@ void Arcemu::Gossip::Banker::OnSelectOption(Object* pObject, Player* Plr, uint32
 	CHARTER GIVER
 	*/
 
-void Arcemu::Gossip::CharterGiver::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::CharterGiver::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* chartergiver = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(chartergiver->GetEntry());
@@ -560,7 +561,7 @@ void Arcemu::Gossip::CharterGiver::OnHello(Object* pObject, Player* Plr)
 		Gossip::Menu::SendQuickMenu(pObject->GetGUID(), Text, Plr, 1, Gossip::ICON_CHAT, "How do I create a arena team?");
 }
 
-void Arcemu::Gossip::CharterGiver::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::CharterGiver::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	Plr->GetSession()->SendCharterRequest(TO_CREATURE(pObject));
 }
@@ -569,7 +570,7 @@ void Arcemu::Gossip::CharterGiver::OnSelectOption(Object* pObject, Player* Plr, 
 	TABARD DESIGNER
 	*/
 
-void Arcemu::Gossip::TabardDesigner::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::TabardDesigner::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* chartergiver = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(chartergiver->GetEntry());
@@ -590,7 +591,7 @@ void Arcemu::Gossip::TabardDesigner::OnHello(Object* pObject, Player* Plr)
 	menu.Send(Plr);
 }
 
-void Arcemu::Gossip::TabardDesigner::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::TabardDesigner::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	switch( Id ){
 		case 1:
@@ -609,7 +610,7 @@ void Arcemu::Gossip::TabardDesigner::OnSelectOption(Object* pObject, Player* Plr
 /*
 	STABLED MASTER
 	*/
-void Arcemu::Gossip::StableMaster::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::StableMaster::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* stablemaster = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(stablemaster->GetEntry());
@@ -621,7 +622,7 @@ void Arcemu::Gossip::StableMaster::OnHello(Object* pObject, Player* Plr)
 		Gossip::Menu::SendSimpleMenu(pObject->GetGUID(), Text, Plr);
 }
 
-void Arcemu::Gossip::StableMaster::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::StableMaster::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	Plr->GetSession()->SendStabledPetList(pObject->GetGUID());
 }
@@ -630,7 +631,7 @@ void Arcemu::Gossip::StableMaster::OnSelectOption(Object* pObject, Player* Plr, 
 /*
 	PET TRAINER
 	*/
-void Arcemu::Gossip::PetTrainer::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::PetTrainer::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* petrain = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(petrain->GetEntry());
@@ -646,7 +647,7 @@ void Arcemu::Gossip::PetTrainer::OnHello(Object* pObject, Player* Plr)
 	menu.StackSend<256>(Plr);
 }
 
-void Arcemu::Gossip::PetTrainer::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::PetTrainer::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	if(1 == Id)
 		Plr->GetSession()->SendTrainerList(TO_CREATURE(pObject));
@@ -663,7 +664,7 @@ void Arcemu::Gossip::PetTrainer::OnSelectOption(Object* pObject, Player* Plr, ui
 /*
 	CLASS TRAINER
 	*/
-void Arcemu::Gossip::ClassTrainer::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::ClassTrainer::OnHello(Object* pObject, Player* Plr)
 {
 	Creature* trainer = TO_CREATURE(pObject);
 	uint32 Text = objmgr.GetGossipTextForNpc(trainer->GetEntry());
@@ -743,7 +744,7 @@ void Arcemu::Gossip::ClassTrainer::OnHello(Object* pObject, Player* Plr)
 	menu.StackSend<256>(Plr);
 }
 
-void Arcemu::Gossip::ClassTrainer::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::ClassTrainer::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 	const char* purchaseconfirm;
 	switch(Id)
@@ -782,7 +783,7 @@ void Arcemu::Gossip::ClassTrainer::OnSelectOption(Object* pObject, Player* Plr, 
 	}
 }
 
-void Arcemu::Gossip::Generic::OnHello(Object* pObject, Player* Plr)
+void Arcpro::Gossip::Generic::OnHello(Object* pObject, Player* Plr)
 {
 	//Simply send quests.
 	uint32 Text = objmgr.GetGossipTextForNpc(pObject->GetEntry());
@@ -793,7 +794,7 @@ void Arcemu::Gossip::Generic::OnHello(Object* pObject, Player* Plr)
 	menu.StackSend<256>(Plr);
 }
 
-void Arcemu::Gossip::Generic::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
+void Arcpro::Gossip::Generic::OnSelectOption(Object* pObject, Player* Plr, uint32 Id, const char* EnteredCode)
 {
 
 }

@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -147,7 +148,7 @@ void Guild::LogGuildEvent(uint8 iEvent, uint8 iStringCount, ...)
 	char* strs[4] = {NULL, NULL, NULL, NULL};
 
 	va_start(ap, iStringCount);
-	ARCEMU_ASSERT(iStringCount <= 4);
+	ARCPRO_ASSERT(iStringCount <= 4);
 
 	WorldPacket data(SMSG_GUILD_EVENT, 100);
 	uint32 i;
@@ -174,7 +175,7 @@ void Guild::AddGuildLogEntry(uint8 iEvent, uint8 iParamCount, ...)
 	GuildLogEvent* ev;
 
 	va_start(ap, iParamCount);
-	ARCEMU_ASSERT(iParamCount <= 3);
+	ARCPRO_ASSERT(iParamCount <= 3);
 
 	ev = new GuildLogEvent;
 	ev->iLogId = GenerateGuildLogEventId();
@@ -472,7 +473,7 @@ bool Guild::LoadFromDB(Field* f)
 		}
 
 		//m_ranks.push_back(r);
-		ARCEMU_ASSERT(m_ranks[r->iId] == NULL);
+		ARCPRO_ASSERT(m_ranks[r->iId] == NULL);
 		m_ranks[r->iId] = r;
 
 	}
@@ -1001,7 +1002,7 @@ void Guild::ChangeGuildMaster(PlayerInfo* pNewMaster, WorldSession* pClient)
 
 	GuildMemberMap::iterator itr = m_members.find(pNewMaster);
 	GuildMemberMap::iterator itr2 = m_members.find(pClient->GetPlayer()->getPlayerInfo());
-	ARCEMU_ASSERT(m_ranks[0] != NULL);
+	ARCPRO_ASSERT(m_ranks[0] != NULL);
 	if(itr == m_members.end())
 	{
 		Guild::SendGuildCommandResult(pClient, GUILD_PROMOTE_S, pNewMaster->name, GUILD_PLAYER_NOT_IN_GUILD_S);

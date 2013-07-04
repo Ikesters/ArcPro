@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -25,7 +26,7 @@ initialiseSingleton(CommandTableStorage);
 
 ChatCommand* ChatHandler::getCommandTable()
 {
-	ARCEMU_ASSERT(false);
+	ARCPRO_ASSERT(false);
 	return 0;
 }
 
@@ -87,7 +88,7 @@ ChatCommand* CommandTableStorage::GetSubCommandTable(const char* name)
 }
 
 #define dupe_command_table(ct, dt) this->dt = (ChatCommand*)allocate_and_copy(sizeof(ct)/* / sizeof(ct[0])*/, ct)
-ARCEMU_INLINE void* allocate_and_copy(uint32 len, void* pointer)
+ARCPRO_INLINE void* allocate_and_copy(uint32 len, void* pointer)
 {
 	void* data = (void*)malloc(len);
 	memcpy(data, pointer, len);
@@ -111,7 +112,7 @@ void CommandTableStorage::Load()
 
 void CommandTableStorage::Override(const char* command, const char* level)
 {
-	ARCEMU_ASSERT(level[0] != '\0');
+	ARCPRO_ASSERT(level[0] != '\0');
 	char* cmd = strdup(command);
 
 	// find the command we're talking about
@@ -779,7 +780,7 @@ void CommandTableStorage::Init()
 		{
 			// Set the correct pointer.
 			ChatCommand* np = GetSubCommandTable(p->Name);
-			ARCEMU_ASSERT(np != NULL);
+			ARCPRO_ASSERT(np != NULL);
 			p->ChildCommands = np;
 		}
 		++p;
@@ -947,7 +948,7 @@ WorldPacket* ChatHandler::FillMessageData(uint32 type, uint32 language, const ch
 	//uint32	len_of_text;
 	//char	    text[];		 // not sure ? i think is null terminated .. not null terminated
 	//uint8	    afk_state;
-	ARCEMU_ASSERT(type != CHAT_MSG_CHANNEL);
+	ARCPRO_ASSERT(type != CHAT_MSG_CHANNEL);
 	//channels are handled in channel handler and so on
 	uint32 messageLength = (uint32)strlen(message) + 1;
 

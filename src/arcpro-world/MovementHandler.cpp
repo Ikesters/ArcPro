@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -632,7 +633,7 @@ void WorldSession::HandleMovementOpcodes(WorldPacket & recv_data)
 	if( ( mover->transporter_info.guid != 0 ) && ( movement_info.transGuid.GetOldGuid() == 0 ) ){
 		/* we left the transporter we were on */
 
-		Transporter *transporter = objmgr.GetTransporter( Arcemu::Util::GUID_LOPART( mover->transporter_info.guid ) );
+		Transporter *transporter = objmgr.GetTransporter( Arcpro::Util::GUID_LOPART( mover->transporter_info.guid ) );
 		if( transporter != NULL )
 			transporter->RemovePassenger( mover );
 
@@ -643,7 +644,7 @@ void WorldSession::HandleMovementOpcodes(WorldPacket & recv_data)
 		if( movement_info.transGuid.GetOldGuid() != 0 ){
 
 			if( mover->transporter_info.guid == 0 ){
-				Transporter *transporter = objmgr.GetTransporter( Arcemu::Util::GUID_LOPART( movement_info.transGuid ) );
+				Transporter *transporter = objmgr.GetTransporter( Arcpro::Util::GUID_LOPART( movement_info.transGuid ) );
 				if( transporter != NULL )
 					transporter->AddPassenger( mover );
 				

@@ -1,5 +1,7 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -19,7 +21,7 @@
 
 #include "StdAfx.h"
 
-namespace Arcemu
+namespace Arcpro
 {
 
 	EquipmentSetMgr::~EquipmentSetMgr()
@@ -175,7 +177,7 @@ namespace Arcemu
 
 			for(uint32 i = 0; i < set->ItemGUID.size(); ++i)
 			{
-				data << WoWGuid(uint64(Arcemu::Util::MAKE_ITEM_GUID(set->ItemGUID[ i ])));
+				data << WoWGuid(uint64(Arcpro::Util::MAKE_ITEM_GUID(set->ItemGUID[ i ])));
 			}
 		}
 	}

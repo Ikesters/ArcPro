@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -82,8 +83,8 @@ protected:
 		uint32 GetTeamFaction( uint32 team );
 
 		void Finish();
-		ARCEMU_INLINE uint8 Rated() { return rated_match; }
-		ARCEMU_INLINE uint32 GetArenaTeamType() { return m_arenateamtype; }
-		ARCEMU_INLINE ArenaTeam** GetTeams() { return m_teams; }
+		ARCPRO_INLINE uint8 Rated() { return rated_match; }
+		ARCPRO_INLINE uint32 GetArenaTeamType() { return m_arenateamtype; }
+		ARCPRO_INLINE ArenaTeam** GetTeams() { return m_teams; }
 		uint32 CalcDeltaRating(uint32 oldRating, uint32 opponentRating, bool outcome);
 };

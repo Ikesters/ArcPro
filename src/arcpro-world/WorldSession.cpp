@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -135,7 +136,7 @@ int WorldSession::Update(uint32 InstanceID)
 
 	while((packet = _recvQueue.Pop()) != 0)
 	{
-		ARCEMU_ASSERT(packet != NULL);
+		ARCPRO_ASSERT(packet != NULL);
 
 		if(packet->GetOpcode() >= NUM_MSG_TYPES)
 			LOG_DETAIL
@@ -1808,12 +1809,12 @@ void WorldSession::HandleEquipmentSetSave(WorldPacket & data)
 
 	data >> GUID;
 
-	setGUID = Arcemu::Util::GUID_LOPART(GUID.GetOldGuid());
+	setGUID = Arcpro::Util::GUID_LOPART(GUID.GetOldGuid());
 
 	if(setGUID == 0)
 		setGUID = objmgr.GenerateEquipmentSetID();
 
-	Arcemu::EquipmentSet* set = new Arcemu::EquipmentSet();
+	Arcpro::EquipmentSet* set = new Arcpro::EquipmentSet();
 
 	set->SetGUID = setGUID;
 
@@ -1826,7 +1827,7 @@ void WorldSession::HandleEquipmentSetSave(WorldPacket & data)
 	{
 		GUID.Clear();
 		data >> GUID;
-		set->ItemGUID[i] = Arcemu::Util::GUID_LOPART(GUID.GetOldGuid());
+		set->ItemGUID[i] = Arcpro::Util::GUID_LOPART(GUID.GetOldGuid());
 	}
 
 
@@ -1858,7 +1859,7 @@ void WorldSession::HandleEquipmentSetDelete(WorldPacket & data)
 
 	data >> setGUID;
 
-	uint32 GUID = Arcemu::Util::GUID_LOPART(setGUID.GetOldGuid());
+	uint32 GUID = Arcpro::Util::GUID_LOPART(setGUID.GetOldGuid());
 
 	success =
 	    _player->GetItemInterface()->m_EquipmentSets.DeleteEquipmentSet(GUID);

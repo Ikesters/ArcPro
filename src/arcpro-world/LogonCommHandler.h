@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -102,7 +103,7 @@ class LogonCommHandler : public Singleton<LogonCommHandler>
 		void LoadRealmConfiguration();
 		void AddServer(string Name, string Address, uint32 Port);
 
-		ARCEMU_INLINE uint32 GetRealmType() { return _realmType; }
+		ARCPRO_INLINE uint32 GetRealmType() { return _realmType; }
 		void SetRealmType(uint32 type) { _realmType = type; }
 		float GetServerPopulation() { return server_population; }
 
@@ -124,7 +125,7 @@ class LogonCommHandler : public Singleton<LogonCommHandler>
 			//pendingLock.Release();
 			return sock;
 		}
-		ARCEMU_INLINE Mutex & GetPendingLock() { return pendingLock; }
+		ARCPRO_INLINE Mutex & GetPendingLock() { return pendingLock; }
 		const string* GetForcedPermissions(string & username);
 
 		void TestConsoleLogon(string & username, string & password, uint32 requestnum);

@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -371,7 +372,7 @@ void WorldSocket::InformationRetreiveCallback(WorldPacket & recvData, uint32 req
 	// Allocate session
 	WorldSession* pSession = new WorldSession(AccountID, AccountName, this);
 	mSession = pSession;
-	ARCEMU_ASSERT(mSession != NULL);
+	ARCPRO_ASSERT(mSession != NULL);
 	// aquire delete mutex
 	pSession->deleteMutex.Acquire();
 
@@ -452,7 +453,7 @@ void WorldSocket::InformationRetreiveCallback(WorldPacket & recvData, uint32 req
 
 void WorldSocket::Authenticate()
 {
-	ARCEMU_ASSERT(pAuthenticationPacket != NULL);
+	ARCPRO_ASSERT(pAuthenticationPacket != NULL);
 	mQueued = false;
 
 	if(mSession == NULL)

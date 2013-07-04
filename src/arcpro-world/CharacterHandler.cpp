@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -214,7 +215,7 @@ void WorldSession::CharacterEnumProc(QueryResult* result)
 
 			if(Class == WARLOCK || Class == HUNTER)
 			{
-				res = CharacterDatabase.Query("SELECT entry, level FROM playerpets WHERE ownerguid = %u AND MOD( active, 10 ) = 1 AND alive = TRUE;", Arcemu::Util::GUID_LOPART(guid));
+				res = CharacterDatabase.Query("SELECT entry, level FROM playerpets WHERE ownerguid = %u AND MOD( active, 10 ) = 1 AND alive = TRUE;", Arcpro::Util::GUID_LOPART(guid));
 
 				if(res)
 				{
@@ -241,7 +242,7 @@ void WorldSession::CharacterEnumProc(QueryResult* result)
 				data << uint32(0);
 			}
 
-			res = CharacterDatabase.Query("SELECT slot, entry, enchantments FROM playeritems WHERE ownerguid=%u AND containerslot = '-1' AND slot BETWEEN '0' AND '22'", Arcemu::Util::GUID_LOPART(guid));
+			res = CharacterDatabase.Query("SELECT slot, entry, enchantments FROM playeritems WHERE ownerguid=%u AND containerslot = '-1' AND slot BETWEEN '0' AND '22'", Arcpro::Util::GUID_LOPART(guid));
 
 			memset(items, 0, sizeof(player_item) * 23);
 			uint32 enchantid;
@@ -890,7 +891,7 @@ void WorldSession::FullLogin(Player* plr)
 	// Find our transporter and add us if we're on one.
 	if(plr->transporter_info.guid != 0)
 	{
-		Transporter* pTrans = objmgr.GetTransporter(Arcemu::Util::GUID_LOPART(plr->transporter_info.guid));
+		Transporter* pTrans = objmgr.GetTransporter(Arcpro::Util::GUID_LOPART(plr->transporter_info.guid));
 		if(pTrans)
 		{
 			if(plr->IsDead())
@@ -1003,9 +1004,9 @@ void WorldSession::FullLogin(Player* plr)
 
 
 #ifdef WIN32
-	_player->BroadcastMessage("Server: %sArcEmu %s - %s-Windows-%s", MSG_COLOR_WHITE, BUILD_TAG, CONFIG, ARCH);
+	_player->BroadcastMessage("Server: %sArcPro %s - %s-Windows-%s", MSG_COLOR_WHITE, BUILD_TAG, CONFIG, ARCH);
 #else
-	_player->BroadcastMessage("Server: %sArcEmu %s - %s-%s", MSG_COLOR_WHITE, BUILD_TAG, PLATFORM_TEXT, ARCH);
+	_player->BroadcastMessage("Server: %sArcPro %s - %s-%s", MSG_COLOR_WHITE, BUILD_TAG, PLATFORM_TEXT, ARCH);
 #endif
 
 	// Revision

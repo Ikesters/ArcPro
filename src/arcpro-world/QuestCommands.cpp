@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2012 <http://www.ArcEmu.org/>
  *
@@ -36,14 +37,14 @@ uint32 GetQuestIDFromLink(const char* questlink)
 	return atol(ptr + 8); // quest id is just past "|Hquest:" (8 bytes)
 }
 
-ARCEMU_INLINE std::string MyConvertIntToString(const int arg)
+ARCPRO_INLINE std::string MyConvertIntToString(const int arg)
 {
 	stringstream out;
 	out << arg;
 	return out.str();
 }
 
-ARCEMU_INLINE std::string MyConvertFloatToString(const float arg)
+ARCPRO_INLINE std::string MyConvertFloatToString(const float arg)
 {
 	stringstream out;
 	out << arg;
@@ -94,7 +95,7 @@ bool ChatHandler::HandleQuestLookupCommand(const char* args, WorldSession* m_ses
 	if(!*args) return false;
 
 	string x = string(args);
-	arcemu_TOLOWER(x);
+	arcpro_TOLOWER(x);
 	if(x.length() < 4)
 	{
 		RedSystemMessage(m_session, "Your search string must be at least 4 characters long.");
@@ -120,8 +121,8 @@ bool ChatHandler::HandleQuestLookupCommand(const char* args, WorldSession* m_ses
 
 		std::string liName	= std::string(li ? li->Title : "");
 
-		arcemu_TOLOWER(liName);
-		arcemu_TOLOWER(y);
+		arcpro_TOLOWER(liName);
+		arcpro_TOLOWER(y);
 
 		bool localizedFound	= false;
 		if(FindXinYString(x, liName))
@@ -542,7 +543,7 @@ bool ChatHandler::HandleQuestFinishCommand(const char* args, WorldSession* m_ses
 				}
 			}
 			// if daily then append to finished dailies
-			if(qst->is_repeatable == arcemu_QUEST_REPEATABLE_DAILY)
+			if(qst->is_repeatable == arcpro_QUEST_REPEATABLE_DAILY)
 				plr->PushToFinishedDailies(qst->id);
 			// Remove quests that are listed to be removed on quest complete.
 			set<uint32>::iterator iter = qst->remove_quest_list.begin();

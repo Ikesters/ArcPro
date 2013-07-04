@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -20,7 +21,7 @@
 
 #include "StdAfx.h"
 
-#define BANNER "ArcEmu %s %s/%s-%s-%s :: World Server"
+#define BANNER "ArcPro %s %s/%s-%s-%s :: World Server"
 
 #ifndef WIN32
 #include <sched.h>
@@ -117,32 +118,32 @@ bool Master::Run(int argc, char** argv)
 	int do_database_clean = 0;
 	time_t curTime;
 
-	struct arcemu_option longopts[] =
+	struct arcpro_option longopts[] =
 	{
-		{ "checkconf",			arcemu_no_argument,				&do_check_conf,			1		},
-		{ "screenloglevel",		arcemu_required_argument,		&screen_log_level,		1		},
-		{ "fileloglevel",		arcemu_required_argument,		&file_log_level,		1		},
-		{ "version",			arcemu_no_argument,				&do_version,			1		},
-		{ "conf",				arcemu_required_argument,		NULL,					'c'		},
-		{ "realmconf",			arcemu_required_argument,		NULL,					'r'		},
-		{ "databasecleanup",	arcemu_no_argument,				&do_database_clean,		1		},
-		{ "cheatercheck",		arcemu_no_argument,				&do_cheater_check,		1		},
+		{ "checkconf",			arcpro_no_argument,				&do_check_conf,			1		},
+		{ "screenloglevel",		arcpro_required_argument,		&screen_log_level,		1		},
+		{ "fileloglevel",		arcpro_required_argument,		&file_log_level,		1		},
+		{ "version",			arcpro_no_argument,				&do_version,			1		},
+		{ "conf",				arcpro_required_argument,		NULL,					'c'		},
+		{ "realmconf",			arcpro_required_argument,		NULL,					'r'		},
+		{ "databasecleanup",	arcpro_no_argument,				&do_database_clean,		1		},
+		{ "cheatercheck",		arcpro_no_argument,				&do_cheater_check,		1		},
 		{ 0, 0, 0, 0 }
 	};
 
 	char c;
-	while((c = static_cast<char>(arcemu_getopt_long_only(argc, argv, ":f:", longopts, NULL))) != -1)
+	while((c = static_cast<char>(arcpro_getopt_long_only(argc, argv, ":f:", longopts, NULL))) != -1)
 	{
 		switch(c)
 		{
 			case 'c':
 				config_file = new char[strlen(arcemu_optarg)];
-				strcpy(config_file, arcemu_optarg);
+				strcpy(config_file, arcpro_optarg);
 				break;
 
 			case 'r':
-				realm_config_file = new char[strlen(arcemu_optarg)];
-				strcpy(realm_config_file, arcemu_optarg);
+				realm_config_file = new char[strlen(arcpro_optarg)];
+				strcpy(realm_config_file, arcpro_optarg);
 				break;
 
 			case 0:
@@ -198,7 +199,7 @@ bool Master::Run(int argc, char** argv)
 
 #ifndef WIN32
 	if(geteuid() == 0 || getegid() == 0)
-		Log.LargeErrorMessage("You are running ArcEmu as root.", "This is not needed, and may be a possible security risk.", "It is advised to hit CTRL+C now and", "start as a non-privileged user.", NULL);
+		Log.LargeErrorMessage("You are running ArcPro as root.", "This is not needed, and may be a possible security risk.", "It is advised to hit CTRL+C now and", "start as a non-privileged user.", NULL);
 #endif
 
 	InitImplicitTargetFlags();
@@ -242,10 +243,10 @@ bool Master::Run(int argc, char** argv)
 		char cmd[1024];
 		char banner[1024];
 		snprintf(banner, 1024, BANNER, BUILD_TAG, BUILD_REVISION, CONFIG, PLATFORM_TEXT, ARCH);
-		snprintf(cmd, 1024, "./arcemu-crashreport -r %d -d \'%s\'", BUILD_REVISION, banner);
+		snprintf(cmd, 1024, "./arcpro-crashreport -r %d -d \'%s\'", BUILD_REVISION, banner);
 		system(cmd);
 	}
-	unlink("arcemu.uptime");
+	unlink("arcpro.uptime");
 #endif
 
 	if(!_StartDB())
@@ -356,7 +357,7 @@ bool Master::Run(int argc, char** argv)
 
 
 	/* write pid file */
-	FILE* fPid = fopen("arcemu.pid", "w");
+	FILE* fPid = fopen("arcpro.pid", "w");
 	if(fPid)
 	{
 		uint32 pid;
@@ -393,7 +394,7 @@ bool Master::Run(int argc, char** argv)
 			ThreadPool.ShowStats();
 			ThreadPool.IntegrityCheck();
 #if !defined(WIN32) && defined(__DEBUG__)
-			FILE* f = fopen("arcemu.uptime", "w");
+			FILE* f = fopen("arcpro.uptime", "w");
 			if(f)
 			{
 				fprintf(f, "%u %u %u %u", sWorld.GetUptime(), sWorld.GetSessionCount(), sWorld.PeakSessionCount, sWorld.mAcceptedConnections);
@@ -468,7 +469,7 @@ bool Master::Run(int argc, char** argv)
 		if(50 > etime)
 		{
 
-			Arcemu::Sleep(50 - etime);
+			Arcpro::Sleep(50 - etime);
 
 		}
 	}
@@ -487,7 +488,7 @@ bool Master::Run(int argc, char** argv)
 	{
 		Log.Notice("Shutdown", "Waiting for loot to finish loading...");
 		while(lootmgr.is_loading)
-			Arcemu::Sleep(100);
+			Arcpro::Sleep(100);
 	}
 
 	// send a query to wake it up if its inactive
@@ -550,7 +551,7 @@ bool Master::Run(int argc, char** argv)
 	delete Player_Log;
 
 	// remove pid
-	remove("arcemu.pid");
+	remove("arcpro.pid");
 
 	Log.Success("Shutdown", "Shutdown complete.");
 	Log.Close();
@@ -592,9 +593,9 @@ bool Master::CheckDBVersion()
 		
 		if( result < 0 ){
 			Log.Error("Database", "You need to apply the world update queries that are newer than %s. Exiting.", WorldDBVersion);
-			Log.Error( "Database", "You can find the world update queries in the sql/world_updates sub-directory of your Arcemu source directory." );
+			Log.Error( "Database", "You can find the world update queries in the sql/world_updates sub-directory of your ArcPro source directory." );
 		}else
-			Log.Error("Database", "Your world database is probably too new for this Arcemu version, you need to update your server. Exiting.");
+			Log.Error("Database", "Your world database is probably too new for this ArcPro version, you need to update your server. Exiting.");
 
 		delete wqr;
 		return false;
@@ -620,9 +621,9 @@ bool Master::CheckDBVersion()
 		Log.Error("Database", "Last character database update doesn't match the required one which is %s.", REQUIRED_CHAR_DB_VERSION);
 		if( result < 0 ){
 			Log.Error("Database", "You need to apply the character update queries that are newer than %s. Exiting.", CharDBVersion);
-			Log.Error( "Database", "You can find the character update queries in the sql/character_updates sub-directory of your Arcemu source directory." );
+			Log.Error( "Database", "You can find the character update queries in the sql/character_updates sub-directory of your ArcPro source directory." );
 		}else
-			Log.Error("Database", "Your character database is too new for this Arcemu version, you need to update your server. Exiting.");
+			Log.Error("Database", "Your character database is too new for this ArcPro version, you need to update your server. Exiting.");
 
 		delete cqr;
 		return false;

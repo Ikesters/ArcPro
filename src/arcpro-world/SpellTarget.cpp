@@ -1,5 +1,5 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
  * Copyright (C) 2005-2012 <http://www.ArcEmu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -96,7 +96,7 @@ void InitImplicitTargetFlags()
 void Spell::FillTargetMap(uint32 i)
 {
 	//Spell::prepare() has already a m_caster->IsInWorld() check so if now the caster is no more in world something bad happened.
-	ARCEMU_ASSERT(m_caster->IsInWorld());
+	ARCPRO_ASSERT(m_caster->IsInWorld());
 
 	uint32 TargetType = 0;
 	TargetType |= GetTargetType(m_spellInfo->EffectImplicitTargetA[i], i);
@@ -125,7 +125,7 @@ void Spell::FillTargetMap(uint32 i)
 		AddTarget(i, TargetType, m_caster);
 	if(TargetType & (SPELL_TARGET_AREA | SPELL_TARGET_AREA_SELF))  //targetted aoe
 		AddAOETargets(i, TargetType, GetRadius(i), m_spellInfo->MaxTargets);
-	//TODO: arcemu, doesn't support summon slots?
+	//TODO: arcpro, doesn't support summon slots?
 	/*if (TargetType & SPELL_TARGET_OBJECT_CURTOTEMS && u_caster != NULL)
 		for (uint32 i=1; i<5; ++i) //totem slots are 1, 2, 3, 4
 			AddTarget(i, TargetType, u_caster->m_summonslot[i]);*/
@@ -464,7 +464,7 @@ bool Spell::AddTarget(uint32 i, uint32 TargetType, Object* obj)
 		}
 		else if(TargetType & SPELL_TARGET_AREA_CHAIN)
 		{
-			//TODO: Add support for this in arcemu
+			//TODO: Add support for this in arcpro
 			/*Object* lasttarget = NULL;
 			if (m_orderedObjects.size() > 0)
 			{

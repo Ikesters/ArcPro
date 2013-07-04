@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2012 <http://www.ArcEmu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -35,9 +36,9 @@
 #define ACHIEVEMENT_FLAG_NONE 0x0000
 //! ACHIEVEMENT_FLAG_COUNTER (1) : Counter flag; used for statistics
 #define ACHIEVEMENT_FLAG_COUNTER 0x0001
-//! ACHIEVEMENT_FLAG_REACH_LEVEL (4) : Reach level? Currently unused in ArcEmu.
+//! ACHIEVEMENT_FLAG_REACH_LEVEL (4) : Reach level? Currently unused in ArcPro.
 #define ACHIEVEMENT_FLAG_REACH_LEVEL 0x0004
-//! ACHIEVEMENT_FLAG_AVERAGE (64) : Average? Currently unused in ArcEmu.
+//! ACHIEVEMENT_FLAG_AVERAGE (64) : Average? Currently unused in ArcPro.
 #define ACHIEVEMENT_FLAG_AVERAGE 0x0040
 //! ACHIEVEMENT_FLAG_REALM_FIRST_REACH (256) : Realm First achievement
 #define ACHIEVEMENT_FLAG_REALM_FIRST_REACH 0x0100

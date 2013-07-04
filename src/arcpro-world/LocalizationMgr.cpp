@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * String Localization Manager
  * Copyright (C) 2007-2012 Burlex <burlex@gmail.com>
  *

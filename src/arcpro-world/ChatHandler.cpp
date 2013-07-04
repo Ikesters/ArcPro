@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -716,7 +717,7 @@ void WorldSession::HandleReportSpamOpcode(WorldPacket & recv_data)
 	data << uint8(0);
 	SendPacket(&data);
 
-	LOG_DEBUG("REPORT SPAM: type %u, guid %u, unk1 %u, unk2 %u, unk3 %u, unk4 %u, message %s", spam_type, Arcemu::Util::GUID_LOPART(spammer_guid), unk1, unk2, unk3, unk4, description.c_str());
+	LOG_DEBUG("REPORT SPAM: type %u, guid %u, unk1 %u, unk2 %u, unk3 %u, unk4 %u, message %s", spam_type, Arcpro::Util::GUID_LOPART(spammer_guid), unk1, unk2, unk3, unk4, description.c_str());
 }
 
 void WorldSession::HandleChatIgnoredOpcode(WorldPacket & recvPacket)

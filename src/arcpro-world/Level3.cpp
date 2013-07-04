@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -797,7 +798,7 @@ static const uint32 numpetflags = sizeof(PetFlagToName) / sizeof(PetFlagNames);
 bool ChatHandler::HandleNpcInfoCommand(const char* args, WorldSession* m_session)
 {
 
-	uint32 guid = Arcemu::Util::GUID_LOPART(m_session->GetPlayer()->GetSelection());
+	uint32 guid = Arcpro::Util::GUID_LOPART(m_session->GetPlayer()->GetSelection());
 	Creature* crt = getSelectedCreature(m_session);
 	if(!crt) return false;
 	BlueSystemMessage(m_session, "Showing creature info for %s", crt->GetCreatureInfo()->Name);
@@ -925,10 +926,10 @@ bool ChatHandler::HandleNpcInfoCommand(const char* args, WorldSession* m_session
 			SystemMessage(m_session, "Owner is a %s", "creature");
 	}
 
-	SystemMessage(m_session, "Creator GUID: %u", Arcemu::Util::GUID_LOPART(crt->GetCreatedByGUID()));
-	SystemMessage(m_session, "Summoner GUID: %u", Arcemu::Util::GUID_LOPART(crt->GetSummonedByGUID()));
-	SystemMessage(m_session, "Charmer GUID: %u", Arcemu::Util::GUID_LOPART(crt->GetCharmedByGUID()));
-	SystemMessage(m_session, "Creator Spell: %u", Arcemu::Util::GUID_LOPART(crt->GetCreatedBySpell()));
+	SystemMessage(m_session, "Creator GUID: %u", Arcpro::Util::GUID_LOPART(crt->GetCreatedByGUID()));
+	SystemMessage(m_session, "Summoner GUID: %u", Arcpro::Util::GUID_LOPART(crt->GetSummonedByGUID()));
+	SystemMessage(m_session, "Charmer GUID: %u", Arcpro::Util::GUID_LOPART(crt->GetCharmedByGUID()));
+	SystemMessage(m_session, "Creator Spell: %u", Arcpro::Util::GUID_LOPART(crt->GetCreatedBySpell()));
 
 
 
@@ -1629,7 +1630,7 @@ bool ChatHandler::HandleFlyCommand(const char* args, WorldSession* m_session)
 bool ChatHandler::HandleDBReloadCommand(const char* args, WorldSession* m_session)
 {
 
-	sWorld.SendWorldText("Support for reloading tables on the fly was disabled in Arcemu revision 3621. You are seeing this message because apparently reading SVN changelog or using forums search is way over the head of some of our users.", 0);
+	sWorld.SendWorldText("Support for reloading tables on the fly will be available on ArcPro very soon.", 0);
 	return true;
 
 	/*
@@ -2798,7 +2799,7 @@ bool ChatHandler::HandleCreatureSpawnCommand(const char* args, WorldSession* m_s
 
 
 	Creature* p = m_session->GetPlayer()->GetMapMgr()->CreateCreature(entry);
-	ARCEMU_ASSERT(p != NULL);
+	ARCPRO_ASSERT(p != NULL);
 	p->Load(sp, (uint32)NULL, NULL);
 	p->m_loadedFromDB = true;
 	p->PushToWorld(m_session->GetPlayer()->GetMapMgr());
@@ -3064,7 +3065,7 @@ bool ChatHandler::HandleLookupItemCommand(const char* args, WorldSession* m_sess
 	if(!*args) return false;
 
 	string x = string(args);
-	arcemu_TOLOWER(x);
+	arcpro_TOLOWER(x);
 	if(x.length() < 4)
 	{
 		RedSystemMessage(m_session, "Your search string must be at least 4 characters long.");
@@ -3085,7 +3086,7 @@ bool ChatHandler::HandleLookupItemCommand(const char* args, WorldSession* m_sess
 
 		std::string litName	= std::string(lit ? lit->Name : "");
 
-		arcemu_TOLOWER(litName);
+		arcpro_TOLOWER(litName);
 
 		bool localizedFound	= false;
 		if(FindXinYString(x, litName))
@@ -3118,7 +3119,7 @@ bool ChatHandler::HandleLookupObjectCommand(const char* args, WorldSession* m_se
 	if(!*args) return false;
 
 	string x = string(args);
-	arcemu_TOLOWER(x);
+	arcpro_TOLOWER(x);
 
 	StorageContainerIterator<GameObjectInfo> * itr = GameObjectNameStorage.MakeIterator();
 
@@ -3132,7 +3133,7 @@ bool ChatHandler::HandleLookupObjectCommand(const char* args, WorldSession* m_se
 	{
 		i = itr->Get();
 		y = string(i->Name);
-		arcemu_TOLOWER(y);
+		arcpro_TOLOWER(y);
 		if(FindXinYString(x, y))
 		{
 			//string objectID=MyConvertIntToString(i->ID);
@@ -3173,7 +3174,7 @@ bool ChatHandler::HandleLookupCreatureCommand(const char* args, WorldSession* m_
 	if(!*args) return false;
 
 	string x = string(args);
-	arcemu_TOLOWER(x);
+	arcpro_TOLOWER(x);
 	if(x.length() < 4)
 	{
 		RedSystemMessage(m_session, "Your search string must be at least 4 characters long.");
@@ -3193,7 +3194,7 @@ bool ChatHandler::HandleLookupCreatureCommand(const char* args, WorldSession* m_
 
 		std::string liName	= std::string(li ? li->Name : "");
 
-		arcemu_TOLOWER(liName);
+		arcpro_TOLOWER(liName);
 
 		bool localizedFound	= false;
 
@@ -3225,7 +3226,7 @@ bool ChatHandler::HandleLookupSpellCommand(const char* args, WorldSession* m_ses
 	if(!*args) return false;
 
 	string x = string(args);
-	arcemu_TOLOWER(x);
+	arcpro_TOLOWER(x);
 	if(x.length() < 4)
 	{
 		RedSystemMessage(m_session, "Your search string must be at least 4 characters long.");
@@ -3241,7 +3242,7 @@ bool ChatHandler::HandleLookupSpellCommand(const char* args, WorldSession* m_ses
 	{
 		SpellEntry* spell = dbcSpell.LookupRow(index);
 		string y = string(spell->Name);
-		arcemu_TOLOWER(y);
+		arcpro_TOLOWER(y);
 		if(FindXinYString(x, y))
 		{
 			// Print out the name in a cool highlighted fashion
@@ -3281,7 +3282,7 @@ bool ChatHandler::HandleLookupSkillCommand(const char* args, WorldSession* m_ses
 	if(!*args) return false;
 
 	string x = string(args);
-	arcemu_TOLOWER(x);
+	arcpro_TOLOWER(x);
 	if(x.length() < 4)
 	{
 		RedSystemMessage(m_session, "Your search string must be at least 4 characters long.");
@@ -3295,7 +3296,7 @@ bool ChatHandler::HandleLookupSkillCommand(const char* args, WorldSession* m_ses
 	{
 		skilllineentry* skill = dbcSkillLine.LookupRow(index);
 		string y = string(skill->Name);
-		arcemu_TOLOWER(y);
+		arcpro_TOLOWER(y);
 		if(FindXinYString(x, y))
 		{
 			// Print out the name in a cool highlighted fashion
@@ -3318,7 +3319,7 @@ bool ChatHandler::HandleLookupFactionCommand(const char* args, WorldSession* m_s
 	if(!*args) return false;
 
 	string x = string(args);
-	arcemu_TOLOWER(x);
+	arcpro_TOLOWER(x);
 	if(x.length() < 4)
 	{
 		RedSystemMessage(m_session, "Your search string must be at least 4 characters long.");
@@ -3332,7 +3333,7 @@ bool ChatHandler::HandleLookupFactionCommand(const char* args, WorldSession* m_s
 	{
 		FactionDBC* faction = dbcFaction.LookupRow(index);
 		string y = string(faction->Name);
-		arcemu_TOLOWER(y);
+		arcpro_TOLOWER(y);
 		if(FindXinYString(x, y))
 		{
 			// Print out the name in a cool highlighted fashion
@@ -3523,7 +3524,7 @@ bool ChatHandler::HandleAIAgentDebugBegin(const char* args, WorldSession* m_sess
 	for(list<SpellEntry*>::iterator itr = aiagent_spells.begin(); itr != aiagent_spells.end(); ++itr)
 	{
 		result = WorldDatabase.Query("SELECT * FROM ai_agents WHERE spell = %u", (*itr)->Id);
-		ARCEMU_ASSERT(result != NULL);
+		ARCPRO_ASSERT(result != NULL);
 		spell_thingo t;
 		t.type = result->Fetch()[6].GetUInt32();
 		t.target = result->Fetch()[7].GetUInt32();
@@ -3590,7 +3591,7 @@ bool ChatHandler::HandleAIAgentDebugContinue(const char* args, WorldSession* m_s
 		BlueSystemMessage(m_session, "Casting %u, " MSG_COLOR_SUBWHITE "%u remaining.", sp->Id, aiagent_spells.size());
 
 		map<uint32, spell_thingo>::iterator it = aiagent_extra.find(sp->Id);
-		ARCEMU_ASSERT(it != aiagent_extra.end());
+		ARCPRO_ASSERT(it != aiagent_extra.end());
 
 		SpellCastTargets targets;
 		if(it->second.type == STYPE_BUFF)

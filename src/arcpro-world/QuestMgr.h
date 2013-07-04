@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -137,12 +138,12 @@ class SERVER_DECL QuestMgr :  public Singleton < QuestMgr >
 		QuestAssociationList* GetQuestAssociationListForItemId(uint32 itemId);
 		uint32 GetGameObjectLootQuest(uint32 GO_Entry);
 		void SetGameObjectLootQuest(uint32 GO_Entry, uint32 Item_Entry);
-		ARCEMU_INLINE bool IsQuestRepeatable(Quest* qst) { return (qst->is_repeatable == 1 ? true : false); }
-		ARCEMU_INLINE bool IsQuestDaily(Quest* qst) { return (qst->is_repeatable == 2 ? true : false); }
+		ARCPRO_INLINE bool IsQuestRepeatable(Quest* qst) { return (qst->is_repeatable == 1 ? true : false); }
+		ARCPRO_INLINE bool IsQuestDaily(Quest* qst) { return (qst->is_repeatable == 2 ? true : false); }
 
 		bool CanStoreReward(Player* plyr, Quest* qst, uint32 reward_slot);
 
-		ARCEMU_INLINE int32 QuestHasMob(Quest* qst, uint32 mob)
+		ARCPRO_INLINE int32 QuestHasMob(Quest* qst, uint32 mob)
 		{
 			for(uint32 i = 0; i < 4; ++i)
 				if(qst->required_mob[i] == (int32)mob)
@@ -150,7 +151,7 @@ class SERVER_DECL QuestMgr :  public Singleton < QuestMgr >
 			return -1;
 		}
 
-		ARCEMU_INLINE int32 GetOffsetForMob(Quest* qst, uint32 mob)
+		ARCPRO_INLINE int32 GetOffsetForMob(Quest* qst, uint32 mob)
 		{
 			for(uint32 i = 0; i < 4; ++i)
 				if(qst->required_mob[i] == (int32)mob)
@@ -159,7 +160,7 @@ class SERVER_DECL QuestMgr :  public Singleton < QuestMgr >
 			return -1;
 		}
 
-		ARCEMU_INLINE int32 GetOffsetForItem(Quest* qst, uint32 itm)
+		ARCPRO_INLINE int32 GetOffsetForItem(Quest* qst, uint32 itm)
 		{
 			for(uint32 i = 0; i < MAX_REQUIRED_QUEST_ITEM; ++i)
 				if(qst->required_item[i] == itm)
@@ -173,10 +174,10 @@ class SERVER_DECL QuestMgr :  public Singleton < QuestMgr >
 		// Purpose : Fills the packet with the quests that the quest giver which the player qualifies for.
 		// Parameter:	Creature * quest giver
 		// Parameter:	Player * player for whom quests are qualified
-		// Parameter:	Arcemu::Gossip::Menu& - menu to fill with quests.
+		// Parameter:	Arcpro::Gossip::Menu& - menu to fill with quests.
 		// Return : void
 		//************************************
-		void FillQuestMenu(Creature*, Player*, Arcemu::Gossip::Menu &);
+		void FillQuestMenu(Creature*, Player*, Arcpro::Gossip::Menu &);
 
 	private:
 
@@ -186,7 +187,7 @@ class SERVER_DECL QuestMgr :  public Singleton < QuestMgr >
 		QuestPOIMap m_QuestPOIMap;
 
 		HM_NAMESPACE::hash_map<uint32, list<QuestAssociation*>* > m_quest_associations;
-		ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, list<QuestAssociation*>* >& GetQuestAssociationList()
+		ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, list<QuestAssociation*>* >& GetQuestAssociationList()
 		{return m_quest_associations;}
 
 		HM_NAMESPACE::hash_map<uint32, uint32>		  m_ObjectLootQuestList;
@@ -202,11 +203,11 @@ class SERVER_DECL QuestMgr :  public Singleton < QuestMgr >
 		void _CleanLine(std::string* str);
 };
 
-template<> ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, list<QuestRelation*>* >& QuestMgr::_GetList<Creature>()
+template<> ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, list<QuestRelation*>* >& QuestMgr::_GetList<Creature>()
 {return m_npc_quests;}
-template<> ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, list<QuestRelation*>* >& QuestMgr::_GetList<GameObject>()
+template<> ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, list<QuestRelation*>* >& QuestMgr::_GetList<GameObject>()
 {return m_obj_quests;}
-template<> ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, list<QuestRelation*>* >& QuestMgr::_GetList<Item>()
+template<> ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, list<QuestRelation*>* >& QuestMgr::_GetList<Item>()
 {return m_itm_quests;}
 
 

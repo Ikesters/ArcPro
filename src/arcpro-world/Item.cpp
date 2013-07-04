@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -123,7 +124,7 @@ void Item::Create(uint32 itemid, Player* owner)
 
 	m_itemProto = ItemPrototypeStorage.LookupEntry(itemid);
 
-	ARCEMU_ASSERT(m_itemProto  != NULL);
+	ARCPRO_ASSERT(m_itemProto  != NULL);
 
 	SetCharges(0, m_itemProto->Spells[0].Charges);
 	SetCharges(1, m_itemProto->Spells[1].Charges);
@@ -149,7 +150,7 @@ void Item::LoadFromDB(Field* fields, Player* plr, bool light)
 
 	m_itemProto = ItemPrototypeStorage.LookupEntry(itemid);
 
-	ARCEMU_ASSERT(m_itemProto != NULL);
+	ARCPRO_ASSERT(m_itemProto != NULL);
 
 	if(m_itemProto->LockId > 1)
 		locked = true;
@@ -360,12 +361,12 @@ void Item::SaveToDB(int8 containerslot, int8 slot, bool firstsave, QueryBuffer* 
 
 	ss << "INSERT INTO playeritems VALUES(";
 
-	ss << (Arcemu::Util::GUID_LOPART(ownerGUID)) << ",";
+	ss << (Arcpro::Util::GUID_LOPART(ownerGUID)) << ",";
 	ss << GetLowGUID() << ",";
 	ss << GetEntry() << ",";
 	ss << wrapped_item_id << ",";
-	ss << (Arcemu::Util::GUID_LOPART(GiftCreatorGUID)) << ",";
-	ss << (Arcemu::Util::GUID_LOPART(CreatorGUID)) << ",";
+	ss << (Arcpro::Util::GUID_LOPART(GiftCreatorGUID)) << ",";
+	ss << (Arcpro::Util::GUID_LOPART(CreatorGUID)) << ",";
 
 	ss << GetStackCount() << ",";
 	ss << int32(GetChargesLeft()) << ",";
@@ -1228,7 +1229,7 @@ uint32 Item::CountGemsWithLimitId(uint32 LimitId)
 
 void Item::EventRemoveItem()
 {
-	ARCEMU_ASSERT(this->GetOwner() != NULL);
+	ARCPRO_ASSERT(this->GetOwner() != NULL);
 
 	m_owner->GetItemInterface()->SafeFullRemoveItemByGuid(this->GetGUID());
 }

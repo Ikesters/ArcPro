@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -41,7 +42,7 @@ void WorldSession::HandleAttackSwingOpcode(WorldPacket & recv_data)
 	if(GetPlayer()->IsPacified() || GetPlayer()->IsStunned() || GetPlayer()->IsFeared())
 		return;
 
-//	printf("Got ATTACK SWING: %08X %08X\n", GUID_HIPART(guid), Arcemu::Util::GUID_LOPART( guid ));
+//	printf("Got ATTACK SWING: %08X %08X\n", GUID_HIPART(guid), Arcpro::Util::GUID_LOPART( guid ));
 	Unit* pEnemy = _player->GetMapMgr()->GetUnit(guid);
 	//printf("Pointer: %08X\n", pEnemy);
 

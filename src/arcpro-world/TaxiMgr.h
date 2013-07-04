@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -63,13 +64,13 @@ class TaxiPath
 
 		void ComputeLen();
 		void SetPosForTime(float & x, float & y, float & z, uint32 time, uint32* lastnode, uint32 mapid);
-		ARCEMU_INLINE uint32 GetID() { return id; }
+		ARCPRO_INLINE uint32 GetID() { return id; }
 		void SendMoveForTime(Player* riding, Player* to, uint32 time);
 		void AddPathNode(uint32 index, TaxiPathNode* pn) { m_pathNodes[index] = pn; }
-		ARCEMU_INLINE size_t GetNodeCount() { return m_pathNodes.size(); }
+		ARCPRO_INLINE size_t GetNodeCount() { return m_pathNodes.size(); }
 		TaxiPathNode* GetPathNode(uint32 i);
-		ARCEMU_INLINE uint32 GetPrice() { return price; }
-		ARCEMU_INLINE uint32 GetSourceNode() { return from; }
+		ARCPRO_INLINE uint32 GetPrice() { return price; }
+		ARCPRO_INLINE uint32 GetSourceNode() { return from; }
 
 	protected:
 

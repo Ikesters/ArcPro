@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,13 +40,13 @@ Vehicle::~Vehicle(){
 void Vehicle::Load( Unit *owner, uint32 creature_entry, uint32 vehicleid ){
 	if( owner == NULL ){
 		LOG_ERROR( "Can't load vehicle without an owner." );
-		ARCEMU_ASSERT( false );
+		ARCPRO_ASSERT( false );
 	}
 
 	vehicle_info = dbcVehicle.LookupEntry( vehicleid );
 	if( vehicle_info == NULL ){
 		LOG_ERROR( "Can't load a vehicle without vehicle id or data belonging to it." );
-		ARCEMU_ASSERT( false );
+		ARCPRO_ASSERT( false );
 	}
 
 	for( uint32 i = 0; i < MAX_VEHICLE_SEATS; i++ ){

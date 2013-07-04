@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -167,7 +168,7 @@ class TileMap
 class TerrainTile
 {
 	public:
-		Arcemu::Threading::AtomicCounter m_refs;
+		Arcpro::Threading::AtomicCounter m_refs;
 
 		TerrainHolder* m_parent;
 		uint32 m_mapid;
@@ -198,7 +199,7 @@ class TerrainHolder
 		uint32 m_mapid;
 		TerrainTile* m_tiles[TERRAIN_NUM_TILES][TERRAIN_NUM_TILES];
 		FastMutex m_lock[TERRAIN_NUM_TILES][TERRAIN_NUM_TILES];
-		Arcemu::Threading::AtomicCounter m_tilerefs[TERRAIN_NUM_TILES][TERRAIN_NUM_TILES];
+		Arcpro::Threading::AtomicCounter m_tilerefs[TERRAIN_NUM_TILES][TERRAIN_NUM_TILES];
 
 		TerrainHolder(uint32 mapid)
 		{

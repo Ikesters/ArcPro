@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -51,7 +52,7 @@ void ConsoleThread::terminate()
 	LOG_BASIC("Waiting for console thread to terminate....");
 	while(m_isRunning)
 	{
-		Arcemu::Sleep(100);
+		Arcpro::Sleep(100);
 	}
 	LOG_BASIC("Console shut down.");
 }

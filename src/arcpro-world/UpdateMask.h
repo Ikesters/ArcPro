@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -39,21 +40,21 @@ class UpdateMask
 
 		void SetBit(const uint32 index)
 		{
-			ARCEMU_ASSERT(index < mCount);
+			ARCPRO_ASSERT(index < mCount);
 			((uint8*)mUpdateMask)[ index >> 3 ] |= 1 << (index & 0x7);
 			// ( (uint8 *)mUpdateMask )[ index / 8 ] |= 1 * pow( 2, index % 8 );
 		}
 
 		void UnsetBit(const uint32 index)
 		{
-			ARCEMU_ASSERT(index < mCount);
+			ARCPRO_ASSERT(index < mCount);
 			((uint8*)mUpdateMask)[ index >> 3 ] &= (0xff ^ (1 << (index & 0x7)));
 			// ( (uint8 *)mUpdateMask )[ index / 8 ] &= 255 - ( 1 * pow( 2, index % 8 ) ) );
 		}
 
 		bool GetBit(const uint32 index) const
 		{
-			ARCEMU_ASSERT(index < mCount);
+			ARCPRO_ASSERT(index < mCount);
 			return (((uint8*)mUpdateMask)[ index >> 3 ] & (1 << (index & 0x7))) != 0;
 			//actually int->bool conversion is not needed here
 		}
@@ -65,11 +66,11 @@ class UpdateMask
 				if(mUpdateMask[x])break;
 			return (x + 1);
 		}
-		ARCEMU_INLINE uint32 GetBlockCount() const {return mBlocks;}
+		ARCPRO_INLINE uint32 GetBlockCount() const {return mBlocks;}
 
-		ARCEMU_INLINE uint32 GetLength() const { return (mBlocks * sizeof(uint32)); }
-		ARCEMU_INLINE uint32 GetCount() const { return mCount; }
-		ARCEMU_INLINE const uint8* GetMask() const { return (uint8*)mUpdateMask; }
+		ARCPRO_INLINE uint32 GetLength() const { return (mBlocks * sizeof(uint32)); }
+		ARCPRO_INLINE uint32 GetCount() const { return mCount; }
+		ARCPRO_INLINE const uint8* GetMask() const { return (uint8*)mUpdateMask; }
 
 		void SetCount(uint32 valuesCount)
 		{
@@ -103,21 +104,21 @@ class UpdateMask
 
 		void operator &= (const UpdateMask & mask)
 		{
-			ARCEMU_ASSERT(mask.mCount <= mCount);
+			ARCPRO_ASSERT(mask.mCount <= mCount);
 			for(uint32 i = 0; i < mBlocks; i++)
 				mUpdateMask[i] &= mask.mUpdateMask[i];
 		}
 
 		void operator |= (const UpdateMask & mask)
 		{
-			ARCEMU_ASSERT(mask.mCount <= mCount);
+			ARCPRO_ASSERT(mask.mCount <= mCount);
 			for(uint32 i = 0; i < mBlocks; i++)
 				mUpdateMask[i] |= mask.mUpdateMask[i];
 		}
 
 		UpdateMask operator & (const UpdateMask & mask) const
 		{
-			ARCEMU_ASSERT(mask.mCount <= mCount);
+			ARCPRO_ASSERT(mask.mCount <= mCount);
 
 			UpdateMask newmask;
 			newmask = *this;
@@ -128,7 +129,7 @@ class UpdateMask
 
 		UpdateMask operator | (const UpdateMask & mask) const
 		{
-			ARCEMU_ASSERT(mask.mCount <= mCount);
+			ARCPRO_ASSERT(mask.mCount <= mCount);
 
 			UpdateMask newmask;
 			newmask = *this;

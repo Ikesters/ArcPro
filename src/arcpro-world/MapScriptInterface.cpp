@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -151,7 +152,7 @@ Creature* MapScriptInterface::SpawnCreature(uint32 Entry, float cX, float cY, fl
 	sp->phase = phase;
 
 	Creature* p = this->mapMgr.CreateCreature(Entry);
-	ARCEMU_ASSERT(p != NULL);
+	ARCPRO_ASSERT(p != NULL);
 	p->Load(sp, (uint32)NULL, NULL);
 	p->setGender(Gender);
 	p->spawnid = 0;
@@ -176,7 +177,7 @@ Creature* MapScriptInterface::SpawnCreature(CreatureSpawn* sp, bool AddToWorld)
 
 	uint8 Gender = info->GenerateModelId(&sp->displayid);
 	Creature* p = this->mapMgr.CreateCreature(sp->entry);
-	ARCEMU_ASSERT(p != NULL);
+	ARCPRO_ASSERT(p != NULL);
 	p->Load(sp, (uint32)NULL, NULL);
 	p->setGender(Gender);
 	p->spawnid = 0;

@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -112,20 +113,20 @@ class SERVER_DECL SubGroup	  // Most stuff will be done through here, not throug
 
 		~SubGroup();
 
-		ARCEMU_INLINE GroupMembersSet::iterator GetGroupMembersBegin(void) { return m_GroupMembers.begin(); }
-		ARCEMU_INLINE GroupMembersSet::iterator GetGroupMembersEnd(void)   { return m_GroupMembers.end();   }
+		ARCPRO_INLINE GroupMembersSet::iterator GetGroupMembersBegin(void) { return m_GroupMembers.begin(); }
+		ARCPRO_INLINE GroupMembersSet::iterator GetGroupMembersEnd(void)   { return m_GroupMembers.end();   }
 
 		bool AddPlayer(PlayerInfo* info);
 		void RemovePlayer(PlayerInfo* info);
 
-		ARCEMU_INLINE bool IsFull(void)				{ return m_GroupMembers.size() >= MAX_GROUP_SIZE_PARTY; }
-		ARCEMU_INLINE size_t GetMemberCount(void)		{ return m_GroupMembers.size(); }
+		ARCPRO_INLINE bool IsFull(void)				{ return m_GroupMembers.size() >= MAX_GROUP_SIZE_PARTY; }
+		ARCPRO_INLINE size_t GetMemberCount(void)		{ return m_GroupMembers.size(); }
 
-		ARCEMU_INLINE uint32 GetID(void)			   { return m_Id; }
-		ARCEMU_INLINE void SetID(uint32 newid)		 { m_Id = newid; }
+		ARCPRO_INLINE uint32 GetID(void)			   { return m_Id; }
+		ARCPRO_INLINE void SetID(uint32 newid)		 { m_Id = newid; }
 
-		ARCEMU_INLINE void   SetParent(Group* parent)  { m_Parent = parent; }
-		ARCEMU_INLINE Group* GetParent(void)		   { return m_Parent; }
+		ARCPRO_INLINE void   SetParent(Group* parent)  { m_Parent = parent; }
+		ARCPRO_INLINE Group* GetParent(void)		   { return m_Parent; }
 
 		void   Disband();
 		bool HasMember(uint32 guid);
@@ -160,10 +161,10 @@ class SERVER_DECL Group
 		// Transferring data to clients
 		void Update();
 
-		ARCEMU_INLINE void SendPacketToAll(WorldPacket* packet) { SendPacketToAllButOne(packet, NULL); }
+		ARCPRO_INLINE void SendPacketToAll(WorldPacket* packet) { SendPacketToAllButOne(packet, NULL); }
 		void SendPacketToAllButOne(WorldPacket* packet, Player* pSkipTarget);
 
-		ARCEMU_INLINE void OutPacketToAll(uint16 op, uint16 len, const void* data) { OutPacketToAllButOne(op, len, data, NULL); }
+		ARCPRO_INLINE void OutPacketToAll(uint16 op, uint16 len, const void* data) { OutPacketToAllButOne(op, len, data, NULL); }
 		void OutPacketToAllButOne(uint16 op, uint16 len, const void* data, Player* pSkipTarget);
 
 		void SendNullUpdate(Player* pPlayer);
@@ -173,7 +174,7 @@ class SERVER_DECL Group
 		Player* FindFirstPlayer();
 
 		// Accessing functions
-		ARCEMU_INLINE SubGroup* GetSubGroup(uint32 Id)
+		ARCPRO_INLINE SubGroup* GetSubGroup(uint32 Id)
 		{
 			if(Id >= 8)
 				return 0;
@@ -181,19 +182,19 @@ class SERVER_DECL Group
 			return m_SubGroups[Id];
 		}
 
-		ARCEMU_INLINE uint32 GetSubGroupCount(void) { return m_SubGroupCount; }
+		ARCPRO_INLINE uint32 GetSubGroupCount(void) { return m_SubGroupCount; }
 
-		ARCEMU_INLINE uint8 GetMethod(void) { return m_LootMethod; }
-		ARCEMU_INLINE uint16 GetThreshold(void) { return m_LootThreshold; }
-		ARCEMU_INLINE PlayerInfo* GetLeader(void) { return m_Leader; }
-		ARCEMU_INLINE PlayerInfo* GetLooter(void) { return m_Looter; }
+		ARCPRO_INLINE uint8 GetMethod(void) { return m_LootMethod; }
+		ARCPRO_INLINE uint16 GetThreshold(void) { return m_LootThreshold; }
+		ARCPRO_INLINE PlayerInfo* GetLeader(void) { return m_Leader; }
+		ARCPRO_INLINE PlayerInfo* GetLooter(void) { return m_Looter; }
 
 		void MovePlayer(PlayerInfo* info, uint8 subgroup);
 
 		bool HasMember(Player* pPlayer);
 		bool HasMember(PlayerInfo* info);
-		ARCEMU_INLINE uint32 MemberCount(void) { return m_MemberCount; }
-		ARCEMU_INLINE bool IsFull() { return ((m_GroupType == GROUP_TYPE_PARTY && m_MemberCount >= MAX_GROUP_SIZE_PARTY) || (m_GroupType == GROUP_TYPE_RAID && m_MemberCount >= MAX_GROUP_SIZE_RAID)); }
+		ARCPRO_INLINE uint32 MemberCount(void) { return m_MemberCount; }
+		ARCPRO_INLINE bool IsFull() { return ((m_GroupType == GROUP_TYPE_PARTY && m_MemberCount >= MAX_GROUP_SIZE_PARTY) || (m_GroupType == GROUP_TYPE_RAID && m_MemberCount >= MAX_GROUP_SIZE_RAID)); }
 
 		SubGroup* FindFreeSubGroup();
 
@@ -202,8 +203,8 @@ class SERVER_DECL Group
 		void SaveToDB();
 		void LoadFromDB(Field* fields);
 
-		ARCEMU_INLINE uint8 GetGroupType() { return m_GroupType; }
-		ARCEMU_INLINE uint32 GetID() { return m_Id; }
+		ARCPRO_INLINE uint8 GetGroupType() { return m_GroupType; }
+		ARCPRO_INLINE uint32 GetID() { return m_Id; }
 
 		void UpdateOutOfRangePlayer(Player* pPlayer, uint32 Flags, bool Distribute, WorldPacket* Packet);
 		void UpdateAllOutOfRangePlayersFor(Player* pPlayer);
@@ -212,18 +213,18 @@ class SERVER_DECL Group
 
 		uint64 m_targetIcons[8];
 		bool m_disbandOnNoMembers;
-		ARCEMU_INLINE Mutex & getLock() { return m_groupLock; }
-		ARCEMU_INLINE void Lock() { m_groupLock.Acquire(); }
-		ARCEMU_INLINE void Unlock() { return m_groupLock.Release(); }
+		ARCPRO_INLINE Mutex & getLock() { return m_groupLock; }
+		ARCPRO_INLINE void Lock() { m_groupLock.Acquire(); }
+		ARCPRO_INLINE void Unlock() { return m_groupLock.Release(); }
 		bool m_isqueued;
 
 		void SetAssistantLeader(PlayerInfo* pMember);
 		void SetMainTank(PlayerInfo* pMember);
 		void SetMainAssist(PlayerInfo* pMember);
 
-		ARCEMU_INLINE PlayerInfo* GetAssistantLeader() { return m_assistantLeader; }
-		ARCEMU_INLINE PlayerInfo* GetMainTank() { return m_mainTank; }
-		ARCEMU_INLINE PlayerInfo* GetMainAssist() { return m_mainAssist; }
+		ARCPRO_INLINE PlayerInfo* GetAssistantLeader() { return m_assistantLeader; }
+		ARCPRO_INLINE PlayerInfo* GetMainTank() { return m_mainTank; }
+		ARCPRO_INLINE PlayerInfo* GetMainAssist() { return m_mainAssist; }
 
 		uint32 m_instanceIds[NUM_MAPS][NUM_INSTANCE_MODES];
 

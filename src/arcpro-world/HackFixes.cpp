@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -52,7 +53,7 @@ void ApplyNormalFixes()
 	SpellEntry* sp = dbcSpell.LookupEntry(4);
 	if(crc32((const unsigned char*)sp->Name, (unsigned int)strlen(sp->Name)) != SPELL_HASH_WORD_OF_RECALL_OTHER)
 	{
-		Log.LargeErrorMessage("You are using DBCs extracted from an unsupported client.", "ArcEmu supports only enUS and enGB!!!", NULL);
+		Log.LargeErrorMessage("You are using DBCs extracted from an unsupported client.", "ArcPro supports only enUS and enGB!", NULL);
 		abort();
 	}
 
@@ -117,7 +118,7 @@ void ApplyNormalFixes()
 			}
 		}
 
-		ARCEMU_ASSERT(sp->School < SCHOOL_COUNT);
+		ARCPRO_ASSERT(sp->School < SCHOOL_COUNT);
 
 		// correct caster/target aura states
 		if(sp->CasterAuraState > 1)

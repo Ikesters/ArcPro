@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -435,9 +436,9 @@ class SERVER_DECL Aura : public EventableObject
 		void Expire();
 		void AddMod(uint32 t, int32 a, uint32 miscValue, uint32 i);
 
-		ARCEMU_INLINE SpellEntry* GetSpellProto() const { return m_spellProto; }
-		ARCEMU_INLINE uint32 GetSpellId() const {return m_spellProto->Id; }
-		ARCEMU_INLINE bool IsPassive() { if(!m_spellProto) return false; return (m_spellProto->Attributes & ATTRIBUTES_PASSIVE && !m_areaAura);}
+		ARCPRO_INLINE SpellEntry* GetSpellProto() const { return m_spellProto; }
+		ARCPRO_INLINE uint32 GetSpellId() const {return m_spellProto->Id; }
+		ARCPRO_INLINE bool IsPassive() { if(!m_spellProto) return false; return (m_spellProto->Attributes & ATTRIBUTES_PASSIVE && !m_areaAura);}
 
 		void ResetDuration();
 
@@ -455,25 +456,25 @@ class SERVER_DECL Aura : public EventableObject
 		//////////////////////////////////////////////////////////////
 		void Refresh();
 
-		ARCEMU_INLINE int32 GetDuration() const { return m_duration; }
+		ARCPRO_INLINE int32 GetDuration() const { return m_duration; }
 		void SetDuration(int32 duration)
 		{
 			m_duration = duration;
 			ResetDuration();
 		}
 
-		ARCEMU_INLINE uint16 GetAuraSlot() const { return m_auraSlot; }
+		ARCPRO_INLINE uint16 GetAuraSlot() const { return m_auraSlot; }
 		void SetAuraSlot(uint16 slot) { m_auraSlot = slot; }
 
-		ARCEMU_INLINE bool IsPositive() { return m_positive > 0; }
+		ARCPRO_INLINE bool IsPositive() { return m_positive > 0; }
 		void SetNegative(signed char value = 1) { m_positive -= value; }
 		void SetPositive(signed char value = 1) { m_positive += value; }
 
 		Object* GetCaster();
-		ARCEMU_INLINE uint64 GetCasterGUID() {return m_casterGuid;}
+		ARCPRO_INLINE uint64 GetCasterGUID() {return m_casterGuid;}
 		Unit* GetUnitCaster();
 		Player* GetPlayerCaster();
-		ARCEMU_INLINE Unit* GetTarget() { return m_target; }
+		ARCPRO_INLINE Unit* GetTarget() { return m_target; }
 
 		Aura* StrongerThat(Aura* aur);
 		void ApplyModifiers(bool apply);
@@ -824,7 +825,7 @@ class SERVER_DECL Aura : public EventableObject
 		uint32 GetCasterFaction() { return m_casterfaction; }
 		void SetCasterFaction(uint32 faction) { m_casterfaction = faction; }
 
-		ARCEMU_INLINE bool IsInrange(float x1, float y1, float z1, Object* o, float square_r)
+		ARCPRO_INLINE bool IsInrange(float x1, float y1, float z1, Object* o, float square_r)
 		{
 			float t;
 			float r;
@@ -861,7 +862,7 @@ class SERVER_DECL Aura : public EventableObject
 		int16 m_interrupted;
 		bool m_ignoreunapply; // \\\"special\\\" case, for unapply
 
-		ARCEMU_INLINE bool IsInterrupted() { return (m_interrupted >= 0); }
+		ARCPRO_INLINE bool IsInterrupted() { return (m_interrupted >= 0); }
 };
 
 class AbsorbAura : public Aura

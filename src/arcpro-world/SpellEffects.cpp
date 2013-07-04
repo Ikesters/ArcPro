@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -1585,7 +1586,7 @@ void Spell::SpellEffectCreateItem(uint32 i)
 		count = mincount + randcount;
 	}
 
-	uint32 countperlevel = static_cast< uint32 >(Arcemu::round(m_spellInfo->EffectRealPointsPerLevel[ i ]));
+	uint32 countperlevel = static_cast< uint32 >(Arcpro::round(m_spellInfo->EffectRealPointsPerLevel[ i ]));
 
 	if(countperlevel != 0)
 	{

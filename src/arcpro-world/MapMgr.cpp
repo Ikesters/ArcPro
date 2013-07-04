@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -25,7 +26,7 @@
 #include "StdAfx.h"
 #include "CrashHandler.h"
 
-Arcemu::Utility::TLSObject<MapMgr*> t_currentMapContext;
+Arcpro::Utility::TLSObject<MapMgr*> t_currentMapContext;
 
 #define MAP_MGR_UPDATE_PERIOD 100
 #define MAPMGR_INACTIVE_MOVE_TIME 30
@@ -200,7 +201,7 @@ void MapMgr::PushObject(Object* obj)
 	/////////////
 	// Assertions
 	/////////////
-	ARCEMU_ASSERT(obj != NULL);
+	ARCPRO_ASSERT(obj != NULL);
 
 	// That object types are not map objects. TODO: add AI groups here?
 	if(obj->IsItem() || obj->IsContainer())
@@ -216,7 +217,7 @@ void MapMgr::PushObject(Object* obj)
 
 	obj->ClearInRangeSet();
 
-	ARCEMU_ASSERT(obj->GetMapId() == _mapId);
+	ARCPRO_ASSERT(obj->GetMapId() == _mapId);
 	if(!(obj->GetPositionX() < _maxX && obj->GetPositionX() > _minX) ||
 	        !(obj->GetPositionY() < _maxY && obj->GetPositionY() > _minY))
 	{
@@ -242,8 +243,8 @@ void MapMgr::PushObject(Object* obj)
 		}
 	}
 
-	ARCEMU_ASSERT(obj->GetPositionY() < _maxY && obj->GetPositionY() > _minY);
-	ARCEMU_ASSERT(_cells != NULL);
+	ARCPRO_ASSERT(obj->GetPositionY() < _maxY && obj->GetPositionY() > _minY);
+	ARCPRO_ASSERT(_cells != NULL);
 
 	///////////////////////
 	// Get cell coordinates
@@ -285,7 +286,7 @@ void MapMgr::PushObject(Object* obj)
 		objCell = Create(x, y);
 		objCell->Init(x, y, this);
 	}
-	ARCEMU_ASSERT(objCell != NULL);
+	ARCPRO_ASSERT(objCell != NULL);
 
 	uint32 endX = (x <= _sizeX) ? x + 1 : (_sizeX - 1);
 	uint32 endY = (y <= _sizeY) ? y + 1 : (_sizeY - 1);
@@ -349,7 +350,7 @@ void MapMgr::PushObject(Object* obj)
 			case HIGHGUID_TYPE_UNIT:
 			case HIGHGUID_TYPE_VEHICLE:
 				{
-					ARCEMU_ASSERT(obj->GetUIdFromGUID() <= m_CreatureHighGuid);
+					ARCPRO_ASSERT(obj->GetUIdFromGUID() <= m_CreatureHighGuid);
 					CreatureStorage[ obj->GetUIdFromGUID() ] = TO< Creature* >(obj);
 					if(TO_CREATURE(obj)->m_spawn != NULL)
 					{
@@ -445,11 +446,11 @@ void MapMgr::RemoveObject(Object* obj, bool free_guid)
 	// Assertions
 	/////////////
 
-	ARCEMU_ASSERT(obj != NULL);
-	ARCEMU_ASSERT(obj->GetMapId() == _mapId);
-	//ARCEMU_ASSERT(   obj->GetPositionX() > _minX && obj->GetPositionX() < _maxX);
-	//ARCEMU_ASSERT(   obj->GetPositionY() > _minY && obj->GetPositionY() < _maxY);
-	ARCEMU_ASSERT(_cells != NULL);
+	ARCPRO_ASSERT(obj != NULL);
+	ARCPRO_ASSERT(obj->GetMapId() == _mapId);
+	//ARCPRO_ASSERT(   obj->GetPositionX() > _minX && obj->GetPositionX() < _maxX);
+	//ARCPRO_ASSERT(   obj->GetPositionY() > _minY && obj->GetPositionY() < _maxY);
+	ARCPRO_ASSERT(_cells != NULL);
 
 	if(obj->IsActive())
 		obj->Deactivate(this);
@@ -471,7 +472,7 @@ void MapMgr::RemoveObject(Object* obj, bool free_guid)
 	{
 		case HIGHGUID_TYPE_UNIT:
 		case HIGHGUID_TYPE_VEHICLE:
-			ARCEMU_ASSERT(obj->GetUIdFromGUID() <= m_CreatureHighGuid);
+			ARCPRO_ASSERT(obj->GetUIdFromGUID() <= m_CreatureHighGuid);
 			CreatureStorage[ obj->GetUIdFromGUID() ] = NULL;
 			if(TO_CREATURE(obj)->m_spawn != NULL)
 			{
@@ -494,7 +495,7 @@ void MapMgr::RemoveObject(Object* obj, bool free_guid)
 			break;
 
 		case HIGHGUID_TYPE_GAMEOBJECT:
-			ARCEMU_ASSERT(obj->GetUIdFromGUID() <= m_GOHighGuid);
+			ARCPRO_ASSERT(obj->GetUIdFromGUID() <= m_GOHighGuid);
 			GOStorage[ obj->GetUIdFromGUID() ] = NULL;
 			if(TO_GAMEOBJECT(obj)->m_spawn != NULL)
 			{
@@ -611,7 +612,7 @@ void MapMgr::ChangeObjectLocation(Object* obj)
 	if ( !obj ) return; // crashfix
 	*/
 
-	ARCEMU_ASSERT(obj != NULL);
+	ARCPRO_ASSERT(obj != NULL);
 
 	// Items and containers are of no interest for us
 	if(obj->IsItem() || obj->IsContainer() || obj->GetMapMgr() != this)
@@ -725,7 +726,7 @@ void MapMgr::ChangeObjectLocation(Object* obj)
 		objCell->Init(cellX, cellY, this);
 	}
 
-	ARCEMU_ASSERT(objCell != NULL);
+	ARCPRO_ASSERT(objCell != NULL);
 
 	// If object moved cell
 	if(objCell != pOldCell)
@@ -1028,7 +1029,7 @@ void MapMgr::LoadAllCells()
 				LOG_DETAIL("Created cell [%u,%u] on map %u (instance %u)." , x , y , _mapId , m_instanceID);
 				cellInfo->SetActivity(true);
 				_map->CellGoneActive(x , y);
-				ARCEMU_ASSERT(!cellInfo->IsLoaded());
+				ARCPRO_ASSERT(!cellInfo->IsLoaded());
 
 				spawns = _map->GetSpawnsList(x , y);
 				if(spawns)
@@ -1087,7 +1088,7 @@ void MapMgr::UpdateCellActivity(uint32 x, uint32 y, uint32 radius)
 					_map->CellGoneActive(posX, posY);
 					_terrain->LoadTile((int32)posX / 8, (int32)posY / 8);
 
-					ARCEMU_ASSERT(!objCell->IsLoaded());
+					ARCPRO_ASSERT(!objCell->IsLoaded());
 
 					LOG_DETAIL("Loading objects for Cell [%u][%u] on map %u (instance %u)...",
 					           posX, posY, this->_mapId, m_instanceID);
@@ -1317,7 +1318,7 @@ bool MapMgr::Do()
 		if(exec_time < MAP_MGR_UPDATE_PERIOD)
 		{
 
-			Arcemu::Sleep(MAP_MGR_UPDATE_PERIOD - exec_time);
+			Arcpro::Sleep(MAP_MGR_UPDATE_PERIOD - exec_time);
 
 		}
 
@@ -1408,7 +1409,7 @@ Unit* MapMgr::GetUnit(const uint64 & guid)
 			break;
 
 		case HIGHGUID_TYPE_PLAYER:
-			return GetPlayer(Arcemu::Util::GUID_LOPART(guid));
+			return GetPlayer(Arcpro::Util::GUID_LOPART(guid));
 			break;
 
 		case HIGHGUID_TYPE_PET:
@@ -1437,7 +1438,7 @@ Object* MapMgr::_GetObject(const uint64 & guid)
 			return GetDynamicObject((uint32)guid);
 			break;
 		case	HIGHGUID_TYPE_TRANSPORTER:
-			return objmgr.GetTransporter(Arcemu::Util::GUID_LOPART(guid));
+			return objmgr.GetTransporter(Arcpro::Util::GUID_LOPART(guid));
 			break;
 		default:
 			return GetUnit(guid);
@@ -1938,7 +1939,7 @@ void MapMgr::LoadInstanceScript()
 
 void MapMgr::CallScriptUpdate()
 {
-	ARCEMU_ASSERT(mInstanceScript  != NULL);
+	ARCPRO_ASSERT(mInstanceScript  != NULL);
 	mInstanceScript->UpdateEvent();
 };
 

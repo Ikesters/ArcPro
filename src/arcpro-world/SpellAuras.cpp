@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -676,7 +677,7 @@ Player* Aura::GetPlayerCaster()
 	}
 
 	if(m_target->GetMapMgr())
-		return m_target->GetMapMgr()->GetPlayer(Arcemu::Util::GUID_LOPART(m_casterGuid));
+		return m_target->GetMapMgr()->GetPlayer(Arcpro::Util::GUID_LOPART(m_casterGuid));
 	else
 		return NULL;
 }
@@ -712,7 +713,7 @@ Aura::Aura(SpellEntry* proto, int32 duration, Object* caster, Unit* target, bool
 	m_deleted = false;
 	m_ignoreunapply = false;
 	m_casterGuid = caster->GetGUID();
-	ARCEMU_ASSERT(target != NULL);
+	ARCPRO_ASSERT(target != NULL);
 	m_target = target;
 
 	if(m_target->IsPlayer())
@@ -952,7 +953,7 @@ void Aura::AddMod(uint32 t, int32 a, uint32 miscValue, uint32 i)
 	m_modList[m_modcount].m_miscValue = miscValue;
 	m_modList[m_modcount].i = i;
 	m_modcount++;
-	//ARCEMU_ASSERT(   m_modcount<=3);
+	//ARCPRO_ASSERT(   m_modcount<=3);
 }
 
 void Aura::ApplyModifiers(bool apply)
@@ -1077,7 +1078,7 @@ void Aura::EventUpdateGroupAA(float r)
 		AreaAuraList::iterator itr2 = itr;
 		++itr;
 
-		Player* tp = m_target->GetMapMgr()->GetPlayer(Arcemu::Util::GUID_LOPART(*itr2));
+		Player* tp = m_target->GetMapMgr()->GetPlayer(Arcpro::Util::GUID_LOPART(*itr2));
 
 		bool removable = false;
 		if(tp == NULL)
@@ -1196,7 +1197,7 @@ void Aura::EventUpdateRaidAA(float r)
 		AreaAuraList::iterator itr2 = itr;
 		++itr;
 
-		Player* tp = m_target->GetMapMgr()->GetPlayer(Arcemu::Util::GUID_LOPART(*itr2));
+		Player* tp = m_target->GetMapMgr()->GetPlayer(Arcpro::Util::GUID_LOPART(*itr2));
 		bool removable = false;
 
 		if(tp == NULL)
@@ -1459,7 +1460,7 @@ void Aura::EventUpdateAA(float r)
 	if(AAEffectId == 0)
 	{
 		LOG_ERROR("Spell %u ( %s ) has tried to update Area Aura targets but Spell has no Area Aura effect.", m_spellProto->Id, m_spellProto->Name);
-		ARCEMU_ASSERT(false);
+		ARCPRO_ASSERT(false);
 	}
 
 	switch(AAEffectId)
@@ -1490,7 +1491,7 @@ void Aura::EventUpdateAA(float r)
 			break;
 
 		default:
-			ARCEMU_ASSERT(false);
+			ARCPRO_ASSERT(false);
 			break;
 	}
 
@@ -2882,7 +2883,7 @@ void Aura::SpellAuraModInvisibilityDetection(bool apply)
 {
 	//Always Positive
 
-	ARCEMU_ASSERT(mod->m_miscValue < INVIS_FLAG_TOTAL);
+	ARCPRO_ASSERT(mod->m_miscValue < INVIS_FLAG_TOTAL);
 	if(apply)
 	{
 		m_target->m_invisDetect[mod->m_miscValue] += mod->m_amount;
@@ -3139,7 +3140,7 @@ void Aura::EventPeriodicEnergize(uint32 amount, uint32 type)
 {
 	uint32 POWER_TYPE = UNIT_FIELD_POWER1 + type;
 
-	ARCEMU_ASSERT(POWER_TYPE <= UNIT_FIELD_POWER5);
+	ARCPRO_ASSERT(POWER_TYPE <= UNIT_FIELD_POWER5);
 
 	Unit* ucaster = GetUnitCaster();
 	if(ucaster == NULL)
@@ -3312,7 +3313,7 @@ void Aura::SpellAuraModStat(bool apply)
 	}
 	else if(stat >= 0)
 	{
-		ARCEMU_ASSERT(mod->m_miscValue < 5);
+		ARCPRO_ASSERT(mod->m_miscValue < 5);
 		if(m_target->IsPlayer())
 		{
 			if(mod->m_amount > 0)
@@ -3992,7 +3993,7 @@ void Aura::SpellAuraModDmgImmunity(bool apply)
 
 void Aura::SpellAuraModDispelImmunity(bool apply)
 {
-	ARCEMU_ASSERT(mod->m_miscValue < 10);
+	ARCPRO_ASSERT(mod->m_miscValue < 10);
 	if(apply)
 		m_target->dispels[mod->m_miscValue]++;
 	else
@@ -5149,7 +5150,7 @@ void Aura::SpellAuraMechanicImmunity(bool apply)
 {
 	if(apply)
 	{
-		ARCEMU_ASSERT(mod->m_miscValue < MECHANIC_END);
+		ARCPRO_ASSERT(mod->m_miscValue < MECHANIC_END);
 		m_target->MechanicsDispels[mod->m_miscValue]++;
 
 		if(mod->m_miscValue != 16 && mod->m_miscValue != 25 && mod->m_miscValue != 19) // don't remove bandages, Power Word and protection effect
@@ -5408,7 +5409,7 @@ void Aura::SpellAuraModPercStat(bool apply)
 	}
 	else
 	{
-		ARCEMU_ASSERT(mod->m_miscValue < 5);
+		ARCPRO_ASSERT(mod->m_miscValue < 5);
 		if(p_target != NULL)
 		{
 			if(mod->m_amount > 0)
@@ -5514,7 +5515,7 @@ void Aura::EventPeriodicEnergizeVariable(uint32 amount, uint32 type)
 {
 	uint32 POWER_TYPE = UNIT_FIELD_POWER1 + type;
 
-	ARCEMU_ASSERT(POWER_TYPE <= UNIT_FIELD_POWER5);
+	ARCPRO_ASSERT(POWER_TYPE <= UNIT_FIELD_POWER5);
 
 	Unit* ucaster = GetUnitCaster();
 	if(ucaster != NULL)
@@ -6454,7 +6455,7 @@ void Aura::SpellAuraModMechanicResistance(bool apply)
 	//mecanics=9 ?
 	if(apply)
 	{
-		ARCEMU_ASSERT(mod->m_miscValue < MECHANIC_END);
+		ARCPRO_ASSERT(mod->m_miscValue < MECHANIC_END);
 		m_target->MechanicsResistancesPCT[mod->m_miscValue] += mod->m_amount;
 
 		if(mod->m_miscValue != MECHANIC_HEALING && mod->m_miscValue != MECHANIC_INVULNARABLE && mod->m_miscValue != MECHANIC_SHIELDED)  // don't remove bandages, Power Word and protection effect
@@ -6660,7 +6661,7 @@ void Aura::SpellAuraModTotalStatPerc(bool apply)
 	}
 	else
 	{
-		ARCEMU_ASSERT(mod->m_miscValue < 5);
+		ARCPRO_ASSERT(mod->m_miscValue < 5);
 		if(p_target != NULL)
 		{
 			//druid hearth of the wild should add more features based on form

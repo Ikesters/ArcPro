@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -53,7 +54,7 @@ uint32 QuestMgr::PlayerMeetsReqs(Player* plr, Quest* qst, bool skiplevelcheck)
 	else
 	{
 		status = QMGR_QUEST_REPEATABLE;
-		if(qst->is_repeatable == arcemu_QUEST_REPEATABLE_DAILY && plr->HasFinishedDaily(qst->id))
+		if(qst->is_repeatable == arcpro_QUEST_REPEATABLE_DAILY && plr->HasFinishedDaily(qst->id))
 			return QMGR_QUEST_NOT_AVAILABLE;
 	}
 
@@ -1202,7 +1203,7 @@ void QuestMgr::OnQuestFinished(Player* plr, Quest* qst, Object* qst_giver, uint3
 		plr->ModGold(GenerateRewardMoney(plr, qst));
 
 		// if daily then append to finished dailies
-		if(qst->is_repeatable == arcemu_QUEST_REPEATABLE_DAILY)
+		if(qst->is_repeatable == arcpro_QUEST_REPEATABLE_DAILY)
 			plr->PushToFinishedDailies(qst->id);
 	}
 	else
@@ -1596,7 +1597,7 @@ uint32 QuestMgr::GenerateQuestXP(Player* plr, Quest* qst)
 		{
 			uint32 rawXP = xpMultiplier * pXPData->xpIndex[ qst->RewXPId ] / 10;
 
-			realXP = static_cast< uint32 >(Arcemu::round(static_cast< double >(rawXP)));
+			realXP = static_cast< uint32 >(Arcpro::round(static_cast< double >(rawXP)));
 		}
 		return realXP;
 	}
@@ -1795,7 +1796,7 @@ bool QuestMgr::OnActivateQuestGiver(Object* qst_giver, Player* plr)
 		if(sQuestMgr.CalcStatus(qst_giver, plr) < QMGR_QUEST_CHAT)
 			return false;
 
-		ARCEMU_ASSERT(itr != q_end);
+		ARCPRO_ASSERT(itr != q_end);
 
 		uint32 status = sQuestMgr.CalcStatus(qst_giver, plr);
 
@@ -2440,7 +2441,7 @@ void QuestMgr::BuildQuestPOIResponse(WorldPacket & data, uint32 questid)
 	}
 }
 
-void QuestMgr::FillQuestMenu(Creature* giver, Player* plr, Arcemu::Gossip::Menu & menu)
+void QuestMgr::FillQuestMenu(Creature* giver, Player* plr, Arcpro::Gossip::Menu & menu)
 {
 	uint32 status;
 	uint8 icon;

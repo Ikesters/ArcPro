@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -562,7 +563,7 @@ bool ChatHandler::HandleCastSpellNECommand(const char* args, WorldSession* m_ses
 	data << uint32(0);
 	data << uint16(2);
 	data << target->GetGUID();
-	//		WPARCEMU_ASSERT(   data.size() == 36);
+	//		WPARCPRO_ASSERT(   data.size() == 36);
 	m_session->SendPacket(&data);
 
 	data.Initialize(SMSG_SPELL_GO);
@@ -574,7 +575,7 @@ bool ChatHandler::HandleCastSpellNECommand(const char* args, WorldSession* m_ses
 	data << uint8(0);
 	data << uint16(2);
 	data << target->GetGUID();
-	//		WPARCEMU_ASSERT(   data.size() == 42);
+	//		WPARCPRO_ASSERT(   data.size() == 42);
 	m_session->SendPacket(&data);
 
 	switch(target->GetTypeId())
@@ -1578,7 +1579,7 @@ bool ChatHandler::HandleNPCEquipThreeCommand(const char* args, WorldSession* m_s
 	return true;
 }
 
-ARCEMU_INLINE void RepairItem2(Player* pPlayer, Item* pItem)
+ARCPRO_INLINE void RepairItem2(Player* pPlayer, Item* pItem)
 {
 	pItem->SetDurabilityToMax();
 	pItem->m_isDirty = true;

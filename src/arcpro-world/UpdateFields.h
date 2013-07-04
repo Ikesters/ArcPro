@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -18,8 +19,8 @@
  *
  */
 
-#ifndef ARCEMU_UPDATEFIELDS_H
-#define ARCEMU_UPDATEFIELDS_H
+#ifndef ARCPRO_UPDATEFIELDS_H
+#define ARCPRO_UPDATEFIELDS_H
 
 // Auto generated for version 3, 3, 5, 12340
 

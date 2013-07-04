@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -178,7 +179,7 @@ void SpellCastTargets::write(WorldPacket & data)
 
 Spell::Spell(Object* Caster, SpellEntry* info, bool triggered, Aura* aur)
 {
-	ARCEMU_ASSERT(Caster != NULL && info != NULL);
+	ARCPRO_ASSERT(Caster != NULL && info != NULL);
 
 	Caster->m_pendingSpells.insert(this);
 	m_overrideBasePoints = false;
@@ -1087,7 +1088,7 @@ void Spell::cancel()
 				{
 					uint64 guid = p_caster->GetChannelSpellTargetGUID();
 
-					DynamicObject* dynObj = m_caster->GetMapMgr()->GetDynamicObject(Arcemu::Util::GUID_LOPART(guid));
+					DynamicObject* dynObj = m_caster->GetMapMgr()->GetDynamicObject(Arcpro::Util::GUID_LOPART(guid));
 					if(dynObj)
 						dynObj->Remove();
 				}
@@ -1097,7 +1098,7 @@ void Spell::cancel()
 					if(p_caster->GetSummonedObject()->IsInWorld())
 						p_caster->GetSummonedObject()->RemoveFromWorld(true);
 					// for now..
-					ARCEMU_ASSERT(p_caster->GetSummonedObject()->IsGameObject());
+					ARCPRO_ASSERT(p_caster->GetSummonedObject()->IsGameObject());
 					delete p_caster->GetSummonedObject();
 					p_caster->SetSummonedObject(NULL);
 				}
@@ -2326,7 +2327,7 @@ void Spell::SendChannelUpdate(uint32 time)
 		{
 			uint64 guid = u_caster->GetChannelSpellTargetGUID();
 
-			DynamicObject* dynObj = u_caster->GetMapMgr()->GetDynamicObject(Arcemu::Util::GUID_LOPART(guid));
+			DynamicObject* dynObj = u_caster->GetMapMgr()->GetDynamicObject(Arcpro::Util::GUID_LOPART(guid));
 			if(dynObj)
 				dynObj->Remove();
 
@@ -3025,7 +3026,7 @@ void Spell::TriggerSpell()
 		}
 
 		Spell *spell = sSpellFactoryMgr.NewSpell(m_caster, spellInfo,false, NULL);
-		WPARCEMU_ASSERT(   spell);
+		WPARCPRO_ASSERT(   spell);
 
 		SpellCastTargets targets;
 		if(TriggerSpellTarget)
@@ -5889,7 +5890,7 @@ void Spell::HandleCastEffects(uint64 guid, uint32 i)
 			else
 				time = dist * 1000.0f / m_spellInfo->speed;
 
-			//todo: arcemu doesn't support reflected spells
+			//todo: arcpro doesn't support reflected spells
 			//if (reflected)
 			//	time *= 1.25; //reflected projectiles move back 4x faster
 
@@ -5953,7 +5954,7 @@ void Spell::HandleModeratedTarget(uint64 guid)
 		else
 		{
 			float time = dist * 1000.0f / m_spellInfo->speed;
-			//todo: arcemu doesn't support reflected spells
+			//todo: arcoro doesn't support reflected spells
 			//if (reflected)
 			//	time *= 1.25; //reflected projectiles move back 4x faster
 			sEventMgr.AddEvent(this, &Spell::HandleModeratedEffects, guid, EVENT_SPELL_HIT, float2int32(time), 1, 0);

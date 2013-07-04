@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -148,7 +149,7 @@ bool ChatHandler::HandleWPMoveTypeCommand(const char* args, WorldSession* m_sess
 	}
 
 	char sql[512];
-	snprintf(sql, 512, "UPDATE creature_spawns SET movetype = '%u' WHERE id = '%u'", (unsigned int)option, (unsigned int)Arcemu::Util::GUID_LOPART(guid));
+	snprintf(sql, 512, "UPDATE creature_spawns SET movetype = '%u' WHERE id = '%u'", (unsigned int)option, (unsigned int)Arcpro::Util::GUID_LOPART(guid));
 	WorldDatabase.Execute(sql);
 
 	pCreature->GetAIInterface()->setMoveType(option);
@@ -236,7 +237,7 @@ bool ChatHandler::HandleWPDeleteCommand(const char* args, WorldSession* m_sessio
 	}
 	std::stringstream ss;
 
-	uint32 wpid = Arcemu::Util::GUID_LOPART(guid);
+	uint32 wpid = Arcpro::Util::GUID_LOPART(guid);
 	if(wpid)
 	{
 		//Refresh client
@@ -288,7 +289,7 @@ bool ChatHandler::HandleWPChangeNoCommand(const char* args, WorldSession* m_sess
 	char* pNewID = strtok((char*)args, " ");
 	uint32 NewID = (pNewID) ? atoi(pNewID) : 0;
 
-	uint32 wpid = Arcemu::Util::GUID_LOPART(guid);
+	uint32 wpid = Arcpro::Util::GUID_LOPART(guid);
 	if(NewID == wpid) return false;
 	if(wpid)
 	{
@@ -341,7 +342,7 @@ bool ChatHandler::HandleWPFlagsCommand(const char* args, WorldSession* m_session
 	}
 	std::stringstream ss;
 
-	uint32 wpid = Arcemu::Util::GUID_LOPART(guid);
+	uint32 wpid = Arcpro::Util::GUID_LOPART(guid);
 	if(wpid)
 	{
 		WayPoint* wp = ai->getWayPoint(wpid);
@@ -395,7 +396,7 @@ bool ChatHandler::HandleWPMoveHereCommand(const char* args, WorldSession* m_sess
 	}
 	std::stringstream ss;
 
-	uint32 wpid = Arcemu::Util::GUID_LOPART(guid);
+	uint32 wpid = Arcpro::Util::GUID_LOPART(guid);
 	if(wpid)
 	{
 		WayPoint* wp = ai->getWayPoint(wpid);
@@ -452,7 +453,7 @@ bool ChatHandler::HandleWPWaitCommand(const char* args, WorldSession* m_session)
 	uint32 Wait = 10000;
 	std::stringstream ss;
 
-	uint32 wpid = Arcemu::Util::GUID_LOPART(guid);
+	uint32 wpid = Arcpro::Util::GUID_LOPART(guid);
 	if(wpid)
 	{
 		WayPoint* wp = ai->getWayPoint(wpid);
@@ -508,7 +509,7 @@ bool ChatHandler::HandleWPEmoteCommand(const char* args, WorldSession* m_session
 	bool OneShot = true;
 	std::stringstream ss;
 
-	uint32 wpid = Arcemu::Util::GUID_LOPART(guid);
+	uint32 wpid = Arcpro::Util::GUID_LOPART(guid);
 	if(wpid)
 	{
 		WayPoint* wp = ai->getWayPoint(wpid);
@@ -571,7 +572,7 @@ bool ChatHandler::HandleWPSkinCommand(const char* args, WorldSession* m_session)
 	uint32 SkinId = 0;
 	std::stringstream ss;
 
-	uint32 wpid = Arcemu::Util::GUID_LOPART(guid);
+	uint32 wpid = Arcpro::Util::GUID_LOPART(guid);
 	if(wpid)
 	{
 		WayPoint* wp = ai->getWayPoint(wpid);
@@ -629,7 +630,7 @@ bool ChatHandler::HandleWPInfoCommand(const char* args, WorldSession* m_session)
 	}
 	std::stringstream ss;
 
-	uint32 wpid = Arcemu::Util::GUID_LOPART(guid);
+	uint32 wpid = Arcpro::Util::GUID_LOPART(guid);
 	if((wpid > 0) && (wpid <= ai->GetWayPointsCount()))
 	{
 		WayPoint* wp = ai->getWayPoint(wpid);

@@ -1,5 +1,5 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -131,7 +131,7 @@ ScriptMgr::~ScriptMgr()
 
 struct ScriptingEngine_dl
 {
-	Arcemu::DynLib* dl;
+	Arcpro::DynLib* dl;
 	exp_script_register InitializeCall;
 	uint32 Type;
 
@@ -166,17 +166,17 @@ void ScriptMgr::LoadScripts()
 #endif
 #endif
 
-	Arcemu::FindFilesResult findres;
+	Arcpro::FindFilesResult findres;
 	std::vector< ScriptingEngine_dl > Engines;
 
-	Arcemu::FindFiles(Path.c_str(), FileMask.c_str(), findres);
+	Arcpro::FindFiles(Path.c_str(), FileMask.c_str(), findres);
 	uint32 count = 0;
 
 	while(findres.HasNext())
 	{
 		std::stringstream loadmessage;
 		std::string fname = Path + findres.GetNext();
-		Arcemu::DynLib* dl = new Arcemu::DynLib(fname.c_str());
+		Arcpro::DynLib* dl = new Arcpro::DynLib(fname.c_str());
 
 		loadmessage << "  " << dl->GetName() << " : ";
 
@@ -568,7 +568,7 @@ bool ScriptMgr::CallScriptedDummyAura(uint32 uSpellId, uint32 i, Aura* pAura, bo
 
 bool ScriptMgr::CallScriptedItem(Item* pItem, Player* pPlayer)
 {
-	Arcemu::Gossip::Script* script = this->get_item_gossip(pItem->GetEntry());
+	Arcpro::Gossip::Script* script = this->get_item_gossip(pItem->GetEntry());
 	if(script != NULL)
 	{
 		script->OnHello(pItem, pPlayer);
@@ -675,7 +675,7 @@ void InstanceScript::RemoveUpdateEvent()
 /* Hook Stuff */
 void ScriptMgr::register_hook(ServerHookEvents event, void* function_pointer)
 {
-	ARCEMU_ASSERT(event < NUM_SERVER_HOOKS);
+	ARCPRO_ASSERT(event < NUM_SERVER_HOOKS);
 	_hooks[event].insert(function_pointer);
 }
 
@@ -720,7 +720,7 @@ bool ScriptMgr::has_quest_script(uint32 entry) const
 	return (q == NULL || q->pQuestScript != NULL);
 }
 
-void ScriptMgr::register_creature_gossip(uint32 entry, Arcemu::Gossip::Script* script)
+void ScriptMgr::register_creature_gossip(uint32 entry, Arcpro::Gossip::Script* script)
 {
 	GossipMap::iterator itr = creaturegossip_.find(entry);
 	if(itr == creaturegossip_.end())
@@ -734,7 +734,7 @@ bool ScriptMgr::has_creature_gossip(uint32 entry) const
 	return creaturegossip_.find(entry) != creaturegossip_.end();
 }
 
-Arcemu::Gossip::Script* ScriptMgr::get_creature_gossip(uint32 entry) const
+Arcpro::Gossip::Script* ScriptMgr::get_creature_gossip(uint32 entry) const
 {
 	GossipMap::const_iterator itr = creaturegossip_.find(entry);
 	if(itr != creaturegossip_.end())
@@ -742,7 +742,7 @@ Arcemu::Gossip::Script* ScriptMgr::get_creature_gossip(uint32 entry) const
 	return NULL;
 }
 
-void ScriptMgr::register_item_gossip(uint32 entry, Arcemu::Gossip::Script* script)
+void ScriptMgr::register_item_gossip(uint32 entry, Arcpro::Gossip::Script* script)
 {
 	GossipMap::iterator itr = itemgossip_.find(entry);
 	if(itr == itemgossip_.end())
@@ -751,7 +751,7 @@ void ScriptMgr::register_item_gossip(uint32 entry, Arcemu::Gossip::Script* scrip
 	_customgossipscripts.insert(script);
 }
 
-void ScriptMgr::register_go_gossip(uint32 entry, Arcemu::Gossip::Script* script)
+void ScriptMgr::register_go_gossip(uint32 entry, Arcpro::Gossip::Script* script)
 {
 	GossipMap::iterator itr = gogossip_.find(entry);
 	if(itr == gogossip_.end())
@@ -770,7 +770,7 @@ bool ScriptMgr::has_go_gossip(uint32 entry) const
 	return gogossip_.find(entry) != gogossip_.end();
 }
 
-Arcemu::Gossip::Script* ScriptMgr::get_go_gossip(uint32 entry) const
+Arcpro::Gossip::Script* ScriptMgr::get_go_gossip(uint32 entry) const
 {
 	GossipMap::const_iterator itr = gogossip_.find(entry);
 	if(itr != gogossip_.end())
@@ -778,7 +778,7 @@ Arcemu::Gossip::Script* ScriptMgr::get_go_gossip(uint32 entry) const
 	return NULL;
 }
 
-Arcemu::Gossip::Script* ScriptMgr::get_item_gossip(uint32 entry) const
+Arcpro::Gossip::Script* ScriptMgr::get_item_gossip(uint32 entry) const
 {
 	GossipMap::const_iterator itr = itemgossip_.find(entry);
 	if(itr != itemgossip_.end())
@@ -794,7 +794,7 @@ void ScriptMgr::ReloadScriptEngines()
 
 	for(DynamicLibraryMap::iterator itr = dynamiclibs.begin(); itr != dynamiclibs.end(); ++itr)
 	{
-		Arcemu::DynLib* dl = *itr;
+		Arcpro::DynLib* dl = *itr;
 
 		version_function = reinterpret_cast< exp_get_script_type >(dl->GetAddressForSymbol("_exp_get_script_type"));
 		if(version_function == NULL)
@@ -817,7 +817,7 @@ void ScriptMgr::UnloadScriptEngines()
 
 	for(DynamicLibraryMap::iterator itr = dynamiclibs.begin(); itr != dynamiclibs.end(); ++itr)
 	{
-		Arcemu::DynLib* dl = *itr;
+		Arcpro::DynLib* dl = *itr;
 
 		version_function = reinterpret_cast< exp_get_script_type >(dl->GetAddressForSymbol("_exp_get_script_type"));
 		if(version_function == NULL)

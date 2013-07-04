@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -54,7 +55,7 @@ class AuctionMgr : public Singleton <AuctionMgr>
 		HM_NAMESPACE::hash_map<uint32, AuctionHouse*> auctionHouseEntryMap;
 		vector<AuctionHouse*> auctionHouses;
 
-		Arcemu::Threading::AtomicCounter maxId;
+		Arcpro::Threading::AtomicCounter maxId;
 
 		uint32 loopcount;
 };

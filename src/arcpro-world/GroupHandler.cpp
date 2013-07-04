@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -254,8 +255,8 @@ void WorldSession::HandleGroupUninviteGuidOpcode(WorldPacket & recv_data)
 
 	recv_data >> PlayerGUID;
 
-	player = objmgr.GetPlayer(Arcemu::Util::GUID_LOPART(PlayerGUID));
-	info = objmgr.GetPlayerInfo(Arcemu::Util::GUID_LOPART(PlayerGUID));
+	player = objmgr.GetPlayer(Arcpro::Util::GUID_LOPART(PlayerGUID));
+	info = objmgr.GetPlayerInfo(Arcpro::Util::GUID_LOPART(PlayerGUID));
 	// If both conditions match the player gets thrown out of the group by the server since this means the character is deleted
 	if(player == NULL && info == NULL)
 	{

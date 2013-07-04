@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -25,7 +26,7 @@
 #ifndef __MAPMGR_H
 #define __MAPMGR_H
 
-extern Arcemu::Utility::TLSObject<MapMgr*> t_currentMapContext;
+extern Arcpro::Utility::TLSObject<MapMgr*> t_currentMapContext;
 
 #define IS_PERSISTENT_INSTANCE(p) ( ((p)->m_mapInfo->type == INSTANCE_MULTIMODE && (p)->m_difficulty >= MODE_HEROIC) || (p)->m_mapInfo->type == INSTANCE_RAID )
 #define IS_RESETABLE_INSTANCE(p) ( !(p)->m_persistent && ((p)->m_mapInfo->type == INSTANCE_NONRAID || ((p)->m_mapInfo->type == INSTANCE_MULTIMODE && (p)->m_difficulty == MODE_NORMAL)) )
@@ -294,7 +295,7 @@ class SERVER_DECL MapMgr : public CellHandler <MapCell>, public EventableObject,
 			SetThreadState(THREADSTATE_TERMINATE);
 			while(thread_running)
 			{
-				Arcemu::Sleep(100);
+				Arcpro::Sleep(100);
 			}
 		}
 

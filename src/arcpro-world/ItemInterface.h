@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -76,7 +77,7 @@ class SERVER_DECL ItemInterface
 		AddItemResult m_AddItem(Item* item, int8 ContainerSlot, int16 slot);
 
 	public:
-		Arcemu::EquipmentSetMgr m_EquipmentSets;
+		Arcpro::EquipmentSetMgr m_EquipmentSets;
 		friend class ItemIterator;
 		ItemInterface(Player* pPlayer);
 		~ItemInterface();
@@ -145,7 +146,7 @@ class SERVER_DECL ItemInterface
 		int8 GetInternalBankSlotFromPlayer(int8 islot); //converts inventory slots into 0-x numbers
 
 		//buyback stuff
-		ARCEMU_INLINE Item* GetBuyBack(int32 slot)
+		ARCPRO_INLINE Item* GetBuyBack(int32 slot)
 		{
 			if(slot >= 0 && slot < MAX_BUYBACK_SLOT)
 				return m_pBuyBack[slot];
@@ -228,7 +229,7 @@ class ItemIterator
 		void BeginSearch()
 		{
 			// iteminterface doesn't use mutexes, maybe it should :P
-			ARCEMU_ASSERT(!m_searchInProgress);
+			ARCPRO_ASSERT(!m_searchInProgress);
 			m_atEnd = false;
 			m_searchInProgress = true;
 			m_container = NULL;
@@ -240,7 +241,7 @@ class ItemIterator
 		void EndSearch()
 		{
 			// nothing here either
-			ARCEMU_ASSERT(m_searchInProgress);
+			ARCPRO_ASSERT(m_searchInProgress);
 			m_atEnd = true;
 			m_searchInProgress = false;
 		}
@@ -321,8 +322,8 @@ class ItemIterator
 			m_currentItem = NULL;
 		}
 
-		ARCEMU_INLINE Item* Grab() { return m_currentItem; }
-		ARCEMU_INLINE bool End() { return m_atEnd; }
+		ARCPRO_INLINE Item* Grab() { return m_currentItem; }
+		ARCPRO_INLINE bool End() { return m_atEnd; }
 };
 
 #endif

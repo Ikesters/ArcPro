@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2012 <http://www.ArcEmu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -618,7 +619,7 @@ void Player::SendInitialLogonPackets()
 
 	data.Initialize(SMSG_LOGIN_SETTIMESPEED);
 
-	data << uint32( Arcemu::Util::MAKE_GAME_TIME() );
+	data << uint32( Arcpro::Util::MAKE_GAME_TIME() );
 	data << float(0.0166666669777748f);    // Normal Game Speed
 	data << uint32(0);   // 3.1.2
 

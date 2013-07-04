@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -57,7 +58,7 @@ void Container::LoadFromDB(Field* fields)
 	uint32 itemid = fields[2].GetUInt32();
 	m_itemProto = ItemPrototypeStorage.LookupEntry(itemid);
 
-	ARCEMU_ASSERT(m_itemProto  != NULL);
+	ARCPRO_ASSERT(m_itemProto  != NULL);
 	SetEntry(itemid);
 
 
@@ -82,7 +83,7 @@ void Container::Create(uint32 itemid, Player* owner)
 {
 
 	m_itemProto = ItemPrototypeStorage.LookupEntry(itemid);
-	ARCEMU_ASSERT(m_itemProto != NULL);
+	ARCPRO_ASSERT(m_itemProto != NULL);
 
 	SetEntry(itemid);
 
@@ -134,7 +135,7 @@ bool Container::AddItem(int16 slot, Item* item)
 	if(slot < 0 || (uint32)slot >= GetProto()->ContainerSlots)
 		return false;
 
-	//ARCEMU_ASSERT(   m_Slot[slot] == NULL);
+	//ARCPRO_ASSERT(   m_Slot[slot] == NULL);
 	if(m_Slot[slot] != NULL)
 	{
 		//sLog.outString("Bad container item %u slot %d", item->GetGUID(), slot);

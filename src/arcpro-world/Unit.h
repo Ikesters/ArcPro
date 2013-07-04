@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -1707,7 +1708,7 @@ class SERVER_DECL Unit : public Object
 		void SendPeriodicHealAuraLog(const WoWGuid & CasterGUID, const WoWGuid & TargetGUID, uint32 SpellID, uint32 healed, uint32 over_healed, bool is_critical);
 
 		void EventModelChange();
-		ARCEMU_INLINE float GetModelHalfSize() { return m_modelhalfsize * GetScale(); }
+		ARCPRO_INLINE float GetModelHalfSize() { return m_modelhalfsize * GetScale(); }
 
 		void RemoveFieldSummon();
 

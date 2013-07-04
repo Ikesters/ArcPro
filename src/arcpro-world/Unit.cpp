@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -6183,7 +6184,7 @@ void Unit::SendAuraUpdate(uint32 AuraSlot, bool remove)
 {
 	Aura* aur = m_auras[ AuraSlot ];
 
-	ARCEMU_ASSERT(aur != NULL);
+	ARCPRO_ASSERT(aur != NULL);
 
 	WorldPacket data(SMSG_AURA_UPDATE, 30);
 
@@ -6488,7 +6489,7 @@ bool Unit::GetSpeedDecrease()
 
 void Unit::EventCastSpell(Unit* Target, SpellEntry* Sp)
 {
-	ARCEMU_ASSERT(Sp != NULL);
+	ARCPRO_ASSERT(Sp != NULL);
 	Spell* pSpell = sSpellFactoryMgr.NewSpell(Target, Sp, true, NULL);
 	SpellCastTargets targets(Target->GetGUID());
 	pSpell->prepare(&targets);
@@ -6619,7 +6620,7 @@ void CombatStatusHandler::AddAttackTarget(const uint64 & guid)
 		return;
 
 	//we MUST be in world
-	ARCEMU_ASSERT(m_Unit->IsInWorld());
+	ARCPRO_ASSERT(m_Unit->IsInWorld());
 
 	m_attackTargets.insert(guid);
 	//printf("Adding attack target " I64FMT " to " I64FMT "\n", guid, m_Unit->GetGUID());
@@ -6738,7 +6739,7 @@ void CombatStatusHandler::OnDamageDealt(Unit* pTarget)
 void CombatStatusHandler::AddAttacker(const uint64 & guid)
 {
 	//we MUST be in world
-	ARCEMU_ASSERT(m_Unit->IsInWorld());
+	ARCPRO_ASSERT(m_Unit->IsInWorld());
 	m_attackers.insert(guid);
 	UpdateFlag();
 }
@@ -7734,7 +7735,7 @@ void Unit::AddGarbageSpell(Spell* sp)
 
 void Unit::AddGarbagePet(Pet* pet)
 {
-	ARCEMU_ASSERT(pet->GetPetOwner()->GetGUID() == GetGUID() && !pet->IsInWorld());
+	ARCPRO_ASSERT(pet->GetPetOwner()->GetGUID() == GetGUID() && !pet->IsInWorld());
 	m_GarbagePets.push_back(pet);
 }
 

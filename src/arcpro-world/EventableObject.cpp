@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -60,7 +61,7 @@ void EventableObject::event_AddEvent(TimedEvent* ptr)
 		{
 
 			///////////////////////////////////////// this is for me for debugging purposes - dfighter ////////////////////////////
-			// ARCEMU_ASSERT( false );
+			// ARCPRO_ASSERT( false );
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 			// We still couldn't find an eventholder for us so let's run in WorldRunnable
@@ -70,7 +71,7 @@ void EventableObject::event_AddEvent(TimedEvent* ptr)
 	}
 
 	// We still couldn't find an event holder for ourselves :(
-	ARCEMU_ASSERT(m_holder != NULL);
+	ARCPRO_ASSERT(m_holder != NULL);
 
 	// If we are flagged not to run in WorldRunnable then we won't!
 	// This is much better than adding us to the eventholder and removing on an update
@@ -80,7 +81,7 @@ void EventableObject::event_AddEvent(TimedEvent* ptr)
 		delete ptr;
 
 		///////////////////////////////////////// this is for me for debugging purposes - dfighter ////////////////////////////
-		// ARCEMU_ASSERT( false );
+		// ARCPRO_ASSERT( false );
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		m_lock.Release();
 		return;

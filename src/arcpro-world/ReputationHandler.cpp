@@ -1,5 +1,5 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -50,14 +50,14 @@ Standing Player::GetReputationRankFromStanding(int32 Standing_)
 	return STANDING_HATED;
 }
 
-ARCEMU_INLINE bool CanToggleAtWar(uint8 flag) { return (flag & FACTION_FLAG_DISABLE_ATWAR) == 0 ; }
-ARCEMU_INLINE bool AtWar(uint8 flag) { return (flag & FACTION_FLAG_AT_WAR) != 0; }
-ARCEMU_INLINE bool ForcedInvisible(uint8 flag) { return (flag & FACTION_FLAG_FORCED_INVISIBLE) != 0; }
-ARCEMU_INLINE bool Visible(uint8 flag) { return (flag & FACTION_FLAG_VISIBLE) != 0; }
-ARCEMU_INLINE bool Hidden(uint8 flag) { return (flag & FACTION_FLAG_HIDDEN) != 0; }
-ARCEMU_INLINE bool Inactive(uint8 flag) { return (flag & FACTION_FLAG_INACTIVE) != 0; }
+ARCPRO_INLINE bool CanToggleAtWar(uint8 flag) { return (flag & FACTION_FLAG_DISABLE_ATWAR) == 0 ; }
+ARCPRO_INLINE bool AtWar(uint8 flag) { return (flag & FACTION_FLAG_AT_WAR) != 0; }
+ARCPRO_INLINE bool ForcedInvisible(uint8 flag) { return (flag & FACTION_FLAG_FORCED_INVISIBLE) != 0; }
+ARCPRO_INLINE bool Visible(uint8 flag) { return (flag & FACTION_FLAG_VISIBLE) != 0; }
+ARCPRO_INLINE bool Hidden(uint8 flag) { return (flag & FACTION_FLAG_HIDDEN) != 0; }
+ARCPRO_INLINE bool Inactive(uint8 flag) { return (flag & FACTION_FLAG_INACTIVE) != 0; }
 
-ARCEMU_INLINE bool SetFlagAtWar(uint8 & flag, bool set)
+ARCPRO_INLINE bool SetFlagAtWar(uint8 & flag, bool set)
 {
 	if(set && !AtWar(flag))
 		flag |= FACTION_FLAG_AT_WAR;
@@ -69,7 +69,7 @@ ARCEMU_INLINE bool SetFlagAtWar(uint8 & flag, bool set)
 	return true;
 }
 
-ARCEMU_INLINE bool SetFlagVisible(uint8 & flag, bool set)
+ARCPRO_INLINE bool SetFlagVisible(uint8 & flag, bool set)
 {
 	if(ForcedInvisible(flag) || Hidden(flag))
 		return false;
@@ -83,7 +83,7 @@ ARCEMU_INLINE bool SetFlagVisible(uint8 & flag, bool set)
 	return true;
 }
 
-ARCEMU_INLINE bool SetFlagInactive(uint8 & flag, bool set)
+ARCPRO_INLINE bool SetFlagInactive(uint8 & flag, bool set)
 {
 	if(set && !Inactive(flag))
 		flag |= FACTION_FLAG_INACTIVE;
@@ -95,12 +95,12 @@ ARCEMU_INLINE bool SetFlagInactive(uint8 & flag, bool set)
 	return true;
 }
 
-ARCEMU_INLINE bool RankChanged(int32 Standing, int32 Change)
+ARCPRO_INLINE bool RankChanged(int32 Standing, int32 Change)
 {
 	return (Player::GetReputationRankFromStanding(Standing) != Player::GetReputationRankFromStanding(Standing + Change));
 }
 
-ARCEMU_INLINE bool RankChangedFlat(int32 Standing, int32 NewStanding)
+ARCPRO_INLINE bool RankChangedFlat(int32 Standing, int32 NewStanding)
 {
 	return (Player::GetReputationRankFromStanding(Standing) != Player::GetReputationRankFromStanding(NewStanding));
 }

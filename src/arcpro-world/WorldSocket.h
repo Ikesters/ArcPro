@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -46,13 +47,13 @@ class SERVER_DECL WorldSocket : public Socket
 		~WorldSocket();
 
 		// vs8 fix - send null on empty buffer
-		ARCEMU_INLINE void SendPacket(WorldPacket* packet) { if(!packet) return; OutPacket(packet->GetOpcode(), packet->size(), (packet->size() ? (const void*)packet->contents() : NULL)); }
-		ARCEMU_INLINE void SendPacket(StackBufferBase* packet) { if(!packet) return; OutPacket(packet->GetOpcode(), packet->GetSize(), (packet->GetSize() ? (const void*)packet->GetBufferPointer() : NULL)); }
+		ARCPRO_INLINE void SendPacket(WorldPacket* packet) { if(!packet) return; OutPacket(packet->GetOpcode(), packet->size(), (packet->size() ? (const void*)packet->contents() : NULL)); }
+		ARCPRO_INLINE void SendPacket(StackBufferBase* packet) { if(!packet) return; OutPacket(packet->GetOpcode(), packet->GetSize(), (packet->GetSize() ? (const void*)packet->GetBufferPointer() : NULL)); }
 
 		void  OutPacket(uint16 opcode, size_t len, const void* data);
 		OUTPACKET_RESULT  _OutPacket(uint16 opcode, size_t len, const void* data);
 
-		ARCEMU_INLINE uint32 GetLatency() { return _latency; }
+		ARCPRO_INLINE uint32 GetLatency() { return _latency; }
 
 		void Authenticate();
 		void InformationRetreiveCallback(WorldPacket & recvData, uint32 requestid);
@@ -63,8 +64,8 @@ class SERVER_DECL WorldSocket : public Socket
 		void OnConnect();
 		void OnDisconnect();
 
-		ARCEMU_INLINE void SetSession(WorldSession* session) { mSession = session; }
-		ARCEMU_INLINE WorldSession* GetSession() { return mSession; }
+		ARCPRO_INLINE void SetSession(WorldSession* session) { mSession = session; }
+		ARCPRO_INLINE WorldSession* GetSession() { return mSession; }
 		bool Authed;
 
 		void UpdateQueuedPackets();

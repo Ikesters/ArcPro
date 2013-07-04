@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -542,7 +543,7 @@ void Pet::InitializeSpells()
 
 AI_Spell* Pet::CreateAISpell(SpellEntry* info)
 {
-	ARCEMU_ASSERT(info != NULL);
+	ARCPRO_ASSERT(info != NULL);
 
 	// Create an AI_Spell
 	map<uint32, AI_Spell*>::iterator itr = m_AISpellStore.find(info->Id);
@@ -731,7 +732,7 @@ void Pet::LoadFromDB(Player* owner, PlayerPet* pi)
 void Pet::OnPushToWorld()
 {
 	//Pets MUST always have an owner
-	ARCEMU_ASSERT(m_Owner != NULL);
+	ARCPRO_ASSERT(m_Owner != NULL);
 	//before we initialize pet spells so we can apply spell mods on them
 	m_Owner->EventSummonPet(this);
 
@@ -802,7 +803,7 @@ void Pet::InitializeMe(bool first)
 
 	PushToWorld(m_Owner->GetMapMgr());
 	//we MUST be sure Pet was pushed to world.
-	ARCEMU_ASSERT(IsInWorld());
+	ARCPRO_ASSERT(IsInWorld());
 
 	InitializeSpells();
 
@@ -911,7 +912,7 @@ void Pet::OnRemoveFromWorld()
 	for(itr = ownerSummons.begin(); itr != ownerSummons.end(); ++itr)
 	{
 		//m_Owner MUST NOT have a reference to us anymore
-		ARCEMU_ASSERT((*itr)->GetGUID() != GetGUID());
+		ARCPRO_ASSERT((*itr)->GetGUID() != GetGUID());
 	}
 }
 
@@ -1791,8 +1792,8 @@ void Pet::HandleAutoCastEvent(AutoCastEvents Type)
 
 void Pet::SetAutoCast(AI_Spell* sp, bool on)
 {
-	ARCEMU_ASSERT(sp != NULL);
-	ARCEMU_ASSERT(sp->spell != NULL);
+	ARCPRO_ASSERT(sp != NULL);
+	ARCPRO_ASSERT(sp->spell != NULL);
 
 	if(sp->autocast_type > 0)
 	{
@@ -1982,7 +1983,7 @@ void Pet::DealDamage(Unit* pVictim, uint32 damage, uint32 targetEvent, uint32 un
 
 		if(pVictim->isLootable())
 		{
-			Player* tagger = GetMapMgr()->GetPlayer(Arcemu::Util::GUID_LOPART(pVictim->GetTaggerGUID()));
+			Player* tagger = GetMapMgr()->GetPlayer(Arcpro::Util::GUID_LOPART(pVictim->GetTaggerGUID()));
 
 			// Tagger might have left the map so we need to check
 			if(tagger != NULL)
@@ -2142,7 +2143,7 @@ void Pet::Die(Unit* pAttacker, uint32 damage, uint32 spellid)
 				if(spl->GetProto()->Effect[i] == SPELL_EFFECT_PERSISTENT_AREA_AURA)
 				{
 					uint64 guid = GetChannelSpellTargetGUID();
-					DynamicObject* dObj = GetMapMgr()->GetDynamicObject(Arcemu::Util::GUID_LOPART(guid));
+					DynamicObject* dObj = GetMapMgr()->GetDynamicObject(Arcpro::Util::GUID_LOPART(guid));
 					if(!dObj)
 						return;
 

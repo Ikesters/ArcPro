@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -445,7 +446,7 @@ void WorldSession::HandlePetRename(WorldPacket & recv_data)
 	// Disable pet rename.
 	pet->SetUInt32Value(UNIT_FIELD_BYTES_2, 1 | /* (0x28 << 8) | */ (PET_RENAME_NOT_ALLOWED << 16));
 
-	ARCEMU_ASSERT(pet->GetPetOwner() != NULL);
+	ARCPRO_ASSERT(pet->GetPetOwner() != NULL);
 
 	if(pet->GetPetOwner()->IsPvPFlagged())
 		pet->SetPvPFlag();

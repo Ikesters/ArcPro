@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -144,10 +145,10 @@ bool MailMessage::AddMessageDataToPacket(WorldPacket & data)
 		case AUCTION:
 		case GAMEOBJECT:
 		case ITEM:
-			data << uint32(Arcemu::Util::GUID_LOPART(sender_guid));
+			data << uint32(Arcpro::Util::GUID_LOPART(sender_guid));
 			break;
 		case CREATURE:
-			data << uint32( Arcemu::Util::GET_CREATURE_ENTRY_FROM_GUID(sender_guid));
+			data << uint32( Arcpro::Util::GET_CREATURE_ENTRY_FROM_GUID(sender_guid));
 			break;
 	}
 
@@ -824,7 +825,7 @@ void MailSystem::SendAutomatedMessage(uint32 type, uint64 sender, uint64 receive
 	msg.money = money;
 	msg.cod = cod;
 	for(vector<uint64>::iterator itr = item_guids.begin(); itr != item_guids.end(); ++itr)
-		msg.items.push_back(Arcemu::Util::GUID_LOPART(*itr));
+		msg.items.push_back(Arcpro::Util::GUID_LOPART(*itr));
 
 	msg.stationery = stationery;
 	msg.delivery_time = (uint32)UNIXTIME + deliverdelay;

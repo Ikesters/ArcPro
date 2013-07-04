@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -48,29 +49,29 @@ class SERVER_DECL MapCell
 		void RemoveObject(Object* obj);
 		bool HasObject(Object* obj) { return (_objects.find(obj) != _objects.end()); }
 		bool HasPlayers() { return ((_playerCount > 0) ? true : false); }
-		ARCEMU_INLINE size_t GetObjectCount() { return _objects.size(); }
+		ARCPRO_INLINE size_t GetObjectCount() { return _objects.size(); }
 		void RemoveObjects();
-		ARCEMU_INLINE ObjectSet::iterator Begin() { return _objects.begin(); }
-		ARCEMU_INLINE ObjectSet::iterator End() { return _objects.end(); }
+		ARCPRO_INLINE ObjectSet::iterator Begin() { return _objects.begin(); }
+		ARCPRO_INLINE ObjectSet::iterator End() { return _objects.end(); }
 
 		//State Related
 		void SetActivity(bool state);
 
-		ARCEMU_INLINE bool IsActive() { return _active; }
-		ARCEMU_INLINE bool IsLoaded() { return _loaded; }
-		ARCEMU_INLINE void SetLoaded(bool Loaded = true) { _loaded = Loaded; }
+		ARCPRO_INLINE bool IsActive() { return _active; }
+		ARCPRO_INLINE bool IsLoaded() { return _loaded; }
+		ARCPRO_INLINE void SetLoaded(bool Loaded = true) { _loaded = Loaded; }
 
 		//Object Loading Managing
 		void LoadObjects(CellSpawns* sp);
-		ARCEMU_INLINE uint32 GetPlayerCount() { return _playerCount; }
+		ARCPRO_INLINE uint32 GetPlayerCount() { return _playerCount; }
 
-		ARCEMU_INLINE bool IsUnloadPending() { return _unloadpending; }
-		ARCEMU_INLINE void SetUnloadPending(bool up) { _unloadpending = up; }
+		ARCPRO_INLINE bool IsUnloadPending() { return _unloadpending; }
+		ARCPRO_INLINE void SetUnloadPending(bool up) { _unloadpending = up; }
 		void QueueUnloadPending();
 		void CancelPendingUnload();
 		void Unload();
-		ARCEMU_INLINE uint16 GetPositionX() { return _x; }
-		ARCEMU_INLINE uint16 GetPositionY() { return _y; }
+		ARCPRO_INLINE uint16 GetPositionX() { return _x; }
+		ARCPRO_INLINE uint16 GetPositionY() { return _y; }
 
 		ObjectSet _respawnObjects;
 		ObjectSet::iterator objects_iterator;//required by MapCell::RemoveObjects() removing Creatures which will remove their guardians and corrupt itr.

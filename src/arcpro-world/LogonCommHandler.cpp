@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -86,7 +87,7 @@ class LogonCommWatcherThread : public ThreadBase
 {
 		bool running;
 
-		Arcemu::Threading::ConditionVariable cond;
+		Arcpro::Threading::ConditionVariable cond;
 
 	public:
 
@@ -135,7 +136,7 @@ void LogonCommHandler::Startup()
 			string acct = result->Fetch()[0].GetString();
 			string perm = result->Fetch()[1].GetString();
 
-			arcemu_TOUPPER(acct);
+			arcpro_TOUPPER(acct);
 			forced_permissions.insert(make_pair(acct, perm));
 
 		}
@@ -189,7 +190,7 @@ void LogonCommHandler::Connect(LogonServer* server)
 			return;
 		}
 
-		Arcemu::Sleep(50);
+		Arcpro::Sleep(50);
 	}
 
 	if(conn->authenticated != 1)
@@ -224,14 +225,14 @@ void LogonCommHandler::Connect(LogonServer* server)
 			conn->Disconnect();
 			break;
 		}
-		Arcemu::Sleep(50);
+		Arcpro::Sleep(50);
 	}
 
 	if(!server->Registered)
 		return;
 
 	// Wait for all realms to register
-	Arcemu::Sleep(200);
+	Arcpro::Sleep(200);
 
 	Log.Success("LogonCommClient", "Logonserver latency is %ums.", conn->latency);
 }
@@ -429,8 +430,8 @@ void LogonCommHandler::TestConsoleLogon(string & username, string & password, ui
 	string newpass = password;
 	string srpstr;
 
-	arcemu_TOUPPER(newuser);
-	arcemu_TOUPPER(newpass);
+	arcpro_TOUPPER(newuser);
+	arcpro_TOUPPER(newpass);
 
 	srpstr = newuser + ":" + newpass;
 

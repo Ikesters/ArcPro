@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -265,9 +266,9 @@ void ConsoleSocket::OnRead()
 
 void ConsoleSocket::OnConnect()
 {
-	m_pConsole->Write("Welcome to ArcEmu's Remote Administration Console.\r\n");
+	m_pConsole->Write("Welcome to ArcPro's Remote Administration Console.\r\n");
 	m_pConsole->Write("Please authenticate to continue. \r\n\r\n");
-	m_pConsole->Write("login: ");
+	m_pConsole->Write("Login: ");
 }
 
 void ConsoleSocket::OnDisconnect()

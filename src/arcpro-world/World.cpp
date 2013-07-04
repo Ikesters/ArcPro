@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -201,7 +202,7 @@ void World::RemoveSession(uint32 id)
 
 void World::AddSession(WorldSession* s)
 {
-	ARCEMU_ASSERT(s != NULL);
+	ARCPRO_ASSERT(s != NULL);
 
 	m_sessionlock.AcquireWriteLock();
 
@@ -217,7 +218,7 @@ void World::AddSession(WorldSession* s)
 
 void World::AddGlobalSession(WorldSession* session)
 {
-	ARCEMU_ASSERT(session != NULL);
+	ARCPRO_ASSERT(session != NULL);
 
 	SessionsMutex.Acquire();
 	Sessions.insert(session);
@@ -227,7 +228,7 @@ void World::AddGlobalSession(WorldSession* session)
 void World::RemoveGlobalSession(WorldSession* session)
 {
 
-	ARCEMU_ASSERT(session != NULL);
+	ARCPRO_ASSERT(session != NULL);
 
 	SessionsMutex.Acquire();
 	Sessions.erase(session);
@@ -1155,7 +1156,7 @@ void TaskList::wait()
 			}
 		}
 		queueLock.Release();
-		Arcemu::Sleep(20);
+		Arcpro::Sleep(20);
 	}
 }
 
@@ -1186,7 +1187,7 @@ bool TaskExecutor::run()
 			delete t;
 		}
 		else
-			Arcemu::Sleep(20);
+			Arcpro::Sleep(20);
 	}
 
 	THREAD_HANDLE_CRASH
@@ -1198,7 +1199,7 @@ void TaskList::waitForThreadsToExit()
 {
 	while(thread_count.GetVal())
 	{
-		Arcemu::Sleep(20);
+		Arcpro::Sleep(20);
 	}
 }
 
@@ -1261,7 +1262,7 @@ void World::Rehash(bool load)
 	setRate(RATE_ARENAPOINTMULTIPLIER3X, Config.MainConfig.GetFloatDefault("Rates", "ArenaMultiplier3x", 1.0f));
 	setRate(RATE_ARENAPOINTMULTIPLIER5X, Config.MainConfig.GetFloatDefault("Rates", "ArenaMultiplier5x", 1.0f));
 	SetPlayerLimit(Config.MainConfig.GetIntDefault("Server", "PlayerLimit", 1000));
-	SetMotd(Config.MainConfig.GetStringDefault("Server", "Motd", "Arcemu Default MOTD").c_str());
+	SetMotd(Config.MainConfig.GetStringDefault("Server", "Motd", "ArcPro Default MOTD").c_str());
 	mQueueUpdateInterval = Config.MainConfig.GetIntDefault("Server", "QueueUpdateInterval", 5000);
 	SetKickAFKPlayerTime(Config.MainConfig.GetIntDefault("Server", "KickAFKPlayers", 0));
 	sLog.SetFileLoggingLevel(Config.MainConfig.GetIntDefault("LogLevel", "File", 0));

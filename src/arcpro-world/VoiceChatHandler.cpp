@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Voice Chat Engine
  * Copyright (C) 2005-2007 Burlex <burlex@gmail.com>
  * Copyright (C) 2012 <http://www.ArcEmu.org/>

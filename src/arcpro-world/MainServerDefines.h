@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2008 <http://www.openascent.com/>
  * Copyright (C) 2012 <http://www.ArcEmu.org/>
  *

@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -69,7 +70,7 @@ AIInterface::AIInterface()
 	m_fleeTimer(0),
 	m_hasFleed(false),
 	m_hasCalledForHelp(false),
-	m_outOfCombatRange(50 * 50), // Where did u get this value?
+	m_outOfCombatRange(50 * 50), // Where did you get this value?
 	m_Unit(NULL),
 	m_PetOwner(NULL),
 	FollowDistance(0.0f),
@@ -129,7 +130,7 @@ void AIInterface::EventAiInterfaceParamsetFinish()
 
 void AIInterface::Init(Unit* un, AIType at, MovementType mt)
 {
-	ARCEMU_ASSERT(at != AITYPE_PET);
+	ARCPRO_ASSERT(at != AITYPE_PET);
 
 	m_AIType = at;
 	m_MovementType = mt;
@@ -164,7 +165,7 @@ AIInterface::~AIInterface()
 
 void AIInterface::Init(Unit* un, AIType at, MovementType mt, Unit* owner)
 {
-	ARCEMU_ASSERT(at == AITYPE_PET || at == AITYPE_TOTEM);
+	ARCPRO_ASSERT(at == AITYPE_PET || at == AITYPE_TOTEM);
 
 	m_AIType = at;
 	m_MovementType = mt;
@@ -1350,7 +1351,7 @@ Unit* AIInterface::FindTarget()
 		{
 			uint64 charmer = target->GetCharmedByGUID();
 
-			Unit* target2 = m_Unit->GetMapMgr()->GetPlayer(Arcemu::Util::GUID_LOPART(charmer));
+			Unit* target2 = m_Unit->GetMapMgr()->GetPlayer(Arcpro::Util::GUID_LOPART(charmer));
 
 			if(target2)
 			{
@@ -2648,7 +2649,7 @@ void AIInterface::_UpdateMovement(uint32 p_time)
 
 void AIInterface::CastSpell(Unit* caster, SpellEntry* spellInfo, SpellCastTargets targets)
 {
-	ARCEMU_ASSERT(spellInfo != NULL);
+	ARCPRO_ASSERT(spellInfo != NULL);
 	if(m_AIType != AITYPE_PET && disable_spell)
 		return;
 
@@ -3504,7 +3505,7 @@ void AIInterface::SetWaypointMap(WayPointMap* m, bool delete_old_map)
 
 void AIInterface::_UpdateTotem(uint32 p_time)
 {
-	ARCEMU_ASSERT(totemspell != 0);
+	ARCPRO_ASSERT(totemspell != 0);
 	if(p_time >= m_totemspelltimer)
 	{
 		Spell* pSpell = sSpellFactoryMgr.NewSpell(m_Unit, totemspell, true, 0);

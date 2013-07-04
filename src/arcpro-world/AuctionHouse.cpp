@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -39,7 +40,7 @@ void Auction::UpdateInDB()
 AuctionHouse::AuctionHouse(uint32 ID)
 {
 	dbc = dbcAuctionHouse.LookupEntryForced(ID);
-	ARCEMU_ASSERT(dbc != NULL);
+	ARCPRO_ASSERT(dbc != NULL);
 
 	cut_percent = dbc->tax / 100.0f ;
 	deposit_percent = dbc->fee / 100.0f ;
@@ -75,7 +76,7 @@ void AuctionHouse::UpdateDeletionQueue()
 	for(; it != removalList.end(); ++it)
 	{
 		auct = *it;
-		ARCEMU_ASSERT(auct->Deleted);
+		ARCPRO_ASSERT(auct->Deleted);
 		RemoveAuction(auct);
 	}
 

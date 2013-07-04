@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -323,7 +324,7 @@ void Creature::OnRemoveCorpse()
 	else
 	{
 		// if we got here it's pretty bad
-		ARCEMU_ASSERT(false);
+		ARCPRO_ASSERT(false);
 	}
 }
 
@@ -774,7 +775,7 @@ void Creature::EnslaveExpire()
 
 	uint64 charmer = GetCharmedByGUID();
 
-	Player* caster = objmgr.GetPlayer(Arcemu::Util::GUID_LOPART(charmer));
+	Player* caster = objmgr.GetPlayer(Arcpro::Util::GUID_LOPART(charmer));
 	if(caster)
 	{
 		caster->SetCharmedUnitGUID(0);
@@ -1039,7 +1040,7 @@ void Creature::RegenerateFocus()
 
 void Creature::CallScriptUpdate()
 {
-	ARCEMU_ASSERT(_myScriptClass != NULL);
+	ARCPRO_ASSERT(_myScriptClass != NULL);
 	if(!IsInWorld())
 		return;
 
@@ -1620,7 +1621,7 @@ void Creature::OnPushToWorld()
 	{
 		LOG_ERROR("Something tried to push to world Creature ID %u with proto set to NULL.", GetEntry());
 #ifdef _DEBUG
-		ARCEMU_ASSERT(false);
+		ARCPRO_ASSERT(false);
 #else
 		SetCreatureProto(CreatureProtoStorage.LookupEntry(GetEntry()));
 #endif
@@ -1629,7 +1630,7 @@ void Creature::OnPushToWorld()
 	{
 		LOG_ERROR("Something tried to push to world Creature ID %u with creature_info set to NULL.", GetEntry());
 #ifdef _DEBUG
-		ARCEMU_ASSERT(false);
+		ARCPRO_ASSERT(false);
 #else
 		SetCreatureInfo(CreatureNameStorage.LookupEntry(GetEntry()));
 #endif
@@ -1715,7 +1716,7 @@ void Creature::Despawn(uint32 delay, uint32 respawntime)
 		if(pCell == NULL)
 			pCell = GetMapCell();
 
-		ARCEMU_ASSERT(pCell != NULL);
+		ARCPRO_ASSERT(pCell != NULL);
 		pCell->_respawnObjects.insert(this);
 		sEventMgr.RemoveEvents(this);
 		sEventMgr.AddEvent(m_mapMgr, &MapMgr::EventRespawnCreature, this, pCell->GetPositionX(), pCell->GetPositionY(), EVENT_CREATURE_RESPAWN, respawntime, 1, EVENT_FLAG_DO_NOT_EXECUTE_IN_WORLD_CONTEXT);
@@ -2112,7 +2113,7 @@ void Creature::Die(Unit* pAttacker, uint32 damage, uint32 spellid)
 				if(spl->GetProto()->Effect[i] == SPELL_EFFECT_PERSISTENT_AREA_AURA)
 				{
 					uint64 guid = GetChannelSpellTargetGUID();
-					DynamicObject* dObj = GetMapMgr()->GetDynamicObject(Arcemu::Util::GUID_LOPART(guid));
+					DynamicObject* dObj = GetMapMgr()->GetDynamicObject(Arcpro::Util::GUID_LOPART(guid));
 					if(!dObj)
 						return;
 
@@ -2339,7 +2340,7 @@ void Creature::BuildPetSpellList(WorldPacket & data)
 		if(itr != proto->castable_spells.end())
 		{
 			uint32 spell = *itr;
-			data << uint32( Arcemu::Util::MAKE_UNIT_ACTION_BUTTON( spell, i + 8 ) );
+			data << uint32( Arcpro::Util::MAKE_UNIT_ACTION_BUTTON( spell, i + 8 ) );
 			++itr;
 		}
 		else

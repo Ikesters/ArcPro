@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -329,10 +330,10 @@ class SERVER_DECL AIInterface
 		uint64 getUnitToFearGUID() { return m_UnitToFear; }
 		Creature* getFormationLinkTarget();
 		void setCreatureState(CreatureState state) { m_creatureState = state; }
-		ARCEMU_INLINE uint8 getAIState() { return static_cast<uint8>(m_AIState); }
-		ARCEMU_INLINE uint8 getAIType() { return static_cast<uint8>(m_AIType); }
+		ARCPRO_INLINE uint8 getAIState() { return static_cast<uint8>(m_AIState); }
+		ARCPRO_INLINE uint8 getAIType() { return static_cast<uint8>(m_AIType); }
 		void SetAIType(AIType at) { m_AIType = at; }
-		ARCEMU_INLINE uint8 getCurrentAgent() { return static_cast<uint8>(m_aiCurrentAgent); }
+		ARCPRO_INLINE uint8 getCurrentAgent() { return static_cast<uint8>(m_aiCurrentAgent); }
 		void setCurrentAgent(AI_Agent agent) { m_aiCurrentAgent = agent; }
 		uint32	getThreatByGUID(uint64 guid);
 		uint32	getThreatByPtr(Unit* obj);
@@ -342,12 +343,12 @@ class SERVER_DECL AIInterface
 		bool	modThreatByPtr(Unit* obj, int32 mod);
 		void    RemoveThreatByGUID(uint64 guid);
 		void	RemoveThreatByPtr(Unit* obj);
-		ARCEMU_INLINE AssistTargetSet GetAssistTargets() { return m_assistTargets; }
-		ARCEMU_INLINE void LockAITargets(bool lock)
+		ARCPRO_INLINE AssistTargetSet GetAssistTargets() { return m_assistTargets; }
+		ARCPRO_INLINE void LockAITargets(bool lock)
 		{
 			lock ? m_aiTargetsLock.Acquire() : m_aiTargetsLock.Release();
 		};
-		ARCEMU_INLINE TargetMap* GetAITargets() { return &m_aiTargets; }
+		ARCPRO_INLINE TargetMap* GetAITargets() { return &m_aiTargets; }
 		void addAssistTargets(Unit* Friends);
 		void ClearHateList();
 		void WipeHateList();
@@ -358,8 +359,8 @@ class SERVER_DECL AIInterface
 		Unit* getSoullinkedWith();
 		void SetSoulLinkedWith(Unit* target);
 		bool GetIsSoulLinked();
-		ARCEMU_INLINE size_t getAITargetsCount() { return m_aiTargets.size(); }
-		ARCEMU_INLINE uint32 getOutOfCombatRange() { return m_outOfCombatRange; }
+		ARCPRO_INLINE size_t getAITargetsCount() { return m_aiTargets.size(); }
+		ARCPRO_INLINE uint32 getOutOfCombatRange() { return m_outOfCombatRange; }
 		void setOutOfCombatRange(uint32 val) { m_outOfCombatRange = val; }
 
 		// Spell
@@ -438,9 +439,9 @@ class SERVER_DECL AIInterface
 		WayPoint* getWayPoint(uint32 wpid);
 		void deleteWayPoint(uint32 wpid);
 		void deleteWaypoints();
-		ARCEMU_INLINE bool hasWaypoints() { return m_waypoints != NULL; }
-		ARCEMU_INLINE void setMoveType(uint32 movetype) { m_moveType = movetype; }
-		ARCEMU_INLINE uint32 getMoveType() { return m_moveType; }
+		ARCPRO_INLINE bool hasWaypoints() { return m_waypoints != NULL; }
+		ARCPRO_INLINE void setMoveType(uint32 movetype) { m_moveType = movetype; }
+		ARCPRO_INLINE uint32 getMoveType() { return m_moveType; }
 		void setWaypointToMove(uint32 id) { m_currentWaypoint = id; }
 		bool IsFlying();
 
@@ -452,10 +453,10 @@ class SERVER_DECL AIInterface
 		uint32 _CalcThreat(uint32 damage, SpellEntry* sp, Unit* Attacker);
 
 		void SetAllowedToEnterCombat(bool val) { m_AllowedToEnterCombat = val; }
-		ARCEMU_INLINE bool GetAllowedToEnterCombat(void) { return m_AllowedToEnterCombat; }
+		ARCPRO_INLINE bool GetAllowedToEnterCombat(void) { return m_AllowedToEnterCombat; }
 
 		void CheckTarget(Unit* target);
-		ARCEMU_INLINE void SetAIState(AI_State newstate) { m_AIState = newstate; }
+		ARCPRO_INLINE void SetAIState(AI_State newstate) { m_AIState = newstate; }
 
 		// Movement
 		bool m_canMove;
@@ -484,14 +485,14 @@ class SERVER_DECL AIInterface
 		SpellEntry* totemspell;
 
 		uint32 m_totalMoveTime;
-		ARCEMU_INLINE void AddStopTime(uint32 Time) { m_moveTimer += Time; }
-		ARCEMU_INLINE void SetNextSpell(AI_Spell* sp) { m_nextSpell = sp; }
+		ARCPRO_INLINE void AddStopTime(uint32 Time) { m_moveTimer += Time; }
+		ARCPRO_INLINE void SetNextSpell(AI_Spell* sp) { m_nextSpell = sp; }
 		Unit* getNextTarget();
 		void setNextTarget(Unit* nextTarget);
 		void setNextTarget(uint64 nextTarget);
 		void resetNextTarget();
 
-		/*ARCEMU_INLINE void ResetProcCounts()
+		/*ARCPRO_INLINE void ResetProcCounts()
 		{
 			AI_Spell * sp;
 			for(list<AI_Spell*>::iterator itr = m_spells.begin(); itr != m_spells.end(); ++itr)
@@ -508,7 +509,7 @@ class SERVER_DECL AIInterface
 
 		void WipeReferences();
 		TimedEmoteList*		timed_emotes;
-		ARCEMU_INLINE void SetPetOwner(Unit* owner) { m_PetOwner = owner; }
+		ARCPRO_INLINE void SetPetOwner(Unit* owner) { m_PetOwner = owner; }
 
 		list<AI_Spell*> m_spells;
 
@@ -533,7 +534,7 @@ class SERVER_DECL AIInterface
 
 		//deletes the old waypoint map as default. In case m_custom_waypoint_map is used, just call SetWaypointMap(NULL): this will delete m_custom_waypoint_map too.
 		void SetWaypointMap(WayPointMap* m, bool delete_old_map = true);
-		ARCEMU_INLINE WayPointMap* GetWaypointMap() { return m_waypoints; }
+		ARCPRO_INLINE WayPointMap* GetWaypointMap() { return m_waypoints; }
 		void LoadWaypointMapFromDB(uint32 spawnid);
 		bool m_isGuard;
 		bool m_isNeutralGuard;

@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2012 <http://www.ArcEmu.org/>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -57,7 +58,7 @@ union CacheField
 typedef std::map<uint64, void*> PlayerCacheMap;
 
 class Player;
-class PlayerCache : public Arcemu::Shared::CRefCounter
+class PlayerCache : public Arcpro::Shared::CRefCounter
 {
 	public:
 		PlayerCache()

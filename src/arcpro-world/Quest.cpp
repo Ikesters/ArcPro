@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -168,8 +169,8 @@ QuestLogEntry::~QuestLogEntry()
 
 void QuestLogEntry::Init(Quest* quest, Player* plr, uint32 slot)
 {
-	ARCEMU_ASSERT(quest != NULL);
-	ARCEMU_ASSERT(plr != NULL);
+	ARCPRO_ASSERT(quest != NULL);
+	ARCPRO_ASSERT(plr != NULL);
 
 	m_quest = quest;
 	m_plr = plr;
@@ -237,7 +238,7 @@ bool QuestLogEntry::IsUnitAffected(Unit* target)
 
 void QuestLogEntry::SaveToDB(QueryBuffer* buf)
 {
-	ARCEMU_ASSERT(m_slot != -1);
+	ARCPRO_ASSERT(m_slot != -1);
 	if(!mDirty)
 		return;
 
@@ -278,7 +279,7 @@ bool QuestLogEntry::LoadFromDB(Field* fields)
 {
 	// playerguid,questid,timeleft,area0,area1,area2,area3,kill0,kill1,kill2,kill3
 	int f = 3;
-	ARCEMU_ASSERT(m_plr && m_quest);
+	ARCPRO_ASSERT(m_plr && m_quest);
 	expirytime = fields[f].GetUInt32();
 	f++;
 	for(int i = 0; i < 4; ++i)
@@ -375,28 +376,28 @@ bool QuestLogEntry::CanBeFinished()
 
 void QuestLogEntry::SetMobCount(uint32 i, uint32 count)
 {
-	ARCEMU_ASSERT(i < 4);
+	ARCPRO_ASSERT(i < 4);
 	m_mobcount[i] = count;
 	mDirty = true;
 }
 
 void QuestLogEntry::IncrementMobCount(uint32 i)
 {
-	ARCEMU_ASSERT(i < 4);
+	ARCPRO_ASSERT(i < 4);
 	++m_mobcount[i];
 	mDirty = true;
 }
 
 void QuestLogEntry::SetTrigger(uint32 i)
 {
-	ARCEMU_ASSERT(i < 4);
+	ARCPRO_ASSERT(i < 4);
 	m_explored_areas[i] = 1;
 	mDirty = true;
 }
 
 void QuestLogEntry::SetSlot(int32 i)
 {
-	ARCEMU_ASSERT(i != -1);
+	ARCPRO_ASSERT(i != -1);
 	m_slot = i;
 }
 

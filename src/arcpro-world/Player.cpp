@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -527,7 +528,7 @@ Player::~Player()
 	DuelingWith = NULL;
 
 	CleanupGossipMenu();
-	ARCEMU_ASSERT(!IsInWorld());
+	ARCPRO_ASSERT(!IsInWorld());
 
 	// delete m_talenttree
 
@@ -3074,7 +3075,7 @@ void Player::LoadFromDBProc(QueryResultVector & results)
 	transporter_info.guid = get_next_field.GetUInt32();
 	if(transporter_info.guid)
 	{
-		Transporter* t = objmgr.GetTransporter(Arcemu::Util::GUID_LOPART(transporter_info.guid));
+		Transporter* t = objmgr.GetTransporter(Arcpro::Util::GUID_LOPART(transporter_info.guid));
 		transporter_info.guid = t ? t->GetGUID() : 0;
 	}
 
@@ -3533,7 +3534,7 @@ void Player::_LoadQuestLogEntry(QueryResult* result)
 			questid = fields[1].GetUInt32();
 			quest = QuestStorage.LookupEntry(questid);
 			slot = fields[2].GetUInt32();
-			ARCEMU_ASSERT(slot != -1);
+			ARCPRO_ASSERT(slot != -1);
 
 			// remove on next save if bad quest
 			if(!quest)
@@ -3812,7 +3813,7 @@ void Player::RemoveFromWorld()
 			{
 				m_SummonedObject->RemoveFromWorld(true);
 			}
-			ARCEMU_ASSERT(m_SummonedObject->IsGameObject());
+			ARCPRO_ASSERT(m_SummonedObject->IsGameObject());
 			delete m_SummonedObject;
 		}
 		m_SummonedObject = NULL;
@@ -3847,7 +3848,7 @@ void Player::_ApplyItemMods(Item* item, int16 slot, bool apply, bool justdrokedo
 	if(slot >= INVENTORY_SLOT_BAG_END)
 		return;
 
-	ARCEMU_ASSERT(item != NULL);
+	ARCPRO_ASSERT(item != NULL);
 	ItemPrototype* proto = item->GetProto();
 
 	//fast check to skip mod applying if the item doesnt meat the requirements.
@@ -5034,7 +5035,7 @@ void Player::_SaveTutorials(QueryBuffer* buf)
 
 uint32 Player::GetTutorialInt(uint32 intId)
 {
-	ARCEMU_ASSERT(intId < 8);
+	ARCPRO_ASSERT(intId < 8);
 	return m_Tutorials[intId];
 }
 
@@ -5043,7 +5044,7 @@ void Player::SetTutorialInt(uint32 intId, uint32 value)
 	if(intId >= 8)
 		return;
 
-	ARCEMU_ASSERT(intId < 8);
+	ARCPRO_ASSERT(intId < 8);
 	m_Tutorials[intId] = value;
 	tutorialsDirty = true;
 }
@@ -6174,7 +6175,7 @@ void Player::EventRepeatSpell()
 	{
 		m_AutoShotAttackTimer = m_AutoShotDuration;
 
-		ARCEMU_ASSERT(m_AutoShotSpell != NULL);
+		ARCPRO_ASSERT(m_AutoShotSpell != NULL);
 		Spell* sp = sSpellFactoryMgr.NewSpell(this, m_AutoShotSpell, true, NULL);
 		SpellCastTargets tgt;
 		tgt.m_unitTarget = m_curSelection;
@@ -6331,7 +6332,7 @@ void Player::AreaExploredOrEventHappens(uint32 questId)
 void Player::Reset_Spells()
 {
 	PlayerCreateInfo* info = objmgr.GetPlayerCreateInfo(getRace(), getClass());
-	ARCEMU_ASSERT(info != NULL);
+	ARCPRO_ASSERT(info != NULL);
 
 	std::list<uint32> spelllist;
 
@@ -6481,7 +6482,7 @@ void Player::CalcResistance(uint32 type)
 	int32 res;
 	int32 pos;
 	int32 neg;
-	ARCEMU_ASSERT(type < 7);
+	ARCPRO_ASSERT(type < 7);
 	pos = (BaseResistance[type] * BaseResistanceModPctPos[type]) / 100;
 	neg = (BaseResistance[type] * BaseResistanceModPctNeg[type]) / 100;
 
@@ -6861,7 +6862,7 @@ void Player::RemoveSpellsFromLine(uint32 skill_line)
 void Player::CalcStat(uint32 type)
 {
 	int32 res;
-	ARCEMU_ASSERT(type < 5);
+	ARCPRO_ASSERT(type < 5);
 
 	int32 pos = (int32)((int32)BaseStats[type] * (int32)StatModPctPos[type]) / 100 + (int32)FlatStatModPos[type];
 	int32 neg = (int32)((int32)BaseStats[type] * (int32)StatModPctNeg[type]) / 100 + (int32)FlatStatModNeg[type];
@@ -7919,7 +7920,7 @@ void Player::SendTradeUpdate()
 		{
 			count++;
 			ItemPrototype* pProto = pItem->GetProto();
-			ARCEMU_ASSERT(pProto != NULL);
+			ARCPRO_ASSERT(pProto != NULL);
 
 			data << uint8(Index);
 
@@ -8247,7 +8248,7 @@ void Player::EventTeleportTaxi(uint32 mapid, float x, float y, float z)
 
 void Player::ApplyLevelInfo(LevelInfo* Info, uint32 Level)
 {
-	ARCEMU_ASSERT(Info != NULL);
+	ARCPRO_ASSERT(Info != NULL);
 
 	// Apply level
 	uint32 PreviousLevel = getLevel();
@@ -8383,7 +8384,7 @@ bool Player::SafeTeleport(uint32 MapID, uint32 InstanceID, const LocationVector 
 	}
 	if(transporter_info.guid)
 	{
-		Transporter* pTrans = objmgr.GetTransporter(Arcemu::Util::GUID_LOPART(transporter_info.guid));
+		Transporter* pTrans = objmgr.GetTransporter(Arcpro::Util::GUID_LOPART(transporter_info.guid));
 		if(pTrans)
 		{
 			pTrans->RemovePlayer(this);
@@ -10101,7 +10102,7 @@ void Player::_UpdateSkillFields()
 			continue;
 		}
 
-		ARCEMU_ASSERT(f <= PLAYER_CHARACTER_POINTS1);
+		ARCPRO_ASSERT(f <= PLAYER_CHARACTER_POINTS1);
 		if(itr->second.Skill->type == SKILL_TYPE_PROFESSION)
 		{
 			SetUInt32Value(f++, itr->first | 0x10000);
@@ -10679,7 +10680,7 @@ bool CMovementCompressorThread::run()
 			(*itr)->EventDumpCompressedMovement();
 		}
 		m_listLock.Release();
-		Arcemu::Sleep(World::m_movementCompressInterval);
+		Arcpro::Sleep(World::m_movementCompressInterval);
 	}
 
 	return true;
@@ -11515,7 +11516,7 @@ uint32 Player::GetMaxPersonalRating()
 	uint32 maxrating = 0;
 	int i;
 
-	ARCEMU_ASSERT(m_playerInfo != NULL);
+	ARCPRO_ASSERT(m_playerInfo != NULL);
 
 	for(i = 0; i < NUM_ARENA_TEAM_TYPES; i++)
 	{
@@ -12385,13 +12386,13 @@ void Player::SendTeleportAckMsg(const LocationVector & v)
 
 void Player::OutPacket(uint16 opcode, uint16 len, const void* data)
 {
-	ARCEMU_ASSERT(m_session != NULL);
+	ARCPRO_ASSERT(m_session != NULL);
 	m_session->OutPacket(opcode, len, data);
 }
 
 void Player::SendPacket(WorldPacket* packet)
 {
-	ARCEMU_ASSERT(m_session != NULL);
+	ARCPRO_ASSERT(m_session != NULL);
 	m_session->SendPacket(packet);
 }
 
@@ -12721,7 +12722,7 @@ void Player::DealDamage(Unit* pVictim, uint32 damage, uint32 targetEvent, uint32
 
 		if(pVictim->isLootable())
 		{
-			Player* tagger = GetMapMgr()->GetPlayer(Arcemu::Util::GUID_LOPART(pVictim->GetTaggerGUID()));
+			Player* tagger = GetMapMgr()->GetPlayer(Arcpro::Util::GUID_LOPART(pVictim->GetTaggerGUID()));
 
 			// Tagger might have left the map so we need to check
 			if(tagger != NULL)
@@ -12955,7 +12956,7 @@ void Player::Die(Unit* pAttacker, uint32 damage, uint32 spellid)
 				if(spl->GetProto()->Effect[i] == SPELL_EFFECT_PERSISTENT_AREA_AURA)
 				{
 					uint64 guid = GetChannelSpellTargetGUID();
-					DynamicObject* dObj = GetMapMgr()->GetDynamicObject(Arcemu::Util::GUID_LOPART(guid));
+					DynamicObject* dObj = GetMapMgr()->GetDynamicObject(Arcpro::Util::GUID_LOPART(guid));
 					if(!dObj)
 						continue;
 

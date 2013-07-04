@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -55,12 +56,12 @@ class SERVER_DECL Corpse : public Object
 
 		void SaveToDB();
 		void DeleteFromDB();
-		ARCEMU_INLINE void SetCorpseState(uint32 state) { m_state = state; }
-		ARCEMU_INLINE uint32 GetCorpseState() { return m_state; }
+		ARCPRO_INLINE void SetCorpseState(uint32 state) { m_state = state; }
+		ARCPRO_INLINE uint32 GetCorpseState() { return m_state; }
 		void Despawn();
 
-		ARCEMU_INLINE void SetLoadedFromDB(bool value) { _loadedfromdb = value; }
-		ARCEMU_INLINE bool GetLoadedFromDB(void) { return _loadedfromdb; }
+		ARCPRO_INLINE void SetLoadedFromDB(bool value) { _loadedfromdb = value; }
+		ARCPRO_INLINE bool GetLoadedFromDB(void) { return _loadedfromdb; }
 		Loot loot;
 		void generateLoot();
 

@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -206,7 +207,7 @@ void Arena::HookOnHK(Player* plr)
 
 void Arena::HookOnPlayerDeath(Player* plr)
 {
-	ARCEMU_ASSERT(plr != NULL);
+	ARCPRO_ASSERT(plr != NULL);
 
 	if(plr->m_isGmInvisible == true) return;
 
@@ -430,7 +431,7 @@ void Arena::HookOnAreaTrigger(Player* plr, uint32 id)
 {
 	int32 buffslot = -1;
 
-	ARCEMU_ASSERT(plr != NULL);
+	ARCPRO_ASSERT(plr != NULL);
 
 	switch(id)
 	{
@@ -452,7 +453,7 @@ void Arena::HookOnAreaTrigger(Player* plr, uint32 id)
 		{
 			/* apply the buff */
 			SpellEntry* sp = dbcSpell.LookupEntryForced(m_buffs[buffslot]->GetInfo()->sound3);
-			ARCEMU_ASSERT(sp != NULL);
+			ARCPRO_ASSERT(sp != NULL);
 
 			Spell* s = sSpellFactoryMgr.NewSpell(plr, sp, true, 0);
 			SpellCastTargets targets(plr->GetGUID());

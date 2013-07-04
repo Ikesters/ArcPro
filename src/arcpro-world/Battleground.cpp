@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -90,7 +91,7 @@ void CBattleground::UpdatePvPData()
 
 void CBattleground::BuildPvPUpdateDataPacket(WorldPacket* data)
 {
-	ARCEMU_ASSERT(data != NULL);
+	ARCPRO_ASSERT(data != NULL);
 
 	data->Initialize(MSG_PVP_LOG_DATA);
 	data->reserve(10 * (m_players[0].size() + m_players[1].size()) + 50);
@@ -173,7 +174,7 @@ void CBattleground::BuildPvPUpdateDataPacket(WorldPacket* data)
 		{
 			for(set<Player*>::iterator itr = m_players[i].begin(); itr != m_players[i].end(); ++itr)
 			{
-				ARCEMU_ASSERT(*itr != NULL);
+				ARCPRO_ASSERT(*itr != NULL);
 				if((*itr)->m_isGmInvisible)
 					continue;
 				*data << (*itr)->GetGUID();
@@ -331,7 +332,7 @@ GameObject* CBattleground::SpawnGameObject(uint32 entry, uint32 MapId , float x,
 {
 	GameObject* go = m_mapMgr->CreateGameObject(entry);
 
-	Arcemu::Util::ArcemuAssert( go != NULL );
+	Arcpro::Util::ArcproAssert( go != NULL );
 
 	go->CreateFromProto(entry, MapId, x, y, z, o);
 
@@ -353,7 +354,7 @@ Creature* CBattleground::SpawnCreature(uint32 entry, float x, float y, float z, 
 	CreatureProto* cp = CreatureProtoStorage.LookupEntry(entry);
 	Creature* c = m_mapMgr->CreateCreature(entry);
 
-	Arcemu::Util::ArcemuAssert( c != NULL );
+	Arcpro::Util::ArcproAssert( c != NULL );
 
 	c->Load(cp, x, y, z, o);
 	

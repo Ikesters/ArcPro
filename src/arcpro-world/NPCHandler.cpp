@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -119,7 +120,7 @@ void WorldSession::SendTrainerList(Creature* pCreature)
 		return;
 
 	if(! _player->CanTrainAt(pTrainer))
-		Arcemu::Gossip::Menu::SendSimpleMenu(pCreature->GetGUID(), pTrainer->Cannot_Train_GossipTextId, GetPlayer());
+		Arcpro::Gossip::Menu::SendSimpleMenu(pCreature->GetGUID(), pTrainer->Cannot_Train_GossipTextId, GetPlayer());
 	else
 	{
 		WorldPacket data(SMSG_TRAINER_LIST, 5000);
@@ -427,9 +428,9 @@ void WorldSession::HandleGossipHelloOpcode(WorldPacket & recv_data)
 		// reputation
 		_player->Reputation_OnTalk(qst_giver->m_factionDBC);
 
-		LOG_DEBUG("WORLD: Received CMSG_GOSSIP_HELLO from %u", Arcemu::Util::GUID_LOPART(guid));
+		LOG_DEBUG("WORLD: Received CMSG_GOSSIP_HELLO from %u", Arcpro::Util::GUID_LOPART(guid));
 
-		Arcemu::Gossip::Script* script = Arcemu::Gossip::Script::GetInterface(qst_giver);
+		Arcpro::Gossip::Script* script = Arcpro::Gossip::Script::GetInterface(qst_giver);
 		if(script != NULL)
 			script->OnHello(qst_giver, GetPlayer());
 	}
@@ -449,7 +450,7 @@ void WorldSession::HandleGossipSelectOptionOpcode(WorldPacket & recv_data)
 	recv_data >> guid >> unk24 >> option;
 
 	LOG_DETAIL("WORLD: CMSG_GOSSIP_SELECT_OPTION Option %i Guid %.8X", option, guid);
-	Arcemu::Gossip::Script* script = NULL;
+	Arcpro::Gossip::Script* script = NULL;
 	uint32 guidtype = GET_TYPE_FROM_GUID(guid);
 
 	Object* qst_giver;
@@ -457,16 +458,16 @@ void WorldSession::HandleGossipSelectOptionOpcode(WorldPacket & recv_data)
 	{
 		qst_giver = GetPlayer()->GetItemInterface()->GetItemByGUID(guid);
 		if(qst_giver != NULL)
-			script = Arcemu::Gossip::Script::GetInterface(TO_ITEM(qst_giver));
+			script = Arcpro::Gossip::Script::GetInterface(TO_ITEM(qst_giver));
 	}
 	else
 		qst_giver = GetPlayer()->GetMapMgr()->_GetObject(guid);
 	if(qst_giver != NULL)
 	{
 		if(guidtype == HIGHGUID_TYPE_UNIT)
-			script = Arcemu::Gossip::Script::GetInterface(TO_CREATURE(qst_giver));
+			script = Arcpro::Gossip::Script::GetInterface(TO_CREATURE(qst_giver));
 		else if(guidtype == HIGHGUID_TYPE_GAMEOBJECT)
-			script = Arcemu::Gossip::Script::GetInterface(TO_GAMEOBJECT(qst_giver));
+			script = Arcpro::Gossip::Script::GetInterface(TO_GAMEOBJECT(qst_giver));
 	}
 	if(script != NULL)
 	{

@@ -1,5 +1,5 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -141,11 +141,11 @@ typedef HM_NAMESPACE::hash_map<uint32, exp_handle_dummy_aura> HandleDummyAuraMap
 typedef HM_NAMESPACE::hash_map<uint32, exp_handle_dummy_spell> HandleDummySpellMap;
 typedef HM_NAMESPACE::hash_map< uint32, exp_handle_script_effect > HandleScriptEffectMap;
 typedef HM_NAMESPACE::hash_map<uint32, exp_create_instance_ai> InstanceCreateMap;
-typedef set<Arcemu::Gossip::Script*> CustomGossipScripts;
-typedef HM_NAMESPACE::hash_map<uint32, Arcemu::Gossip::Script*> GossipMap;
+typedef set<Arcpro::Gossip::Script*> CustomGossipScripts;
+typedef HM_NAMESPACE::hash_map<uint32, Arcpro::Gossip::Script*> GossipMap;
 typedef set<QuestScript*> QuestScripts;
 typedef set<void*> ServerHookList;
-typedef std::list< Arcemu::DynLib* > DynamicLibraryMap;
+typedef std::list< Arcpro::DynLib* > DynamicLibraryMap;
 
 #define VISIBLE_RANGE (26.46f)
 #define MAX_SCRIPTS 1000
@@ -201,9 +201,9 @@ class SERVER_DECL ScriptMgr : public Singleton<ScriptMgr>
 		void register_quest_script(uint32 entry, QuestScript* qs);
 
 		/*	GOSSIP INTERFACE REGISTRATION */
-		void register_creature_gossip(uint32, Arcemu::Gossip::Script*);
-		void register_item_gossip(uint32, Arcemu::Gossip::Script*);
-		void register_go_gossip(uint32, Arcemu::Gossip::Script*);
+		void register_creature_gossip(uint32, Arcpro::Gossip::Script*);
+		void register_item_gossip(uint32, Arcpro::Gossip::Script*);
+		void register_go_gossip(uint32, Arcpro::Gossip::Script*);
 
 		//Mutliple Entry Registers
 		void register_creature_script(uint32* entries, exp_create_creature_ai callback);
@@ -268,26 +268,26 @@ class SERVER_DECL ScriptMgr : public Singleton<ScriptMgr>
 		bool has_item_gossip(uint32) const;
 		bool has_go_gossip(uint32) const;
 
-		Arcemu::Gossip::Script* get_creature_gossip(uint32) const;
-		Arcemu::Gossip::Script* get_go_gossip(uint32) const;
-		Arcemu::Gossip::Script* get_item_gossip(uint32) const;
+		Arcpro::Gossip::Script* get_creature_gossip(uint32) const;
+		Arcpro::Gossip::Script* get_go_gossip(uint32) const;
+		Arcpro::Gossip::Script* get_item_gossip(uint32) const;
 
 		/*
 			Default Gossip Script Interfaces */
-		Arcemu::Gossip::Trainer trainerScript_;
-		Arcemu::Gossip::SpiritHealer spirithealerScript_;
-		Arcemu::Gossip::Banker bankerScript_;
-		Arcemu::Gossip::Vendor vendorScript_;
-		Arcemu::Gossip::ClassTrainer classtrainerScript_;
-		Arcemu::Gossip::PetTrainer pettrainerScript_;
-		Arcemu::Gossip::FlightMaster flightmasterScript_;
-		Arcemu::Gossip::Auctioneer auctioneerScript_;
-		Arcemu::Gossip::InnKeeper innkeeperScript_;
-		Arcemu::Gossip::BattleMaster battlemasterScript_;
-		Arcemu::Gossip::CharterGiver chartergiverScript_;
-		Arcemu::Gossip::TabardDesigner tabardScript_;
-		Arcemu::Gossip::StableMaster stablemasterScript_;
-		Arcemu::Gossip::Generic genericScript_;
+		Arcpro::Gossip::Trainer trainerScript_;
+		Arcpro::Gossip::SpiritHealer spirithealerScript_;
+		Arcpro::Gossip::Banker bankerScript_;
+		Arcpro::Gossip::Vendor vendorScript_;
+		Arcpro::Gossip::ClassTrainer classtrainerScript_;
+		Arcpro::Gossip::PetTrainer pettrainerScript_;
+		Arcpro::Gossip::FlightMaster flightmasterScript_;
+		Arcpro::Gossip::Auctioneer auctioneerScript_;
+		Arcpro::Gossip::InnKeeper innkeeperScript_;
+		Arcpro::Gossip::BattleMaster battlemasterScript_;
+		Arcpro::Gossip::CharterGiver chartergiverScript_;
+		Arcpro::Gossip::TabardDesigner tabardScript_;
+		Arcpro::Gossip::StableMaster stablemasterScript_;
+		Arcpro::Gossip::Generic genericScript_;
 
 	protected:
 		InstanceCreateMap mInstances;
@@ -458,7 +458,7 @@ class SERVER_DECL GameObjectAIScript
 		GameObject* _gameobject;
 };
 
-class SERVER_DECL GossipScript : public Arcemu::Gossip::Script
+class SERVER_DECL GossipScript : public Arcpro::Gossip::Script
 {
 	public:
 		GossipScript() {}

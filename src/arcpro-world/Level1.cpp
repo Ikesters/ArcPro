@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -1177,7 +1178,7 @@ bool ChatHandler::HandleLookupAchievementCmd(const char* args, WorldSession* m_s
 		RedSystemMessage(m_session, "Your search string must be at least 4 characters long.");
 		return true;
 	}
-	arcemu_TOLOWER(x);
+	arcpro_TOLOWER(x);
 	GreenSystemMessage(m_session, "Starting search of achievement `%s`...", x.c_str());
 	uint32 t = getMSTime();
 	uint32 i, j, numFound = 0;
@@ -1204,19 +1205,19 @@ bool ChatHandler::HandleLookupAchievementCmd(const char* args, WorldSession* m_s
 				if(lookupname)
 				{
 					y = string(achievement->name);
-					arcemu_TOLOWER(y);
+					arcpro_TOLOWER(y);
 					foundmatch = FindXinYString(x, y);
 				}
 				if(!foundmatch && lookupdesc)
 				{
 					y = string(achievement->description);
-					arcemu_TOLOWER(y);
+					arcpro_TOLOWER(y);
 					foundmatch = FindXinYString(x, y);
 				}
 				if(!foundmatch && lookupreward)
 				{
 					y = string(achievement->rewardName);
-					arcemu_TOLOWER(y);
+					arcpro_TOLOWER(y);
 					foundmatch = FindXinYString(x, y);
 				}
 				if(!foundmatch)
@@ -1285,7 +1286,7 @@ bool ChatHandler::HandleLookupAchievementCmd(const char* args, WorldSession* m_s
 					continue;
 				}
 				y = string(criteria->name);
-				arcemu_TOLOWER(y);
+				arcpro_TOLOWER(y);
 				if(!FindXinYString(x, y))
 				{
 					continue;

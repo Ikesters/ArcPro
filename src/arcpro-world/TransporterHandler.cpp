@@ -1,5 +1,5 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -34,7 +34,7 @@ bool Transporter::CreateAsTransporter(uint32 EntryID, const char* Name, int32 Ti
 
 	//Maybe this would be the perfect way, so there would be no extra checks in Object.cpp:
 	//SetByte( GAMEOBJECT_BYTES_1, 0, GAMEOBJECT_TYPE_TRANSPORT );
-	//but these fields seems to change often and between server flavours (ArcEmu, Aspire, name another one) - by: VLack aka. VLsoft
+	//but these fields seems to change often and between server flavours (ArcEmu, Aspire, ArcPro) - by: VLack aka. VLsoft
 	if(pInfo)
 		pInfo->Type = GAMEOBJECT_TYPE_TRANSPORT;
 	else

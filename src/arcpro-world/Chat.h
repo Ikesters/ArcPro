@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -193,7 +194,7 @@ class SERVER_DECL CommandTableStorage : public Singleton<CommandTableStorage>
 		void Dealloc();
 		void Load();
 		void Override(const char* command, const char* level);
-		ARCEMU_INLINE ChatCommand* Get() { return _commandTable; }
+		ARCPRO_INLINE ChatCommand* Get() { return _commandTable; }
 };
 
 class SERVER_DECL ChatHandler : public Singleton<ChatHandler>

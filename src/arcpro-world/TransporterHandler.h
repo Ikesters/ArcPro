@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -32,15 +33,15 @@ class TransportPath
 			uint32 delay;
 		};
 
-		ARCEMU_INLINE void SetLength(const unsigned int sz)
+		ARCPRO_INLINE void SetLength(const unsigned int sz)
 		{
 			i_nodes.resize(sz);
 		}
 
-		ARCEMU_INLINE size_t Size(void) const { return i_nodes.size(); }
-		ARCEMU_INLINE void Resize(unsigned int sz) { i_nodes.resize(sz); }
-		ARCEMU_INLINE void Clear(void) { i_nodes.clear(); }
-		ARCEMU_INLINE PathNode* GetNodes(void) { return TO< PathNode* >(&i_nodes[0]); }
+		ARCPRO_INLINE size_t Size(void) const { return i_nodes.size(); }
+		ARCPRO_INLINE void Resize(unsigned int sz) { i_nodes.resize(sz); }
+		ARCPRO_INLINE void Clear(void) { i_nodes.clear(); }
+		ARCPRO_INLINE PathNode* GetNodes(void) { return TO< PathNode* >(&i_nodes[0]); }
 		float GetTotalLength(void)
 		{
 			float len = 0, xd, yd, zd;
@@ -127,10 +128,10 @@ class Transporter : public GameObject
 		void TransportGossip(uint32 route);
 		bool GenerateWaypoints();
 
-		ARCEMU_INLINE void AddPlayer(Player* pPlayer) { mPassengers[pPlayer->GetLowGUID()] = pPlayer; }
-		ARCEMU_INLINE void RemovePlayer(Player* pPlayer) {mPassengers.erase(pPlayer->GetLowGUID()); }
-		ARCEMU_INLINE bool HasPlayer(Player* pPlayer) { return mPassengers.find(pPlayer->GetLowGUID()) != mPassengers.end(); }
-		ARCEMU_INLINE void SetPeriod(uint32 val) { m_period = val; }
+		ARCPRO_INLINE void AddPlayer(Player* pPlayer) { mPassengers[pPlayer->GetLowGUID()] = pPlayer; }
+		ARCPRO_INLINE void RemovePlayer(Player* pPlayer) {mPassengers.erase(pPlayer->GetLowGUID()); }
+		ARCPRO_INLINE bool HasPlayer(Player* pPlayer) { return mPassengers.find(pPlayer->GetLowGUID()) != mPassengers.end(); }
+		ARCPRO_INLINE void SetPeriod(uint32 val) { m_period = val; }
 
 		uint32 m_pathTime;
 		uint32 m_timer;

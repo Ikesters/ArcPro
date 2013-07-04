@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -322,7 +323,7 @@ void ObjectMgr::DeletePlayerInfo(uint32 guid)
 	}
 
 	string pnam = string(pl->name);
-	arcemu_TOLOWER(pnam);
+	arcpro_TOLOWER(pnam);
 	i2 = m_playersInfoByName.find(pnam);
 	if(i2 != m_playersInfoByName.end() && i2->second == pl)
 		m_playersInfoByName.erase(i2);
@@ -353,7 +354,7 @@ void ObjectMgr::AddPlayerInfo(PlayerInfo* pn)
 	playernamelock.AcquireWriteLock();
 	m_playersinfo[pn->guid] =  pn ;
 	string pnam = string(pn->name);
-	arcemu_TOLOWER(pnam);
+	arcpro_TOLOWER(pnam);
 	m_playersInfoByName[pnam] = pn;
 	playernamelock.ReleaseWriteLock();
 }
@@ -362,13 +363,13 @@ void ObjectMgr::RenamePlayerInfo(PlayerInfo* pn, const char* oldname, const char
 {
 	playernamelock.AcquireWriteLock();
 	string oldn = string(oldname);
-	arcemu_TOLOWER(oldn);
+	arcpro_TOLOWER(oldn);
 
 	PlayerNameStringIndexMap::iterator itr = m_playersInfoByName.find(oldn);
 	if(itr != m_playersInfoByName.end() && itr->second == pn)
 	{
 		string newn = string(newname);
-		arcemu_TOLOWER(newn);
+		arcpro_TOLOWER(newn);
 		m_playersInfoByName.erase(itr);
 		m_playersInfoByName[newn] = pn;
 	}
@@ -495,7 +496,7 @@ void ObjectMgr::LoadPlayersInfo()
 			}
 
 			string lpn = string(pn->name);
-			arcemu_TOLOWER(lpn);
+			arcpro_TOLOWER(lpn);
 			m_playersInfoByName[lpn] = pn;
 
 			//this is startup -> no need in lock -> don't use addplayerinfo
@@ -515,7 +516,7 @@ void ObjectMgr::LoadPlayersInfo()
 PlayerInfo* ObjectMgr::GetPlayerInfoByName(const char* name)
 {
 	string lpn = string(name);
-	arcemu_TOLOWER(lpn);
+	arcpro_TOLOWER(lpn);
 	PlayerNameStringIndexMap::iterator i;
 	PlayerInfo* rv = NULL;
 	playernamelock.AcquireReadLock();
@@ -1046,7 +1047,7 @@ uint32 ObjectMgr::GenerateMailID()
 }
 uint32 ObjectMgr::GenerateLowGuid(uint32 guidhigh)
 {
-	ARCEMU_ASSERT(guidhigh == HIGHGUID_TYPE_ITEM || guidhigh == HIGHGUID_TYPE_CONTAINER || guidhigh == HIGHGUID_TYPE_PLAYER);
+	ARCPRO_ASSERT(guidhigh == HIGHGUID_TYPE_ITEM || guidhigh == HIGHGUID_TYPE_CONTAINER || guidhigh == HIGHGUID_TYPE_PLAYER);
 
 	uint32 ret;
 	if(guidhigh == HIGHGUID_TYPE_ITEM)
@@ -1134,7 +1135,7 @@ Player* ObjectMgr::GetPlayer(const char* name, bool caseSensitive)
 	if(!caseSensitive)
 	{
 		std::string strName = name;
-		arcemu_TOLOWER(strName);
+		arcpro_TOLOWER(strName);
 		for(itr = _players.begin(); itr != _players.end(); ++itr)
 		{
 			if(!stricmp(itr->second->GetNameString()->c_str(), strName.c_str()))
@@ -1186,7 +1187,7 @@ PlayerCreateInfo* ObjectMgr::GetPlayerCreateInfo(uint8 race, uint8 class_) const
 
 void ObjectMgr::AddGuild(Guild* pGuild)
 {
-	ARCEMU_ASSERT(pGuild != NULL);
+	ARCPRO_ASSERT(pGuild != NULL);
 	mGuild[pGuild->GetGuildId()] = pGuild;
 }
 
@@ -1241,7 +1242,7 @@ Guild* ObjectMgr::GetGuildByGuildName(std::string guildName)
 
 void ObjectMgr::AddGMTicket(GM_Ticket* ticket, bool startup)
 {
-	ARCEMU_ASSERT(ticket  != NULL);
+	ARCPRO_ASSERT(ticket  != NULL);
 	GM_TicketList.push_back(ticket);
 
 	// save
@@ -1797,7 +1798,7 @@ void ObjectMgr::CreateGossipMenuForPlayer(GossipMenu** Location, uint64 Guid, ui
 	}
 
 	GossipMenu* Menu = new GossipMenu(Guid, TextID);
-	ARCEMU_ASSERT(Menu != NULL);
+	ARCPRO_ASSERT(Menu != NULL);
 
 	if(Plr->CurrentGossipMenu != NULL)
 		delete Plr->CurrentGossipMenu;
@@ -1958,7 +1959,7 @@ void ObjectMgr::LoadTrainers()
 				{
 					uint32 skill = ts.pCastRealSpell->EffectMiscValue[1];
 					skilllineentry* sk = dbcSkillLine.LookupEntryForced(skill);
-					ARCEMU_ASSERT(sk != NULL);
+					ARCPRO_ASSERT(sk != NULL);
 					if(sk->type == SKILL_TYPE_PROFESSION)
 						ts.IsProfession = true;
 					else
@@ -2230,7 +2231,7 @@ LevelInfo* ObjectMgr::GetLevelInfo(uint32 Race, uint32 Class, uint32 Level)
 
 			// Pull the level information from the second map.
 			LevelMap::iterator it2 = itr->second->find(Level);
-			ARCEMU_ASSERT(it2 != itr->second->end());
+			ARCPRO_ASSERT(it2 != itr->second->end());
 
 			return it2->second;
 		}
@@ -2302,7 +2303,7 @@ void ObjectMgr::LoadPetSpellCooldowns()
 				else
 				{
 					uint32 SP2 = mPetSpellCooldowns[SpellId];
-					ARCEMU_ASSERT(Cooldown == SP2);
+					ARCPRO_ASSERT(Cooldown == SP2);
 				}
 			}
 		}
@@ -2499,7 +2500,7 @@ Pet* ObjectMgr::CreatePet(uint32 entry)
 
 	guid = ++m_hiPetGuid;
 
-	return new Pet(Arcemu::Util::MAKE_PET_GUID(entry, guid));
+	return new Pet(Arcpro::Util::MAKE_PET_GUID(entry, guid));
 }
 
 Player* ObjectMgr::CreatePlayer(uint8 _class)
@@ -2706,7 +2707,7 @@ void Charter::AddSignature(uint32 PlayerGuid)
 		}
 	}
 
-	ARCEMU_ASSERT(i != Slots);
+	ARCPRO_ASSERT(i != Slots);
 }
 
 void Charter::RemoveSignature(uint32 PlayerGuid)
@@ -3461,7 +3462,7 @@ PlayerCache* ObjectMgr::GetPlayerCache(const char* name, bool caseSensitive /*= 
 	if(!caseSensitive)
 	{
 		std::string strName = name;
-		arcemu_TOLOWER(strName);
+		arcpro_TOLOWER(strName);
 		for(itr = m_playerCache.begin(); itr != m_playerCache.end(); ++itr)
 		{
 			std::string cachename;

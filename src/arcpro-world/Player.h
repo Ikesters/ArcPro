@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -2008,7 +2009,7 @@ class SERVER_DECL Player : public Unit
 
 		uint32 GetCurrentTalentPoints(){
 			uint32 points = GetUInt32Value( PLAYER_CHARACTER_POINTS1 );
-			Arcemu::Util::ArcemuAssert( points == m_specs[ m_talentActiveSpec ].GetTP() );
+			Arcpro::Util::ArcproAssert( points == m_specs[ m_talentActiveSpec ].GetTP() );
 			return points;
 		}
 
@@ -2477,7 +2478,7 @@ class SkillIterator
 		void BeginSearch()
 		{
 			// iteminterface doesn't use mutexes, maybe it should :P
-			ARCEMU_ASSERT(!m_searchInProgress);
+			ARCPRO_ASSERT(!m_searchInProgress);
 			m_itr = m_target->m_skills.begin();
 			m_endItr = m_target->m_skills.end();
 			m_searchInProgress = true;
@@ -2486,7 +2487,7 @@ class SkillIterator
 		void EndSearch()
 		{
 			// nothing here either
-			ARCEMU_ASSERT(m_searchInProgress);
+			ARCPRO_ASSERT(m_searchInProgress);
 			m_searchInProgress = false;
 		}
 

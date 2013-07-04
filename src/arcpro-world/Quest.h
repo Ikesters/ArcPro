@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -118,19 +119,19 @@ enum QUEST_SHARE
     QUEST_SHARE_MSG_CANT_TAKE_QUEST			= 1,
     QUEST_SHARE_MSG_ACCEPT_QUEST			= 2,
     QUEST_SHARE_MSG_REFUSE_QUEST			= 3,
-//	QUEST_SHARE_MSG_TOO_FAR				= 4, //VLack: This message seems to be non-existent as of 3.2.x, plus it isn't used in ArcEmu, so it is safe to get rid of it.
+//	QUEST_SHARE_MSG_TOO_FAR				= 4, //VLack: This message seems to be non-existent as of 3.2.x, plus it isn't used in ArcPro, so it is safe to get rid of it.
     QUEST_SHARE_MSG_BUSY				= 4,
     QUEST_SHARE_MSG_LOG_FULL			= 5,
     QUEST_SHARE_MSG_HAVE_QUEST			= 6,
     QUEST_SHARE_MSG_FINISH_QUEST			= 7,
-    QUEST_SHARE_MSG_CANT_BE_SHARED_TODAY		= 8, //VLack: the following 4 messages (from 8 to 11) are unused on ArcEmu, but for completeness I have included them here, maybe we'll need them later...
+    QUEST_SHARE_MSG_CANT_BE_SHARED_TODAY		= 8, //VLack: the following 4 messages (from 8 to 11) are unused on ArcPro, but for completeness I have included them here, maybe we'll need them later...
     QUEST_SHARE_MSG_SHARING_TIMER_EXPIRED		= 9,
     QUEST_SHARE_MSG_NOT_IN_PARTY			= 10,
     QUEST_SHARE_MSG_DIFFERENT_SERVER_DAILY		= 11,
 };
 
-#define arcemu_QUEST_REPEATABLE 1
-#define arcemu_QUEST_REPEATABLE_DAILY 2
+#define arcpro_QUEST_REPEATABLE 1
+#define arcpro_QUEST_REPEATABLE_DAILY 2
 #define MAX_REQUIRED_QUEST_ITEM 6
 
 class QuestScript;
@@ -292,7 +293,7 @@ class SERVER_DECL QuestLogEntry : public EventableObject
 		QuestLogEntry();
 		~QuestLogEntry();
 
-		ARCEMU_INLINE Quest* GetQuest() { return m_quest; };
+		ARCPRO_INLINE Quest* GetQuest() { return m_quest; };
 		void Init(Quest* quest, Player* plr, uint32 slot);
 
 		bool CanBeFinished();
@@ -306,8 +307,8 @@ class SERVER_DECL QuestLogEntry : public EventableObject
 		void IncrementMobCount(uint32 i);
 
 		bool IsUnitAffected(Unit* target);
-		ARCEMU_INLINE bool IsCastQuest() { return iscastquest;}
-		ARCEMU_INLINE bool IsEmoteQuest() { return isemotequest; }
+		ARCPRO_INLINE bool IsCastQuest() { return iscastquest;}
+		ARCPRO_INLINE bool IsEmoteQuest() { return isemotequest; }
 		void AddAffectedUnit(Unit* target);
 		void ClearAffectedUnits();
 
@@ -354,14 +355,14 @@ class SERVER_DECL QuestLogEntry : public EventableObject
 
 		void SendQuestComplete();
 		void SendUpdateAddKill(uint32 i);
-		ARCEMU_INLINE uint32 GetMobCount(uint32 i) { return m_mobcount[i]; }
-		ARCEMU_INLINE uint32 GetExploredAreas(uint32 i) { return m_explored_areas[i]; }
+		ARCPRO_INLINE uint32 GetMobCount(uint32 i) { return m_mobcount[i]; }
+		ARCPRO_INLINE uint32 GetExploredAreas(uint32 i) { return m_explored_areas[i]; }
 
-		ARCEMU_INLINE uint32 GetBaseField(uint32 slot)
+		ARCPRO_INLINE uint32 GetBaseField(uint32 slot)
 		{
 			return PLAYER_QUEST_LOG_1_1 + (slot * 5);
 		}
-		ARCEMU_INLINE int32 GetSlot() { return m_slot; }
+		ARCPRO_INLINE int32 GetSlot() { return m_slot; }
 
 	private:
 		uint32 completed;

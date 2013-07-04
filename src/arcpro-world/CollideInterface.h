@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -65,7 +66,7 @@ class NavMeshData;
 class NavMeshTile
 {
 	public:
-		Arcemu::Threading::AtomicCounter refs;
+		Arcpro::Threading::AtomicCounter refs;
 		dtTileRef dtref;
 };
 
@@ -75,7 +76,7 @@ class NavMeshData
 		dtNavMesh* mesh;
 		dtNavMeshQuery* query;
 
-		Arcemu::Threading::AtomicCounter refs;
+		Arcpro::Threading::AtomicCounter refs;
 
 		FastMutex tilelock;
 		std::map<uint32, dtTileRef> tilerefs; //key by tile, x | y <<  16
@@ -126,24 +127,24 @@ class CCollideInterface
 
 #else
 
-		ARCEMU_INLINE bool CheckLOS(uint32 mapId, float x1, float y1, float z1, float x2, float y2, float z2)
+		ARCPRO_INLINE bool CheckLOS(uint32 mapId, float x1, float y1, float z1, float x2, float y2, float z2)
 		{
 			VMAP::IVMapManager* mgr = VMAP::VMapFactory::createOrGetVMapManager();
 			return mgr->isInLineOfSight(mapId, x1, y1, z1, x2, y2, z2);
 		}
 
-		ARCEMU_INLINE bool GetFirstPoint(uint32 mapId, float x1, float y1, float z1, float x2, float y2, float z2, float & outx, float & outy, float & outz, float distmod)
+		ARCPRO_INLINE bool GetFirstPoint(uint32 mapId, float x1, float y1, float z1, float x2, float y2, float z2, float & outx, float & outy, float & outz, float distmod)
 		{
 			VMAP::IVMapManager* mgr = VMAP::VMapFactory::createOrGetVMapManager();
 			return mgr->getObjectHitPos(mapId, x1, y1, z1, x2, y2, z2, outx, outy, outz, distmod);
 		}
 
-		ARCEMU_INLINE bool IsIndoor(uint32 mapId, float x, float y, float z)
+		ARCPRO_INLINE bool IsIndoor(uint32 mapId, float x, float y, float z)
 		{
 			return !IsOutdoor(mapId, x, y, z);
 		}
 
-		ARCEMU_INLINE bool IsOutdoor(uint32 mapId, float x, float y, float z)
+		ARCPRO_INLINE bool IsOutdoor(uint32 mapId, float x, float y, float z)
 		{
 			VMAP::IVMapManager* mgr = VMAP::VMapFactory::createOrGetVMapManager();
 
@@ -176,33 +177,33 @@ class CCollideInterface
 			return (flags & 0x08) != 0;
 		}
 
-		ARCEMU_INLINE float GetHeight(uint32 mapId, float x, float y, float z)
+		ARCPRO_INLINE float GetHeight(uint32 mapId, float x, float y, float z)
 		{
 			VMAP::IVMapManager* mgr = VMAP::VMapFactory::createOrGetVMapManager();
 			return mgr->getHeight(mapId, x, y, z, 10000.0f);
 		}
 
-		ARCEMU_INLINE bool CheckLOS(uint32 mapId, LocationVector & pos1, LocationVector & pos2)
+		ARCPRO_INLINE bool CheckLOS(uint32 mapId, LocationVector & pos1, LocationVector & pos2)
 		{
 			return CheckLOS(mapId, pos1.x, pos1.y, pos1.z + 2, pos2.x, pos2.y, pos2.z + 2);
 		}
 
-		ARCEMU_INLINE bool GetFirstPoint(uint32 mapId, LocationVector & pos1, LocationVector & pos2, LocationVector & outvec, float distmod)
+		ARCPRO_INLINE bool GetFirstPoint(uint32 mapId, LocationVector & pos1, LocationVector & pos2, LocationVector & outvec, float distmod)
 		{
 			return GetFirstPoint(mapId, pos1.x, pos1.y, pos1.z, pos2.x, pos2.y, pos2.z, outvec.x, outvec.y, outvec.z, distmod);
 		}
 
-		ARCEMU_INLINE bool IsIndoor(uint32 mapId, LocationVector & pos)
+		ARCPRO_INLINE bool IsIndoor(uint32 mapId, LocationVector & pos)
 		{
 			return !IsOutdoor(mapId, pos);
 		}
 
-		ARCEMU_INLINE bool IsOutdoor(uint32 mapId, LocationVector & pos)
+		ARCPRO_INLINE bool IsOutdoor(uint32 mapId, LocationVector & pos)
 		{
 			return IsOutdoor(mapId, pos.x, pos.y, pos.z);
 		}
 
-		ARCEMU_INLINE float GetHeight(uint32 mapId, LocationVector & pos)
+		ARCPRO_INLINE float GetHeight(uint32 mapId, LocationVector & pos)
 		{
 			return GetHeight(mapId, pos.x, pos.y, pos.z);
 		}

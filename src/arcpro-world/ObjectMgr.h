@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -21,7 +22,7 @@
 #ifndef _OBJECTMGR_H
 #define _OBJECTMGR_H
 
-ARCEMU_INLINE bool FindXinYString(std::string & x, std::string & y)
+ARCPRO_INLINE bool FindXinYString(std::string & x, std::string & y)
 {
 	return y.find(x) != std::string::npos;
 }
@@ -262,7 +263,7 @@ class SERVER_DECL GossipMenu
 		void SendTo(Player* Plr);
 		void SendGossipMenu(uint32 TitleTextId, uint64 npcGUID);
 		GossipMenuItem GetItem(uint32 Id);
-		ARCEMU_INLINE void SetTextID(uint32 TID) { TextId = TID; }
+		ARCPRO_INLINE void SetTextID(uint32 TID) { TextId = TID; }
 
 	protected:
 		uint32 TextId;
@@ -334,10 +335,10 @@ class Charter
 		void AddSignature(uint32 PlayerGuid);
 		void RemoveSignature(uint32 PlayerGuid);
 
-		ARCEMU_INLINE uint32 GetLeader() { return LeaderGuid; }
-		ARCEMU_INLINE uint32 GetID() { return CharterId; }
+		ARCPRO_INLINE uint32 GetLeader() { return LeaderGuid; }
+		ARCPRO_INLINE uint32 GetID() { return CharterId; }
 
-		ARCEMU_INLINE bool IsFull() { return (SignatureCount == Slots); }
+		ARCPRO_INLINE bool IsFull() { return (SignatureCount == Slots); }
 };
 
 typedef std::map<uint32, std::list<SpellEntry*>* >                  OverrideIdMap;
@@ -349,8 +350,8 @@ typedef std::list<const AchievementCriteriaEntry*>					AchievementCriteriaEntryL
 #endif
 
 #ifndef WIN32
-#define arcemu_USE_MAP_PLAYER_INDEX
-#ifdef arcemu_USE_MAP_PLAYER_INDEX
+#define arcpro_USE_MAP_PLAYER_INDEX
+#ifdef arcpro_USE_MAP_PLAYER_INDEX
 
 // you can use the string map (slower)
 typedef map<string, PlayerInfo*> PlayerNameStringIndexMap;
@@ -624,7 +625,7 @@ class SERVER_DECL ObjectMgr : public Singleton < ObjectMgr >, public EventableOb
 		bool HandleInstanceReputationModifiers(Player* pPlayer, Unit* pVictim);
 		void LoadInstanceReputationModifiers();
 
-		ARCEMU_INLINE bool IsSpellDisabled(uint32 spellid)
+		ARCPRO_INLINE bool IsSpellDisabled(uint32 spellid)
 		{
 			if(m_disabled_spells.find(spellid) != m_disabled_spells.end())
 				return true;
@@ -637,17 +638,17 @@ class SERVER_DECL ObjectMgr : public Singleton < ObjectMgr >, public EventableOb
 		SpellTargetConstraint* GetSpellTargetConstraintForSpell(uint32 spellid);
 
 
-		ARCEMU_INLINE GuildMap::iterator GetGuildsBegin() { return mGuild.begin(); }
-		ARCEMU_INLINE GuildMap::iterator GetGuildsEnd() { return mGuild.end(); }
+		ARCPRO_INLINE GuildMap::iterator GetGuildsBegin() { return mGuild.begin(); }
+		ARCPRO_INLINE GuildMap::iterator GetGuildsEnd() { return mGuild.end(); }
 
 		std::set<ProfessionDiscovery*> ProfessionDiscoveryTable;
 
 		// cebernic: This is a perfect Broadcast system,multi-lang supported also.
-		ARCEMU_INLINE uint32 GetBCGroupCountByKey(uint32 Key) { return (uint32)m_BCEntryStorage.count(Key); }
-		ARCEMU_INLINE bool IsBCEntryStorageEmpty() { return m_BCEntryStorage.empty(); }
-		ARCEMU_INLINE BCEntryStorage::iterator GetBCTotalItemBegin() { return m_BCEntryStorage.begin(); }
-		ARCEMU_INLINE BCEntryStorage::iterator GetBCTotalItemEnd() { return m_BCEntryStorage.end(); }
-		ARCEMU_INLINE int CalcCurrentBCEntry()
+		ARCPRO_INLINE uint32 GetBCGroupCountByKey(uint32 Key) { return (uint32)m_BCEntryStorage.count(Key); }
+		ARCPRO_INLINE bool IsBCEntryStorageEmpty() { return m_BCEntryStorage.empty(); }
+		ARCPRO_INLINE BCEntryStorage::iterator GetBCTotalItemBegin() { return m_BCEntryStorage.begin(); }
+		ARCPRO_INLINE BCEntryStorage::iterator GetBCTotalItemEnd() { return m_BCEntryStorage.end(); }
+		ARCPRO_INLINE int CalcCurrentBCEntry()
 		// func sync at MAKE_TASK(ObjectMgr, StoreBroadCastGroupKey)[world.cpp]
 		{
 			if(m_BCEntryStorage.empty()) return -1;
@@ -728,20 +729,20 @@ class SERVER_DECL ObjectMgr : public Singleton < ObjectMgr >, public EventableOb
 		RWLock playernamelock;
 		// highest GUIDs, used for creating new objects
 
-		Arcemu::Threading::AtomicCounter m_hiItemGuid;
-		Arcemu::Threading::AtomicCounter m_hiGroupId;
-		Arcemu::Threading::AtomicCounter m_hiCharterId;
-		Arcemu::Threading::AtomicCounter m_hiCreatureSpawnId;
-		Arcemu::Threading::AtomicCounter m_hiGameObjectSpawnId;
-		Arcemu::Threading::AtomicCounter m_mailid;
-		Arcemu::Threading::AtomicCounter m_reportID;
-		Arcemu::Threading::AtomicCounter m_ticketid;
-		Arcemu::Threading::AtomicCounter m_setGUID;
-		Arcemu::Threading::AtomicCounter m_hiCorpseGuid;
-		Arcemu::Threading::AtomicCounter m_hiGuildId;
-		Arcemu::Threading::AtomicCounter m_hiPetGuid;
-		Arcemu::Threading::AtomicCounter m_hiArenaTeamId;
-		Arcemu::Threading::AtomicCounter m_hiPlayerGuid;
+		Arcpro::Threading::AtomicCounter m_hiItemGuid;
+		Arcpro::Threading::AtomicCounter m_hiGroupId;
+		Arcpro::Threading::AtomicCounter m_hiCharterId;
+		Arcpro::Threading::AtomicCounter m_hiCreatureSpawnId;
+		Arcpro::Threading::AtomicCounter m_hiGameObjectSpawnId;
+		Arcpro::Threading::AtomicCounter m_mailid;
+		Arcpro::Threading::AtomicCounter m_reportID;
+		Arcpro::Threading::AtomicCounter m_ticketid;
+		Arcpro::Threading::AtomicCounter m_setGUID;
+		Arcpro::Threading::AtomicCounter m_hiCorpseGuid;
+		Arcpro::Threading::AtomicCounter m_hiGuildId;
+		Arcpro::Threading::AtomicCounter m_hiPetGuid;
+		Arcpro::Threading::AtomicCounter m_hiArenaTeamId;
+		Arcpro::Threading::AtomicCounter m_hiPlayerGuid;
 
 		RWLock m_charterLock;
 

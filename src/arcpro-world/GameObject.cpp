@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -243,7 +244,7 @@ void GameObject::Despawn(uint32 delay, uint32 respawntime)
 	{
 		/* Get our originating mapcell */
 		MapCell* pCell = GetMapCell();
-		ARCEMU_ASSERT(pCell != NULL);
+		ARCPRO_ASSERT(pCell != NULL);
 		pCell->_respawnObjects.insert(this);
 		sEventMgr.RemoveEvents(this);
 		sEventMgr.AddEvent(m_mapMgr, &MapMgr::EventRespawnGameObject, this, pCell->GetPositionX(), pCell->GetPositionY(), EVENT_GAMEOBJECT_ITEM_SPAWN, respawntime, 1, EVENT_FLAG_DO_NOT_EXECUTE_IN_WORLD_CONTEXT);
@@ -710,7 +711,7 @@ void GameObject::Activate()
 
 void GameObject::CallScriptUpdate()
 {
-	ARCEMU_ASSERT(myScript != NULL);
+	ARCPRO_ASSERT(myScript != NULL);
 	myScript->AIUpdate();
 }
 
@@ -874,7 +875,7 @@ void GameObject::Damage( uint32 damage, uint64 AttackerGUID, uint64 ControllerGU
 		CALL_GO_SCRIPT_EVENT( this, OnDamaged )( damage );
 	}
 	
-	uint8 animprogress = static_cast< uint8 >( Arcemu::round( hitpoints/ float( maxhitpoints ) ) * 255 );
+	uint8 animprogress = static_cast< uint8 >( Arcpro::round( hitpoints/ float( maxhitpoints ) ) * 255 );
 	SetAnimProgress( animprogress );
 	SendDamagePacket( damage, AttackerGUID, ControllerGUID, SpellID );
 }

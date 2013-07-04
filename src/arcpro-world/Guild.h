@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -358,7 +359,7 @@ class SERVER_DECL Guild
 
 		/** Gets MOTD
 		 */
-		ARCEMU_INLINE const char* GetMOTD() const { return m_motd; }
+		ARCPRO_INLINE const char* GetMOTD() const { return m_motd; }
 
 		/** Sets guild information, updates in database
 		 */
@@ -366,7 +367,7 @@ class SERVER_DECL Guild
 
 		/** Gets guild information
 		 */
-		ARCEMU_INLINE const char* GetGuildInformation() const { return m_guildInfo; }
+		ARCPRO_INLINE const char* GetGuildInformation() const { return m_guildInfo; }
 
 		/** Sends the guild roster to this client.
 		 */
@@ -458,12 +459,12 @@ class SERVER_DECL Guild
 
 		/** Getters :P
 		 */
-		ARCEMU_INLINE const char* GetGuildName() const { return m_guildName; }
-		ARCEMU_INLINE const uint32 GetGuildLeader() const { return m_guildLeader; }
-		ARCEMU_INLINE const uint32 GetGuildId() const { return m_guildId; }
-		ARCEMU_INLINE const uint8  GetBankTabCount() const { return (uint8) m_bankTabs.size(); }
-		ARCEMU_INLINE const uint64 GetBankBalance() const { return m_bankBalance; }
-		ARCEMU_INLINE const size_t GetNumMembers() const { return m_members.size(); }
+		ARCPRO_INLINE const char* GetGuildName() const { return m_guildName; }
+		ARCPRO_INLINE const uint32 GetGuildLeader() const { return m_guildLeader; }
+		ARCPRO_INLINE const uint32 GetGuildId() const { return m_guildId; }
+		ARCPRO_INLINE const uint8  GetBankTabCount() const { return (uint8) m_bankTabs.size(); }
+		ARCPRO_INLINE const uint64 GetBankBalance() const { return m_bankBalance; }
+		ARCPRO_INLINE const size_t GetNumMembers() const { return m_members.size(); }
 		/** Creates a guild rank with the specified permissions.
 		 */
 		GuildRank* CreateGuildRank(const char* szRankName, uint32 iPermissions, bool bFullGuildBankPermissions);
@@ -490,7 +491,7 @@ class SERVER_DECL Guild
 
 		/** Retrieves a guild rank for editing
 		 */
-		ARCEMU_INLINE GuildRank* GetGuildRank(uint32 Id)
+		ARCPRO_INLINE GuildRank* GetGuildRank(uint32 Id)
 		{
 			if(Id >= MAX_GUILD_RANKS)
 				return NULL;
@@ -501,7 +502,7 @@ class SERVER_DECL Guild
 		/** Gets a guild bank tab for editing/viewing
 		 */
 
-		ARCEMU_INLINE GuildBankTab* GetBankTab(uint8 Id)
+		ARCPRO_INLINE GuildBankTab* GetBankTab(uint8 Id)
 		{
 			if(Id >= GetBankTabCount())
 				return NULL;
@@ -511,7 +512,7 @@ class SERVER_DECL Guild
 
 		/** Gets a guild member struct
 		 */
-		ARCEMU_INLINE GuildMember* GetGuildMember(PlayerInfo* pInfo)
+		ARCPRO_INLINE GuildMember* GetGuildMember(PlayerInfo* pInfo)
 		{
 			GuildMemberMap::iterator itr;
 			GuildMember* ret;
@@ -523,13 +524,13 @@ class SERVER_DECL Guild
 		}
 
 		/* Get iterators */
-		ARCEMU_INLINE GuildMemberMap::iterator GetGuildMembersBegin() { return m_members.begin(); }
-		ARCEMU_INLINE GuildMemberMap::iterator GetGuildMembersEnd() { return m_members.end(); }
+		ARCPRO_INLINE GuildMemberMap::iterator GetGuildMembersBegin() { return m_members.begin(); }
+		ARCPRO_INLINE GuildMemberMap::iterator GetGuildMembersEnd() { return m_members.end(); }
 
 		/* Get, Lock, Unlock Mutex */
-		ARCEMU_INLINE Mutex & getLock() { return m_lock; }
-		ARCEMU_INLINE void Lock() { m_lock.Acquire(); }
-		ARCEMU_INLINE void Unlock() { return m_lock.Release(); }
+		ARCPRO_INLINE Mutex & getLock() { return m_lock; }
+		ARCPRO_INLINE void Lock() { m_lock.Acquire(); }
+		ARCPRO_INLINE void Unlock() { return m_lock.Release(); }
 
 		/** Sends the guild bank to this client.
 		 */

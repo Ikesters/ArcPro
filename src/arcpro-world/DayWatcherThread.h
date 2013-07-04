@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -31,7 +32,7 @@ enum DAYWATCHERSETTINGS
 
 class DayWatcherThread : public CThread
 {
-		Arcemu::Threading::ConditionVariable cond;
+		Arcpro::Threading::ConditionVariable cond;
 
 		bool m_running;
 		bool m_busy;

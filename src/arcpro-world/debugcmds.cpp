@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -715,7 +716,7 @@ bool ChatHandler::HandleThreatListCommand(const char* args, WorldSession* m_sess
 	}
 
 	std::stringstream sstext;
-	sstext << "threatlist of creature: " << Arcemu::Util::GUID_LOPART(m_session->GetPlayer()->GetSelection()) << " " << Arcemu::Util::GUID_HIPART(m_session->GetPlayer()->GetSelection()) << '\n';
+	sstext << "threatlist of creature: " << Arcpro::Util::GUID_LOPART(m_session->GetPlayer()->GetSelection()) << " " << Arcpro::Util::GUID_HIPART(m_session->GetPlayer()->GetSelection()) << '\n';
 	TargetMap::iterator itr;
 	for(itr = target->GetAIInterface()->GetAITargets()->begin(); itr != target->GetAIInterface()->GetAITargets()->end();)
 	{

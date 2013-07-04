@@ -1,5 +1,6 @@
 /*
-* ArcEmu MMORPG Server
+* ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
 * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
 * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
 *
@@ -817,7 +818,7 @@ void CBattlegroundManager::RemovePlayerFromQueues(Player* plr)
 {
 	m_queueLock.Acquire();
 
-	ARCEMU_ASSERT(plr->m_bgQueueType < BATTLEGROUND_NUM_TYPES);
+	ARCPRO_ASSERT(plr->m_bgQueueType < BATTLEGROUND_NUM_TYPES);
 
 	sEventMgr.RemoveEvents(plr, EVENT_BATTLEGROUND_QUEUE_UPDATE);
 
@@ -1126,7 +1127,7 @@ void CBattlegroundManager::SendBattlefieldStatus(Player* plr, BattleGroundStatus
 	{
 		if(IS_ARENA(Type))
 		{
-			data << uint32(0);		// Queue Slot 0..2. Only the first slot is used in arcemu!
+			data << uint32(0);		// Queue Slot 0..2. Only the first slot is used in arcpro!
 			switch(Type)
 			{
 				case BATTLEGROUND_ARENA_2V2:

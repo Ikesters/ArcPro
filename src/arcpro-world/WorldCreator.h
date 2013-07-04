@@ -1,5 +1,6 @@
 /*
- * ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011-2013 <http://arcpro.sexyi.am/>
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2008-2012 <http://www.ArcEmu.org/>
  *
@@ -113,7 +114,7 @@ class SERVER_DECL InstanceMgr
 		InstanceMgr();
 		~InstanceMgr();
 
-		ARCEMU_INLINE Map* GetMap(uint32 mapid)
+		ARCPRO_INLINE Map* GetMap(uint32 mapid)
 		{
 			if(mapid >= NUM_MAPS)
 				return NULL;
@@ -138,7 +139,7 @@ class SERVER_DECL InstanceMgr
 
 		// has an instance expired?
 		// can a player join?
-		ARCEMU_INLINE bool PlayerOwnsInstance(Instance* pInstance, Player* pPlayer)
+		ARCPRO_INLINE bool PlayerOwnsInstance(Instance* pInstance, Player* pPlayer)
 		{
 			// Expired?
 			if(pInstance->m_expiration && (UNIXTIME + 20) >= pInstance->m_expiration)
@@ -160,7 +161,7 @@ class SERVER_DECL InstanceMgr
 		}
 
 		// has an instance expired?
-		ARCEMU_INLINE bool HasInstanceExpired(Instance* pInstance)
+		ARCPRO_INLINE bool HasInstanceExpired(Instance* pInstance)
 		{
 			// expired?
 			if(pInstance->m_expiration && (UNIXTIME + 20) >= pInstance->m_expiration)
