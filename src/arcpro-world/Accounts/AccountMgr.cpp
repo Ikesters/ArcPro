@@ -70,11 +70,11 @@ AccountOpResult AccountMgr::CreateAccount(std::string username, std::string pass
     return AOR_OK;                                          // everything's fine
 }
 
-AccountOpResult AccountMgr::DeleteAccount(uint32 accountId)
+AccountOpResult AccountMgr::DeleteAccount(uint32 acct)
 {
     // Check if accounts exists
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_SEL_ACCOUNT_BY_ID);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     PreparedQueryResult result = LoginDatabase.Query(stmt);
 
     if (!result)
@@ -83,7 +83,7 @@ AccountOpResult AccountMgr::DeleteAccount(uint32 accountId)
     // Obtain accounts characters
     stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_CHARS_BY_ACCOUNT_ID);
 
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
 
     result = CharacterDatabase.Query(stmt);
 
@@ -102,39 +102,39 @@ AccountOpResult AccountMgr::DeleteAccount(uint32 accountId)
                 s->LogoutPlayer(false);                     // logout player without waiting next session list update
             }
 
-            Player::DeleteFromDB(guid, accountId, false);       // no need to update realm characters
+            Player::DeleteFromDB(guid, acct, false);       // no need to update realm characters
         } while (result->NextRow());
     }
 
     // table realm specific but common for all characters of account for realm
     stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_TUTORIALS);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     CharacterDatabase.Execute(stmt);
 
     stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_ACCOUNT_DATA);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     CharacterDatabase.Execute(stmt);
 
     stmt = CharacterDatabase.GetPreparedStatement(CHAR_DEL_CHARACTER_BAN);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     CharacterDatabase.Execute(stmt);
 
     SQLTransaction trans = LoginDatabase.BeginTransaction();
 
     stmt = LoginDatabase.GetPreparedStatement(LOGIN_DEL_ACCOUNT);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     trans->Append(stmt);
 
     stmt = LoginDatabase.GetPreparedStatement(LOGIN_DEL_ACCOUNT_ACCESS);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     trans->Append(stmt);
 
     stmt = LoginDatabase.GetPreparedStatement(LOGIN_DEL_REALM_CHARACTERS);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     trans->Append(stmt);
 
     stmt = LoginDatabase.GetPreparedStatement(LOGIN_DEL_ACCOUNT_BANNED);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     trans->Append(stmt);
 
     LoginDatabase.CommitTransaction(trans);
@@ -142,11 +142,11 @@ AccountOpResult AccountMgr::DeleteAccount(uint32 accountId)
     return AOR_OK;
 }
 
-AccountOpResult AccountMgr::ChangeUsername(uint32 accountId, std::string newUsername, std::string newPassword)
+AccountOpResult AccountMgr::ChangeUsername(uint32 acct, std::string newUsername, std::string newPassword)
 {
     // Check if accounts exists
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_SEL_ACCOUNT_BY_ID);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     PreparedQueryResult result = LoginDatabase.Query(stmt);
 
     if (!result)
@@ -165,18 +165,18 @@ AccountOpResult AccountMgr::ChangeUsername(uint32 accountId, std::string newUser
 
     stmt->setString(0, newUsername);
     stmt->setString(1, CalculateShaPassHash(newUsername, newPassword));
-    stmt->setUInt32(2, accountId);
+    stmt->setUInt32(2, acct);
 
     LoginDatabase.Execute(stmt);
 
     return AOR_OK;
 }
 
-AccountOpResult AccountMgr::ChangePassword(uint32 accountId, std::string newPassword)
+AccountOpResult AccountMgr::ChangePassword(uint32 acct, std::string newPassword)
 {
     std::string username;
 
-    if (!GetName(accountId, username))
+    if (!GetName(acct, username))
         return AOR_NAME_NOT_EXIST;                          // account doesn't exist
 
     if (utf8length(newPassword) > MAX_ACCOUNT_STR)
@@ -188,7 +188,7 @@ AccountOpResult AccountMgr::ChangePassword(uint32 accountId, std::string newPass
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_UPD_PASSWORD);
 
     stmt->setString(0, CalculateShaPassHash(username, newPassword));
-    stmt->setUInt32(1, accountId);
+    stmt->setUInt32(1, acct);
 
     LoginDatabase.Execute(stmt);
 
@@ -212,29 +212,29 @@ uint32 AccountMgr::GetId(std::string const& username)
     return (result) ? (*result)[0].GetUInt32() : 0;
 }
 
-uint32 AccountMgr::GetSecurity(uint32 accountId)
+uint32 AccountMgr::GetSecurity(uint32 acct)
 {
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_GET_ACCOUNT_ACCESS_GMLEVEL);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     PreparedQueryResult result = LoginDatabase.Query(stmt);
 
     return (result) ? (*result)[0].GetUInt8() : uint32(SEC_PLAYER);
 }
 
-uint32 AccountMgr::GetSecurity(uint32 accountId, int32 realmId)
+uint32 AccountMgr::GetSecurity(uint32 acct, int32 realmId)
 {
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_GET_GMLEVEL_BY_REALMID);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     stmt->setInt32(1, realmId);
     PreparedQueryResult result = LoginDatabase.Query(stmt);
 
     return (result) ? (*result)[0].GetUInt8() : uint32(SEC_PLAYER);
 }
 
-bool AccountMgr::GetName(uint32 accountId, std::string& name)
+bool AccountMgr::GetName(uint32 acct, std::string& name)
 {
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_GET_USERNAME_BY_ID);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     PreparedQueryResult result = LoginDatabase.Query(stmt);
 
     if (result)
@@ -246,29 +246,29 @@ bool AccountMgr::GetName(uint32 accountId, std::string& name)
     return false;
 }
 
-bool AccountMgr::CheckPassword(uint32 accountId, std::string password)
+bool AccountMgr::CheckPassword(uint32 acct, std::string password)
 {
     std::string username;
 
-    if (!GetName(accountId, username))
+    if (!GetName(acct, username))
         return false;
 
     normalizeString(username);
     normalizeString(password);
 
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_SEL_CHECK_PASSWORD);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     stmt->setString(1, CalculateShaPassHash(username, password));
     PreparedQueryResult result = LoginDatabase.Query(stmt);
 
     return (result) ? true : false;
 }
 
-uint32 AccountMgr::GetCharactersCount(uint32 accountId)
+uint32 AccountMgr::GetCharactersCount(uint32 acct)
 {
     // check character count
     PreparedStatement* stmt = CharacterDatabase.GetPreparedStatement(CHAR_SEL_SUM_CHARS);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     PreparedQueryResult result = CharacterDatabase.Query(stmt);
 
     return (result) ? (*result)[0].GetUInt64() : 0;
@@ -447,20 +447,20 @@ void AccountMgr::LoadRBAC()
             _defaultGroups.insert(groupId);
 }
 
-void AccountMgr::UpdateAccountAccess(RBACData* rbac, uint32 accountId, uint8 securityLevel, int32 realmId)
+void AccountMgr::UpdateAccountAccess(RBACData* rbac, uint32 acct, uint8 securityLevel, int32 realmId)
 {
     int32 serverRealmId = realmId != -1 ? realmId : ConfigMgr::GetIntDefault("RealmID", 0);
     bool needDelete = false;
     if (!rbac)
     {
         needDelete = true;
-        rbac = new RBACData(accountId, "", serverRealmId);
+        rbac = new RBACData(acct, "", serverRealmId);
         rbac->LoadFromDB();
     }
 
     // Get max security level and realm (checking current realm and -1)
     PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_SEL_ACCOUNT_ACCESS_BY_ID);
-    stmt->setUInt32(0, accountId);
+    stmt->setUInt32(0, acct);
     stmt->setInt32(1, serverRealmId);
     PreparedQueryResult result = LoginDatabase.Query(stmt);
     if (result)
@@ -490,13 +490,13 @@ void AccountMgr::UpdateAccountAccess(RBACData* rbac, uint32 accountId, uint8 sec
     if (realmId == -1)
     {
         PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_DEL_ACCOUNT_ACCESS);
-        stmt->setUInt32(0, accountId);
+        stmt->setUInt32(0, acct);
         LoginDatabase.Execute(stmt);
     }
     else
     {
         PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_DEL_ACCOUNT_ACCESS_BY_REALM);
-        stmt->setUInt32(0, accountId);
+        stmt->setUInt32(0, acct);
         stmt->setUInt32(1, realmId);
         LoginDatabase.Execute(stmt);
     }
@@ -505,7 +505,7 @@ void AccountMgr::UpdateAccountAccess(RBACData* rbac, uint32 accountId, uint8 sec
     if (securityLevel)
     {
         PreparedStatement* stmt = LoginDatabase.GetPreparedStatement(LOGIN_INS_ACCOUNT_ACCESS);
-        stmt->setUInt32(0, accountId);
+        stmt->setUInt32(0, acct);
         stmt->setUInt8(1, securityLevel);
         stmt->setInt32(2, realmId);
         LoginDatabase.Execute(stmt);
@@ -542,21 +542,21 @@ RBACPermission const* AccountMgr::GetRBACPermission(uint32 permissionId) const
     return NULL;
 }
 
-bool AccountMgr::HasPermission(uint32 accountId, uint32 permissionId, uint32 realmId)
+bool AccountMgr::HasPermission(uint32 acct, uint32 permissionId, uint32 realmId)
 {
-    if (!accountId)
+    if (!acct)
     {
-        sLog->outError(LOG_FILTER_RBAC, "AccountMgr::HasPermission: Wrong accountId 0");
+        sLog->outError(LOG_FILTER_RBAC, "AccountMgr::HasPermission: Wrong acct 0");
         return false;
     }
 
-    RBACData* rbac = new RBACData(accountId, "", realmId);
+    RBACData* rbac = new RBACData(acct, "", realmId);
     rbac->LoadFromDB();
     bool hasPermission = rbac->HasPermission(permissionId);
     delete rbac;
 
-    sLog->outDebug(LOG_FILTER_RBAC, "AccountMgr::HasPermission [AccountId: %u, PermissionId: %u, realmId: %d]: %u",
-                   accountId, permissionId, realmId, hasPermission);
+    sLog->outDebug(LOG_FILTER_RBAC, "AccountMgr::HasPermission [acct: %u, PermissionId: %u, realmId: %d]: %u",
+                   acct, permissionId, realmId, hasPermission);
     return hasPermission;
 }
 

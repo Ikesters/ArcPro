@@ -3,8 +3,6 @@ SET( prefix ${ROOT_PATH}/src/arcpro-world )
 SET(sources
 	Accounts/AccountMgr.cpp
 	Accounts/RBAC.cpp
-	Achievements/AchievementMgr.cpp
-	Addons/AddonMgr.cpp
 	AI/CreatureAI.cpp
 	AI/CreatureAIRegistry.cpp
 	AI/CreatureAISelector.cpp
@@ -22,41 +20,12 @@ SET(sources
 	AI/SmartScripts/SmartAI.cpp
 	AI/SmartScripts/SmartScript.cpp
 	AI/SmartScripts/SmartScriptMgr.cpp
-	AuctionHouse/AuctionHouseMgr.cpp
 	Battlefield/Battlefield.cpp
 	Battlefield/BattlefieldMgr.cpp
 	Battlefield/Zones/BattlefieldWG.cpp
-	Battlegrounds/ArenaTeam.cpp
-	Battlegrounds/ArenaTeamMgr.cpp
-	Battlegrounds/Battleground.cpp
-	Battlegrounds/BattlegroundMgr.cpp
-	Battlegrounds/BattlegroundQueue.cpp
-	Battlegrounds/Zones/BattlegroundAB.cpp
-	Battlegrounds/Zones/BattlegroundAV.cpp
-	Battlegrounds/Zones/BattlegroundBE.cpp
-	Battlegrounds/Zones/BattlegroundBFG.cpp
-	Battlegrounds/Zones/BattlegroundDS.cpp
-	Battlegrounds/Zones/BattlegroundEY.cpp
-	Battlegrounds/Zones/BattlegroundIC.cpp
-	Battlegrounds/Zones/BattlegroundNA.cpp
-	Battlegrounds/Zones/BattlegroundRL.cpp
-	Battlegrounds/Zones/BattlegroundRV.cpp
-	Battlegrounds/Zones/BattlegroundSA.cpp
-	Battlegrounds/Zones/BattlegroundTP.cpp
-	Battlegrounds/Zones/BattlegroundWS.cpp
-	Calendar/CalendarMgr.cpp
-	Chat/Chat.cpp
-	Chat/ChatLink.cpp
-	Chat/Channels/Channel.cpp
-	Chat/Channels/ChannelMgr.cpp
-	Combat/HostileRefManager.cpp
-	Combat/ThreatManager.cpp
 	Conditions/ConditionMgr.cpp
 	Conditions/DisableMgr.cpp
-	DataStores/DB2Stores.cpp
-	DataStores/DB2Utility.cpp
-	DataStores/DBCStores.cpp
-	#DBC/DBCStores.cpp
+	DBC/DBCStores.cpp
 	DungeonFinding/LFG.cpp
 	DungeonFinding/LFGGroupData.cpp
 	DungeonFinding/LFGMgr.cpp
@@ -91,15 +60,6 @@ SET(sources
 	Entities/Unit/StatSystem.cpp
 	Entities/Unit/Unit.cpp
 	Entities/Vehicle/Vehicle.cpp
-	Events/GameEventMgr.cpp
-	Globals/Objectaccessor.cpp
-	Globals/ObjectMgr.cpp
-	Grids/GridStates.cpp
-	Grids/ObjectGridLoader.cpp
-	Grids/Notifiers/GridNotifiers.cpp
-	Groups/Group.cpp
-	Groups/GroupMgr.cpp
-	Groups/GroupReference.cpp
 	Guilds/Guild.cpp
 	Guilds/GuildFinderMgr.cpp
 	Guilds/GuildMgr.cpp
@@ -138,77 +98,166 @@ SET(sources
 	Handlers/VehicleHandler.cpp
 	Handlers/VoiceChatHandler.cpp
 	Handlers/VoidStorageHandler.cpp
-	Instances/InstanceSaveMgr.cpp
-	Instances/InstanceScript.cpp
-	Loot/LootMgr.cpp
-	Mails/Mail.cpp
-	Maps/Map.cpp
-	Maps/MapInstanced.cpp
-	Maps/MapManager.cpp
-	Maps/MapUpdater.cpp
-	Maps/PhaseMgr.cpp
-	Movement/FollowerReference.cpp
-	Movement/MotionMaster.cpp
-	Movement/MovementGenerator.cpp
-	Movement/MovementStructures.cpp
-	Movement/PathGenerator.cpp
-	Movement/MovementGenerators/ConfusedMovementGenerator.cpp
-	Movement/MovementGenerators/FleeingMovementGenerator.cpp
-	Movement/MovementGenerators/HomeMovementGenerator.cpp
-	Movement/MovementGenerators/IdleMovementGenerator.cpp
-	Movement/MovementGenerators/PointMovementGenerator.cpp
-	Movement/MovementGenerators/RandomMovementGenerator.cpp
-	Movement/MovementGenerators/TargetedMovementGenerator.cpp
-	Movement/MovementGenerators/WaypointMovementGenerator.cpp
-	Movement/Spline/MovementPacketBuilder.cpp
-	Movement/Spline/MovementUtil.cpp
-	Movement/Spline/MoveSpline.cpp
-	Movement/Spline/MoveSplineInit.cpp
-	Movement/Spline/Spline.cpp
-	Movement/Waypoints/WaypointManager.cpp
-	OutdoorPvP/OutdoorPvP.cpp
-	OutdoorPvP/OutdoorPvPMgr.cpp
-	Pools/PoolMgr.cpp
-	PrecompiledHeaders/gamePCH.cpp
-	Quests/QuestDef.cpp
-	Reputation/ReputationMgr.cpp
-	Scripting/MapScripts.cpp
-	Scripting/ScriptLoader.cpp
-	Scripting/ScriptMgr.cpp
-	Scripting/ScriptSystem.cpp
-	Server/WorldPacket.cpp
-	Server/WorldSession.cpp
-	Server/WorldSocket.cpp
-	Server/WorldSocketMgr.cpp
-	Server/Protocol/Opcodes.cpp
-	Server/Protocol/Packetlog.cpp
-	Skills/Skilldiscovery.cpp
-	Skills/SkillExtraItems.cpp
-	Spells/Spell.cpp
-	Spells/SpellEffects.cpp
-	Spells/SpellInfo.cpp
-	Spells/SpellMgr.cpp
-	Spells/SpellScript.cpp
-	Spells/Auras/SpellAuraEffects.cpp
-	Spells/Auras/SpellAuras.cpp
-	Texts/CreatureTextMgr.cpp
-	Tickets/TicketMgr.cpp
-	Tools/CharacterDatabaseCleaner.cpp
-	Tools/PlayerDump.cpp
-	Warden/Warden.cpp
-	Warden/WardenCheckMgr.cpp
-	Warden/WardenMac.cpp
-	Warden/WardenWin.cpp
-	Weather/Weather.cpp
-	Weather/WeatherMgr.cpp
-	World/World.cpp
+	AchievementMgr.cpp 
+	CollideInterface.cpp  
+	VoiceChatHandler.cpp 
+	DayWatcherThread.cpp 
+	CommonScheduleThread.cpp 
+	ArenaTeam.cpp 
+	DatabaseCleaner.cpp 
+	ObjectStorage.cpp  
+	AddonMgr.cpp 
+	AIInterface.cpp 
+	AIEvents.cpp
+	AreaTrigger.cpp 
+	Arenas.cpp 
+	AuctionHouse.cpp 
+	AuctionMgr.cpp 
+	Battleground.cpp
+	BattlegroundCommands.cpp 
+	BattlegroundHandler.cpp 
+	BattlegroundMgr.cpp 
+	Channel.cpp 
+	ChannelHandler.cpp 
+	CharacterHandler.cpp 
+	Chat.cpp 
+	ChatHandler.cpp 
+	CombatHandler.cpp 
+	Container.cpp 
+	Corpse.cpp 
+	Creature.cpp 
+	Entities/Summons/Summon.cpp
+	Entities/Summons/CompanionSummon.cpp
+	Entities/Summons/GuardianSummon.cpp
+	Entities/Summons/PossessedSummon.cpp
+	Entities/Summons/TotemSummon.cpp
+	Entities/Summons/WildSummon.cpp
+	debugcmds.cpp 
+	DuelHandler.cpp 
+	DynamicObject.cpp 
+	EquipmentSetMgr.cpp
+	EventableObject.cpp 
+	EventMgr.cpp 
+	faction.cpp 
+	GameObject.cpp 
+	GMTicket.cpp 
+	GMTicketCommands.cpp
+	Gossip.cpp
+	Group.cpp 
+	GroupHandler.cpp 
+	Guild.cpp 
+	GuildHandler.cpp 
+	HonorHandler.cpp 
+	InstanceCommands.cpp 
+	Item.cpp 
+	ItemHandler.cpp 
+	ItemInterface.cpp 
+	Level0.cpp 
+	Level1.cpp 
+	Level2.cpp 
+	Level3.cpp 
+	LfgHandler.cpp 
+	LfgMgr.cpp 
+	LootMgr.cpp 
+	LocalizationMgr.cpp 
+	LogonCommClient.cpp 
+	LogonCommHandler.cpp 
+	MailSystem.cpp 
+	MapCell.cpp 
+	Map.cpp 
+	MapScriptInterface.cpp 
+	MapMgr.cpp 
+	MiscHandler.cpp 
+	MovementHandler.cpp 
+	NPCHandler.cpp 
+	Object.cpp 
+	ObjectMgr.cpp 
+	Opcodes.cpp 
+	Pet.cpp 
+	PetHandler.cpp 
+	Player.cpp 
+	PlayerPacketWrapper.cpp 
+	QueryHandler.cpp 
+	Quest.cpp 
+	QuestHandler.cpp 
+	QuestMgr.cpp 
+	QuestCommands.cpp 
+	RaidHandler.cpp 
+	RecallCommands.cpp 
+	ReputationHandler.cpp 
+	ScriptMgr.cpp 
+	SocialHandler.cpp 
+	SpeedDetector.cpp 
+	SpellAuras.cpp 
+	SpellTarget.cpp 
+	Spell.cpp 
+	StdAfx.cpp
+	SummonHandler.cpp
+	SpellEffects.cpp 
+	SpellHandler.cpp 
+	HackFixes.cpp 
+	Stats.cpp 
+	TaxiHandler.cpp 
+	TaxiMgr.cpp 
+	TerrainMgr.cpp 
+	TradeHandler.cpp 
+	TransporterHandler.cpp 
+	Unit.cpp 
+	Vehicle.cpp 
+	VehicleHandler.cpp
+	WayPoints.cpp 
+	WeatherMgr.cpp 
+	World.cpp 
+	WorldCreator.cpp 
+	WorldSession.cpp 
+	WorldSocket.cpp 
+	WorldStatesHandler.cpp
+	WorldRunnable.cpp 
+	WordFilter.cpp 
+	Main.cpp 
+	Master.cpp 
+	CConsole.cpp 
+	ConsoleCommands.cpp 
+	ConsoleListener.cpp 
+	WUtil.cpp 
+	SpellProc.cpp
+	SpellProc_DeathKnight.cpp
+	SpellProc_Druid.cpp
+	SpellProc_Hunter.cpp
+	SpellProc_Items.cpp
+	SpellProc_Mage.cpp
+	SpellProc_Paladin.cpp
+	SpellProc_Priest.cpp
+	SpellProc_Rogue.cpp
+	SpellProc_Shaman.cpp
+	SpellProc_Warlock.cpp
+	SpellProc_Warrior.cpp
+	SpellMgr.cpp
+	Spell_DeathKnight.cpp
+	Spell_Druid.cpp
+	Spell_Hunter.cpp
+	Spell_Mage.cpp
+	Spell_Paladin.cpp
+	Spell_Priest.cpp
+	Spell_Rogue.cpp
+	Spell_Shaman.cpp
+	Spell_Warlock.cpp
+	Spell_Warrior.cpp
+	DeathKnight.cpp
+	Druid.cpp
+	Hunter.cpp
+	Mage.cpp
+	Paladin.cpp
+	Priest.cpp
+	Rogue.cpp
+	Shaman.cpp
+	Warlock.cpp
+	Warrior.cpp
  )
 
 SET( headers
 	Accounts/AccountMgr.h
 	Accounts/RBAC.h
-	Achievements/AchievementMgr.h
-	Addons/AddonMgr.h
 	AI/CreatureAI.h
 	AI/CreatureAIFactory.h
 	AI/CreatureAIImpl.h
@@ -229,46 +278,11 @@ SET( headers
 	AI/SmartScripts/SmartAI.h
 	AI/SmartScripts/SmartScript.h
 	AI/SmartScripts/SmartScriptMgr.h
-	AuctionHouse/AuctionHouseMgr.h
 	Battlefield/Battlefield.h
 	Battlefield/BattlefieldMgr.h
 	Battlefield/Zones/BattlefieldWG.h
-	Battlegrounds/ArenaTeam.h
-	Battlegrounds/ArenaTeamMgr.h
-	Battlegrounds/Battleground.h
-	Battlegrounds/BattlegroundMgr.h
-	Battlegrounds/BattlegroundQueue.h
-	Battlegrounds/Zones/BattlegroundAB.h
-	Battlegrounds/Zones/BattlegroundAV.h
-	Battlegrounds/Zones/BattlegroundBE.h
-	Battlegrounds/Zones/BattlegroundBFG.h
-	Battlegrounds/Zones/BattlegroundDS.h
-	Battlegrounds/Zones/BattlegroundEY.h
-	Battlegrounds/Zones/BattlegroundIC.h
-	Battlegrounds/Zones/BattlegroundNA.h
-	Battlegrounds/Zones/BattlegroundRL.h
-	Battlegrounds/Zones/BattlegroundRV.h
-	Battlegrounds/Zones/BattlegroundSA.h
-	Battlegrounds/Zones/BattlegroundTP.h
-	Battlegrounds/Zones/BattlegroundWS.h
-	Calendar/CalendarMgr.h
-	Chat/Chat.h
-	Chat/ChatLink.h
-	Chat/Channels/Channel.h
-	Chat/Channels/ChannelMgr.h
-	Combat/HostileRefManager.h
-	Combat/ThreatManager.h
-	Combat/UnitEvents.h
 	Conditions/ConditionMgr.h
 	Conditions/DisableMgr.h
-	DataStores/DB2fmt.h
-	DataStores/DB2Stores.h
-	DataStores/DB2Structure.h
-	DataStores/DB2Utility.h
-	DataStores/DBCEnums.h
-	DataStores/DBCfmt.h
-	DataStores/DBCStores.h
-	DataStores/DBCstructure.h
 	#DBC/DBCStores.h
 	DungeonFinding/LFG.h
 	DungeonFinding/LFGGroupData.h
@@ -309,108 +323,124 @@ SET( headers
 	Entities/Unit/Unit.h
 	Entities/Vehicle/Vehicle.h
 	Entities/Vehicle/VehicleDefines.h
-	Events/GameEventMgr.h
-	Globals/ObjectAccessor.h
-	Globals/ObjectMgr.h
-	Grids/Grid.h
-	Grids/GridDefines.h
-	Grids/GridLoader.h
-	Grids/GridReference.h
-	Grids/GridRefManager.h
-	Grids/GridStates.h
-	Grids/NGrid.h
-	Grids/ObjectGridLoader.h
-	Grids/Cells/Cell.h
-	Grids/Cells/CellImpl.h
-	Grids/Notifiers/GridNotifiers.h
-	Grids/Notifiers/GridNotifiersImpl.h
-	Groups/Group.h
-	Groups/GroupMgr.h
-	Groups/GroupReference.h
-	Groups/GroupRefManager.h
 	Guilds/Guild.h
 	Guilds/GuildFinderMgr.h
 	Guilds/GuildMgr.h
 	Handlers/AddonHandler.h
 	Handlers/NPCHandler.h
-	Instances/InstanceSaveMgr.h
-	Instances/InstanceScript.h
-	Loot/LootMgr.h
-	Mails/Mail.h
-	Maps/Map.h
-	Maps/MapInstanced.h
-	Maps/MapManager.h
-	Maps/MapReference.h
-	Maps/MapRefManager.h
-	Maps/MapUpdater.h
-	Maps/PhaseMgr.h
-	Maps/ZoneScript.h
-	Miscellaneous/Formulas.h
-	Miscellaneous/Language.h
-	Miscellaneous/SharedDefines.h
-	Movement/FollowerReference.h
-	Movement/FollowerRefManager.h
-	Movement/MotionMaster.h
-	Movement/MovementGenerator.h
-	Movement/MovementGeneratorImpl.h
-	Movement/MovementStructures.h
-	Movement/PathGenerator.h
-	Movement/MovementGenerators/ConfusedMovementGenerator.h
-	Movement/MovementGenerators/FleeingMovementGenerator.h
-	Movement/MovementGenerators/HomeMovementGenerator.h
-	Movement/MovementGenerators/IdleMovementGenerator.h
-	Movement/MovementGenerators/PointMovementGenerator.h
-	Movement/MovementGenerators/RandomMovementGenerator.h
-	Movement/MovementGenerators/TargetedMovementGenerator.h
-	Movement/MovementGenerators/WaypointMovementGenerator.h
-	Movement/Spline/MovementPacketBuilder.h
-	Movement/Spline/MovementTypedefs.h
-	Movement/Spline/MoveSpline.h
-	Movement/Spline/MoveSplineFlag.h
-	Movement/Spline/MoveSplineInit.h
-	Movement/Spline/MoveSplineInitArgs.h
-	Movement/Spline/Spline.h
-	Movement/Spline/SplineImpl.h
-	Movement/Waypoints/Path.h
-	Movement/Waypoints/WaypointManager.h
-	OutdoorPvP/OutdoorPvP.h
-	OutdoorPvP/OutdoorPvPMgr.h
-	Pools/PoolMgr.h
-	PrecompiledHeaders/gamePCH.h
-	Quests/QuestDef.h
-	Reputation/ReputationMgr.h
-	Scripting/ScriptLoader.h
-	Scripting/ScriptMgr.h
-	Scripting/ScriptSystem.h
-	Server/WorldPacket.h
-	Server/WorldSession.h
-	Server/WorldSocket.h
-	Server/WorldSocketAcceptor.h
-	Server/WorldSocketMgr.h
-	Server/Protocol/Opcodes.h
-	Server/Protocol/PacketLog.h
-	Skills/SkillDiscovery.h
-	Skills/SkillExtraItems.h
-	Spells/Spell.h
-	Spells/SpellInfo.h
-	Spells/SpellMgr.h
-	Spells/SpellScript.h
-	Spells/Auras/SpellauraDefines.h
-	Spells/Auras/SpellAuraEffects.h
-	Spells/Auras/SpellAuras.h
-	Texts/CreatureTextMgr.h
-	Tickets/TicketMgr.h
-	Tools/CharacterDatabaseCleaner.h
-	Tools/PlayerDump.h
-	Warden/Warden.h
-	Warden/WardenCheckMgr.h
-	Warden/WardenMac.h
-	Warden/Wardenwin.h
-	Warden/Modules/WardenModuleMac.h
-	Warden/Modules/WardenModuleWin.h
-	Weather/Weather.h
-	Weather/WeatherMgr.h
-	World/World.h
+	AchievementMgr.h
+	AddonMgr.h
+	AIInterface.h
+	AIEvents.h
+	AreaTrigger.h
+	Arenas.h
+	ArenaTeam.h
+	AuctionHouse.h
+	AuctionMgr.h
+	BaseConsole.h
+	Battleground.h
+	BattlegroundMgr.h
+	CConsole.h
+	CellHandler.h
+	Channel.h
+	ChannelMgr.h
+	Chat.h
+	CollideInterface.h
+	CommonScheduleThread.h
+	Entities/Summons/CompanionSummon.h
+	ConsoleCommands.h
+	Container.h
+	Corpse.h
+	Creature.h
+	DatabaseCleaner.h
+	DayWatcherThread.h
+	DBC/DBCStores.h
+	DeathKnight.h
+	Definitions.h
+	Druid.h
+	DynamicObject.h
+	EquipmentSetMgr.h
+	Events.h
+	EventableObject.h
+	EventMgr.h
+	faction.h
+	GameObject.h
+	Gossip.h
+	Group.h
+	Entities/Summons/GuardianSummon.h
+	Guild.h
+	HonorHandler.h
+	Hunter.h
+	Item.h
+	ItemInterface.h
+	ItemPrototype.h
+	LfgMgr.h
+	LocalizationMgr.h
+	LogonCommClient.h
+	LogonCommHandler.h
+	LootMgr.h
+	Mage.h
+	MailSystem.h
+	MainServerDefines.h
+	Map.h
+	MapCell.h
+	MapMgr.h
+	MapScriptInterface.h
+	Master.h
+	MiscHandler.h
+	NameTables.h
+	NPCHandler.h
+	Object.h
+	ObjectMgr.h
+	ObjectStorage.h
+	Opcodes.h
+	Paladin.h
+	Pet.h
+	Player.h
+	PlayerCache.h
+	Entities/Summons/PossessedSummon.h
+	Priest.h
+	Quest.h
+	QuestMgr.h
+	Rogue.h
+	ScriptMgr.h
+	ScriptSetup.h
+	Shaman.h
+	Skill.h
+	SkillNameMgr.h
+	SpeedDetector.h
+	Spell.h
+	SpellAuras.h
+	SpellFailure.h
+	SpellMgr.h
+	SpellNameHashes.h
+	SpellProc.h
+	SpellTarget.h
+	Stats.h
+	StdAfx.h
+	Entities/Summons/Summon.h
+	SummonHandler.h
+	TaxiMgr.h
+	TerrainMgr.h
+	Entities/Summons/TotemSummon.h
+	TransporterHandler.h
+	Unit.h
+	UpdateFields.h
+	UpdateMask.h
+	Vehicle.h
+	Warlock.h
+	Warrior.h
+	WeatherMgr.h
+	Entities/Summons/WildSummon.h
+	WordFilter.h
+	World.h
+	WorldCreator.h
+	WorldRunnable.h
+	WorldSession.h
+	WorldSocket.h
+	WorldStatesHandler.h
+	WorldStates.h
+	WUtil.h
 )
 	
 

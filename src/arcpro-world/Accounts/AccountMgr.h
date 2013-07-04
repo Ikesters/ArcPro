@@ -50,25 +50,25 @@ class AccountMgr
 
     public:
         AccountOpResult CreateAccount(std::string username, std::string password);
-        static AccountOpResult DeleteAccount(uint32 accountId);
-        static AccountOpResult ChangeUsername(uint32 accountId, std::string newUsername, std::string newPassword);
-        static AccountOpResult ChangePassword(uint32 accountId, std::string newPassword);
-        static bool CheckPassword(uint32 accountId, std::string password);
+        static AccountOpResult DeleteAccount(uint32 acct);
+        static AccountOpResult ChangeUsername(uint32 acct, std::string newUsername, std::string newPassword);
+        static AccountOpResult ChangePassword(uint32 acct, std::string newPassword);
+        static bool CheckPassword(uint32 acct, std::string password);
 
         static uint32 GetId(std::string const& username);
-        static uint32 GetSecurity(uint32 accountId);
-        static uint32 GetSecurity(uint32 accountId, int32 realmId);
-        static bool GetName(uint32 accountId, std::string& name);
-        static uint32 GetCharactersCount(uint32 accountId);
+        static uint32 GetSecurity(uint32 acct);
+        static uint32 GetSecurity(uint32 acct, int32 realmId);
+        static bool GetName(uint32 acct, std::string& name);
+        static uint32 GetCharactersCount(uint32 acct);
 
         static std::string CalculateShaPassHash(std::string const& name, std::string const& password);
         static bool normalizeString(std::string& utf8String);
         static bool IsPlayerAccount(uint32 gmlevel);
         static bool IsAdminAccount(uint32 gmlevel);
         static bool IsConsoleAccount(uint32 gmlevel);
-        static bool HasPermission(uint32 accountId, uint32 permission, uint32 realmId);
+        static bool HasPermission(uint32 acct, uint32 permission, uint32 realmId);
 
-        void UpdateAccountAccess(RBACData* rbac, uint32 accountId, uint8 securityLevel, int32 realmId);
+        void UpdateAccountAccess(RBACData* rbac, uint32 acct, uint8 securityLevel, int32 realmId);
 
         void LoadRBAC();
         RBACGroup const* GetRBACGroup(uint32 group) const;
