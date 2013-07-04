@@ -101,10 +101,10 @@ class SERVER_DECL Socket
 		Mutex m_readMutex;
 
 		// we are connected? stop from posting events.
-		arcpro::Threading::AtomicBoolean m_connected;
+		Arcpro::Threading::AtomicBoolean m_connected;
 
 		// We are deleted? Stop us from posting events.
-		arcpro::Threading::AtomicBoolean m_deleted;
+		Arcpro::Threading::AtomicBoolean m_deleted;
 
 		sockaddr_in m_client;
 
@@ -125,7 +125,7 @@ class SERVER_DECL Socket
 
 	private:
 		// Write lock, stops multiple write events from being posted.
-		arcpro::Threading::AtomicCounter m_writeLock;
+		Arcpro::Threading::AtomicCounter m_writeLock;
 
 		/* Win32 - IOCP Specific Calls */
 #ifdef CONFIG_USE_IOCP

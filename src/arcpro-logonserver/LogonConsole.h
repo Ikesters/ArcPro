@@ -27,7 +27,7 @@
 class LogonConsoleThread : public ThreadBase
 {
 	public:
-		arcpro::Threading::AtomicBoolean kill;
+		Arcpro::Threading::AtomicBoolean kill;
 		LogonConsoleThread();
 		~LogonConsoleThread();
 		bool run();

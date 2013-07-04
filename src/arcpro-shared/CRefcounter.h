@@ -79,7 +79,7 @@ namespace Arcpro
 
 
 			private:
-				arcpro::Threading::AtomicCounter Counter;
+				Arcpro::Threading::AtomicCounter Counter;
 
 		};
 	}

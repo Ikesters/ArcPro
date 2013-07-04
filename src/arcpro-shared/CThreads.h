@@ -74,7 +74,7 @@ class SERVER_DECL CThread : public ThreadBase
 			return *this;
 		}
 
-		arcpro::Threading::AtomicCounter ThreadState;
+		Arcpro::Threading::AtomicCounter ThreadState;
 		time_t start_time;
 		int ThreadId;
 };

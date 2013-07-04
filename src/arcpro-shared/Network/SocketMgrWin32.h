@@ -48,7 +48,7 @@ class SERVER_DECL SocketMgr : public Singleton<SocketMgr>
 		HANDLE m_completionPort;
 		set<Socket*> _sockets;
 		Mutex socketLock;
-		arcpro::Threading::AtomicCounter socket_count;
+		Arcpro::Threading::AtomicCounter socket_count;
 };
 
 #define sSocketMgr SocketMgr::getSingleton()

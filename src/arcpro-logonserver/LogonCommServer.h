@@ -57,7 +57,7 @@ class LogonCommServerSocket : public Socket
 
 		void RefreshRealmsPop();
 
-		arcpro::Threading::AtomicCounter last_ping;
+		Arcpro::Threading::AtomicCounter last_ping;
 		bool removed;
 		set<uint32> server_ids;
 };

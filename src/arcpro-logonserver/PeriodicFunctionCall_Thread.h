@@ -108,7 +108,7 @@ class PeriodicFunctionCaller : public ThreadBase
 	private:
 		CallbackBase* cb;
 		uint32 interval;
-		arcpro::Threading::AtomicBoolean running;
+		Arcpro::Threading::AtomicBoolean running;
 #ifdef WIN32
 		bool thread_active;
 		HANDLE hEvent;
