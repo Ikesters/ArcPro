@@ -108,7 +108,7 @@ PatchMgr::PatchMgr()
 	/*
 	 *nix patch loader
 	 */
-	Log.Notice("PatchMgr", "Loading Patches...");
+	Log.Notice("PatchMgr", "ArcPro is loading Patches...");
 	char Buffer[MAX_PATH * 10];
 	char Buffer2[MAX_PATH * 10];
 	char Buffer3[MAX_PATH * 10];
@@ -130,7 +130,7 @@ PatchMgr::PatchMgr()
 	filecount = scandir("./ClientPatches", &list, 0, 0);
 	if(filecount <= 0 || list == NULL)
 	{
-		Log.Error("PatchMgr", "No patches found.");
+		Log.Error("PatchMgr", "ArcPro couldn't find Patches.");
 		return;
 	}
 

@@ -26,22 +26,22 @@
 class RWLock
 {
 	public:
-		Arcpro_INLINE void AcquireReadLock()
+		ARCPRO_INLINE void AcquireReadLock()
 		{
 			_lock.Acquire();
 		}
 
-		Arcpro_INLINE void ReleaseReadLock()
+		ARCPRO_INLINE void ReleaseReadLock()
 		{
 			_lock.Release();
 		}
 
-		Arcpro_INLINE void AcquireWriteLock()
+		ARCPRO_INLINE void AcquireWriteLock()
 		{
 			_lock.Acquire();
 		}
 
-		Arcpro_INLINE void ReleaseWriteLock()
+		ARCPRO_INLINE void ReleaseWriteLock()
 		{
 			_lock.Release();
 		}

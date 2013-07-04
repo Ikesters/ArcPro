@@ -35,8 +35,8 @@ class WowCrypt
 		~WowCrypt();
 
 		void Init(uint8* K);
-		arcpro_INLINE void DecryptRecv(uint8* pData, size_t len) { if(!m_initialized) { return; } RC4(&m_clientDecrypt, (unsigned long)len, pData, pData); }
-		arcpro_INLINE void EncryptSend(uint8* pData, size_t len) { if(!m_initialized) { return; } RC4(&m_serverEncrypt, (unsigned long)len, pData, pData); }
+		ARCPRO_INLINE void DecryptRecv(uint8* pData, size_t len) { if(!m_initialized) { return; } RC4(&m_clientDecrypt, (unsigned long)len, pData, pData); }
+		ARCPRO_INLINE void EncryptSend(uint8* pData, size_t len) { if(!m_initialized) { return; } RC4(&m_serverEncrypt, (unsigned long)len, pData, pData); }
 		bool IsInitialized() { return m_initialized; }
 
 	private:

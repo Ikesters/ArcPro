@@ -35,7 +35,7 @@
 // Database impl
 Database* sLogonSQL;
 initialiseSingleton(LogonServer);
-arcpro::Threading::AtomicBoolean mrunning(true);
+Arcpro::Threading::AtomicBoolean mrunning(true);
 Mutex _authSocketLock;
 set<AuthSocket*> _authSockets;
 
@@ -459,7 +459,7 @@ void LogonServer::Run(int argc, char** argv)
 		}
 		uint32 loop_counter = 0;
 		//ThreadPool.Gobble();
-		sLog.outString("Success! Ready for connections");
+		sLog.outString("Successfulness! ArcPro™ is ready for connections.");
 		while(mrunning.GetVal())
 		{
 			if(!(++loop_counter % 20))	 // 20 seconds
@@ -481,7 +481,7 @@ void LogonServer::Run(int argc, char** argv)
 			arcpro::Sleep(1000);
 		}
 
-		sLog.outString("Shutting down...");
+		sLog.outString("ArcPro™ is shutting down...");
 		signal(SIGINT, 0);
 		signal(SIGTERM, 0);
 		signal(SIGABRT, 0);

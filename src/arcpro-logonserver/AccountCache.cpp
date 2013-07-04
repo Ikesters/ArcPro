@@ -193,7 +193,7 @@ void AccountMgr::UpdateAccount(Account* acct, Field* field)
 
 	if(id != acct->AccountId)
 	{
-		LOG_ERROR(" >> deleting duplicate account %u [%s]...", id, Username.c_str());
+		LOG_ERROR(" >> Deleting duplicate account %u [%s]...", id, Username.c_str());
 		sLogonSQL->Execute("DELETE FROM accounts WHERE acct=%u", id);
 		return;
 	}

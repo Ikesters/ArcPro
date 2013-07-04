@@ -33,14 +33,14 @@ class LockedQueue
 
 		}
 
-		Arcpro_INLINE void add(const TYPE & element)
+		ARCPRO_INLINE void add(const TYPE & element)
 		{
 			mutex.Acquire();
 			queue.push_back(element);
 			mutex.Release();
 		}
 
-		Arcpro_INLINE TYPE next()
+		ARCPRO_INLINE TYPE next()
 		{
 			mutex.Acquire();
 			assert(queue.size() > 0);
@@ -50,7 +50,7 @@ class LockedQueue
 			return t;
 		}
 
-		Arcpro_INLINE size_t size()
+		ARCPRO_INLINE size_t size()
 		{
 			mutex.Acquire();
 			size_t c = queue.size();
@@ -58,7 +58,7 @@ class LockedQueue
 			return c;
 		}
 
-		Arcpro_INLINE TYPE get_first_element()
+		ARCPRO_INLINE TYPE get_first_element()
 		{
 			mutex.Acquire();
 			TYPE t;
@@ -70,7 +70,7 @@ class LockedQueue
 			return t;
 		}
 
-		Arcpro_INLINE void pop()
+		ARCPRO_INLINE void pop()
 		{
 			mutex.Acquire();
 			ASSERT(queue.size() > 0);
@@ -78,7 +78,7 @@ class LockedQueue
 			mutex.Release();
 		}
 
-		Arcpro_INLINE void clear()
+		ARCPRO_INLINE void clear()
 		{
 			mutex.Acquire();
 			queue.resize(0);

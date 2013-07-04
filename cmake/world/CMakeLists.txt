@@ -283,7 +283,7 @@ SET( headers
 	Battlefield/Zones/BattlefieldWG.h
 	Conditions/ConditionMgr.h
 	Conditions/DisableMgr.h
-	#DBC/DBCStores.h
+	DBC/DBCStores.h
 	DungeonFinding/LFG.h
 	DungeonFinding/LFGGroupData.h
 	DungeonFinding/LFGMgr.h

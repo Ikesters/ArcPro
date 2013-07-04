@@ -104,7 +104,7 @@ class ThreadController
 			pthread_join(handle, NULL);
 		}
 
-		Arcpro_INLINE uint32 GetId() { return (uint32)thread_id; }
+		ARCPRO_INLINE uint32 GetId() { return (uint32)thread_id; }
 };
 
 #else
@@ -140,7 +140,7 @@ class ThreadController
 		{
 			pthread_join(handle, NULL);
 		}
-		Arcpro_INLINE uint32 GetId() { return (uint32)thread_id; }
+		ARCPRO_INLINE uint32 GetId() { return (uint32)thread_id; }
 };
 
 #endif
@@ -200,13 +200,13 @@ class SERVER_DECL CThreadPool
 		void KillFreeThreads(uint32 count);
 
 		// resets the gobble counter
-		Arcpro_INLINE void Gobble() { _threadsEaten = (int32)m_freeThreads.size(); }
+		ARCPRO_INLINE void Gobble() { _threadsEaten = (int32)m_freeThreads.size(); }
 
 		// gets active thread count
-		Arcpro_INLINE uint32 GetActiveThreadCount() { return (uint32)m_activeThreads.size(); }
+		ARCPRO_INLINE uint32 GetActiveThreadCount() { return (uint32)m_activeThreads.size(); }
 
 		// gets free thread count
-		Arcpro_INLINE uint32 GetFreeThreadCount() { return (uint32)m_freeThreads.size(); }
+		ARCPRO_INLINE uint32 GetFreeThreadCount() { return (uint32)m_freeThreads.size(); }
 };
 
 extern SERVER_DECL CThreadPool ThreadPool;

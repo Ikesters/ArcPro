@@ -26,7 +26,7 @@ bool Rehash();
 
 void LogonConsole::TranslateRehash(char* str)
 {
-	sLog.outString("rehashing config file...");
+	sLog.outString("Rehashing config file...");
 	Rehash();
 }
 
@@ -217,7 +217,7 @@ void LogonConsole::CreateAccount(char* str)
 	if(count != 3)
 	{
 		std::cout << "usage: createaccount <name> <password> <email>" << std::endl;
-		std::cout << "example: createaccount ghostcrawler Ih4t3p4l4dins greg.street@blizzard.com" << std::endl;
+		std::cout << "example: createaccount username password email@to.me" << std::endl;
 		return;
 	}
 
@@ -255,7 +255,7 @@ void LogonConsole::CreateAccount(char* str)
 
 	AccountMgr::getSingleton().ReloadAccounts(true);
 
-	std::cout << "Account created." << std::endl;
+	std::cout << "Account creation is successful." << std::endl;
 }
 
 //------------------------------------------------------------------------------
