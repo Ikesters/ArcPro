@@ -28,22 +28,22 @@ namespace Arcpro
 
 	PerformanceCounter::PerformanceCounter()
 	{
-		cpu_count = arcpro::SysInfo::GetCPUCount();
-		last_update = arcpro::SysInfo::GetTickCount();
-		last_cpu_usage = arcpro::SysInfo::GetCPUUsage();
+		cpu_count = Arcpro::SysInfo::GetCPUCount();
+		last_update = Arcpro::SysInfo::GetTickCount();
+		last_cpu_usage = Arcpro::SysInfo::GetCPUUsage();
 	}
 
 	float PerformanceCounter::GetCurrentRAMUsage()
 	{
-		unsigned long long usage = arcpro::SysInfo::GetRAMUsage();
+		unsigned long long usage = Arcpro::SysInfo::GetRAMUsage();
 
 		return static_cast< float >(usage / (1024.0 * 1024.0));
 	}
 
 	float PerformanceCounter::GetCurrentCPUUsage()
 	{
-		unsigned long long now = arcpro::SysInfo::GetTickCount();
-		unsigned long long now_cpu_usage = arcpro::SysInfo::GetCPUUsage();
+		unsigned long long now = Arcpro::SysInfo::GetTickCount();
+		unsigned long long now_cpu_usage = Arcpro::SysInfo::GetCPUUsage();
 		unsigned long long cpu_usage = now_cpu_usage - last_cpu_usage; // micro seconds
 		unsigned long long time_elapsed = now - last_update; // milli seconds
 

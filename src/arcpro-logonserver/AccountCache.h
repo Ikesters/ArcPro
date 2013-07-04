@@ -146,7 +146,7 @@ class AccountMgr : public Singleton < AccountMgr >
 		void ReloadAccounts(bool silent);
 		void ReloadAccountsCallback();
 
-		arcpro_INLINE size_t GetCount() { return AccountDatabase.size(); }
+		ARCPRO_INLINE size_t GetCount() { return AccountDatabase.size(); }
 
 	private:
 		Account* __GetAccount(string Name)
@@ -200,8 +200,8 @@ class InformationCore : public Singleton<InformationCore>
 	public:
 		~InformationCore();
 
-		arcpro_INLINE Mutex & getServerSocketLock() { return serverSocketLock; }
-		arcpro_INLINE Mutex & getRealmLock() { return realmLock; }
+		ARCPRO_INLINE Mutex & getServerSocketLock() { return serverSocketLock; }
+		ARCPRO_INLINE Mutex & getRealmLock() { return realmLock; }
 
 		InformationCore()
 		{
@@ -227,8 +227,8 @@ class InformationCore : public Singleton<InformationCore>
 		void UpdateRealmStatus(uint32 realm_id, uint8 flags);
 		void		  UpdateRealmPop(uint32 realm_id, float pop);
 
-		arcpro_INLINE void   AddServerSocket(LogonCommServerSocket* sock) { serverSocketLock.Acquire(); m_serverSockets.insert(sock); serverSocketLock.Release(); }
-		arcpro_INLINE void   RemoveServerSocket(LogonCommServerSocket* sock) { serverSocketLock.Acquire(); m_serverSockets.erase(sock); serverSocketLock.Release(); }
+		ARCPRO_INLINE void   AddServerSocket(LogonCommServerSocket* sock) { serverSocketLock.Acquire(); m_serverSockets.insert(sock); serverSocketLock.Release(); }
+		ARCPRO_INLINE void   RemoveServerSocket(LogonCommServerSocket* sock) { serverSocketLock.Acquire(); m_serverSockets.erase(sock); serverSocketLock.Release(); }
 
 		void		  TimeoutSockets();
 		void CheckServers();

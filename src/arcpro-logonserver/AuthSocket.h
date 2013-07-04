@@ -60,12 +60,12 @@ class AuthSocket : public Socket
 
 		void SendChallengeError(uint8 Error);
 		void SendProofError(uint8 Error, uint8* M2);
-		arcpro_INLINE sAuthLogonChallenge_C* GetChallenge() { return &m_challenge; }
-		arcpro_INLINE void SendPacket(const uint8* data, const uint16 len) { Send(data, len); }
+		ARCPRO_INLINE sAuthLogonChallenge_C* GetChallenge() { return &m_challenge; }
+		ARCPRO_INLINE void SendPacket(const uint8* data, const uint16 len) { Send(data, len); }
 		void OnDisconnect();
-		arcpro_INLINE time_t GetLastRecv() { return last_recv; }
+		ARCPRO_INLINE time_t GetLastRecv() { return last_recv; }
 		bool removedFromSet;
-		arcpro_INLINE uint32 GetAccountID() { return m_account ? m_account->AccountId : 0; }
+		ARCPRO_INLINE uint32 GetAccountID() { return m_account ? m_account->AccountId : 0; }
 
 	protected:
 

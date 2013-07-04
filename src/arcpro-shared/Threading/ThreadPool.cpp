@@ -250,7 +250,7 @@ void CThreadPool::Shutdown()
 			}
 			Log.Debug("ThreadPool", "%u active and %u free threads remaining...", m_activeThreads.size(), m_freeThreads.size());
 			_mutex.Release();
-			Arcpro::Sleep(1000);
+			arcpro::Sleep(1000);
 			continue;
 		}
 

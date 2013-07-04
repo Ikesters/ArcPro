@@ -93,7 +93,7 @@ namespace arcpro
 //
 //
 /////////////////////////////////////////////////////////
-arcpro_INLINE uint32 getMSTime()
+ARCPRO_INLINE uint32 getMSTime()
 {
 	uint32 MSTime = 0;
 #ifdef WIN32

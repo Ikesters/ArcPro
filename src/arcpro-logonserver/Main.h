@@ -58,7 +58,7 @@ class LogonServer : public Singleton< LogonServer >
 		uint32 min_build;
 		uint8 sql_hash[20];
 
-		arcpro::PerformanceCounter perfcounter;
+		Arcpro::PerformanceCounter perfcounter;
 	private:
 		bool m_stopEvent;
 };

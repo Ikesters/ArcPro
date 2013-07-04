@@ -48,7 +48,7 @@ class SERVER_DECL Socket
 		bool Send(const uint8* Bytes, uint32 Size);
 
 		// Burst system - Locks the sending mutex.
-		arcpro_INLINE void BurstBegin() { m_writeMutex.Acquire(); }
+		ARCPRO_INLINE void BurstBegin() { m_writeMutex.Acquire(); }
 
 		// Burst system - Adds bytes to output buffer.
 		bool BurstSend(const uint8* Bytes, uint32 Size);
@@ -57,14 +57,14 @@ class SERVER_DECL Socket
 		void BurstPush();
 
 		// Burst system - Unlocks the sending mutex.
-		arcpro_INLINE void BurstEnd() { m_writeMutex.Release(); }
+		ARCPRO_INLINE void BurstEnd() { m_writeMutex.Release(); }
 
 		/* Client Operations */
 
 		// Get the client's ip in numerical form.
 		string GetRemoteIP();
-		arcpro_INLINE uint32 GetRemotePort() { return ntohs(m_client.sin_port); }
-		arcpro_INLINE SOCKET GetFd() { return m_fd; }
+		ARCPRO_INLINE uint32 GetRemotePort() { return ntohs(m_client.sin_port); }
+		ARCPRO_INLINE SOCKET GetFd() { return m_fd; }
 
 		/* Platform-specific methods */
 
@@ -72,19 +72,19 @@ class SERVER_DECL Socket
 		void ReadCallback(uint32 len);
 		void WriteCallback();
 
-		arcpro_INLINE bool IsDeleted()
+		ARCPRO_INLINE bool IsDeleted()
 		{
 			return m_deleted.GetVal();
 		}
-		arcpro_INLINE bool IsConnected()
+		ARCPRO_INLINE bool IsConnected()
 		{
 			return m_connected.GetVal();
 		}
-		arcpro_INLINE sockaddr_in & GetRemoteStruct() { return m_client; }
+		ARCPRO_INLINE sockaddr_in & GetRemoteStruct() { return m_client; }
 
 		void Delete();
 
-		arcpro_INLINE in_addr GetRemoteAddress() { return m_client.sin_addr; }
+		ARCPRO_INLINE in_addr GetRemoteAddress() { return m_client.sin_addr; }
 
 
 		CircularBuffer readBuffer;
@@ -113,9 +113,9 @@ class SERVER_DECL Socket
 
 	public:
 		// Atomic wrapper functions for increasing read/write locks
-		arcpro_INLINE void IncSendLock() { ++m_writeLock; }
-		arcpro_INLINE void DecSendLock() { --m_writeLock; }
-		arcpro_INLINE bool AcquireSendLock()
+		ARCPRO_INLINE void IncSendLock() { ++m_writeLock; }
+		ARCPRO_INLINE void DecSendLock() { --m_writeLock; }
+		ARCPRO_INLINE bool AcquireSendLock()
 		{
 			if(m_writeLock.SetVal(1) != 0)
 				return false;
@@ -133,7 +133,7 @@ class SERVER_DECL Socket
 	public:
 
 		// Set completion port that this socket will be assigned to.
-		arcpro_INLINE void SetCompletionPort(HANDLE cp) { m_completionPort = cp; }
+		ARCPRO_INLINE void SetCompletionPort(HANDLE cp) { m_completionPort = cp; }
 
 		OverlappedStruct m_readEvent;
 		OverlappedStruct m_writeEvent;

@@ -52,7 +52,7 @@ class SERVER_DECL AsyncQuery
 		~AsyncQuery();
 		void AddQuery(const char* format, ...);
 		void Perform();
-		arcpro_INLINE void SetDB(Database* dbb) { db = dbb; }
+		ARCPRO_INLINE void SetDB(Database* dbb) { db = dbb; }
 };
 
 class SERVER_DECL QueryBuffer
@@ -99,9 +99,9 @@ class SERVER_DECL Database : public CThread
 		// Initialized on load: Database::Database() : CThread()
 		bool ThreadRunning;
 
-		arcpro_INLINE const string & GetHostName() { return mHostname; }
-		arcpro_INLINE const string & GetDatabaseName() { return mDatabaseName; }
-		arcpro_INLINE const uint32 GetQueueSize() { return queries_queue.get_size(); }
+		ARCPRO_INLINE const string & GetHostName() { return mHostname; }
+		ARCPRO_INLINE const string & GetDatabaseName() { return mDatabaseName; }
+		ARCPRO_INLINE const uint32 GetQueueSize() { return queries_queue.get_size(); }
 
 		virtual string EscapeString(string Escape) = 0;
 		virtual void EscapeLongString(const char* str, uint32 len, stringstream & out) = 0;
@@ -167,9 +167,9 @@ class SERVER_DECL QueryResult
 		virtual bool NextRow() = 0;
 		void Delete() { delete this; }
 
-		arcpro_INLINE Field* Fetch() { return mCurrentRow; }
-		arcpro_INLINE uint32 GetFieldCount() const { return mFieldCount; }
-		arcpro_INLINE uint32 GetRowCount() const { return mRowCount; }
+		ARCPRO_INLINE Field* Fetch() { return mCurrentRow; }
+		ARCPRO_INLINE uint32 GetFieldCount() const { return mFieldCount; }
+		ARCPRO_INLINE uint32 GetRowCount() const { return mRowCount; }
 
 	protected:
 		uint32 mFieldCount;
