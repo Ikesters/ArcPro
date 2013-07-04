@@ -125,7 +125,7 @@ class SERVER_DECL Socket
 
 	private:
 		// Write lock, stops multiple write events from being posted.
-		arcpro::Threading::AtomicCounter m_writeLock;
+		Arcpro::Threading::AtomicCounter m_writeLock;
 
 		/* Win32 - IOCP Specific Calls */
 #ifdef CONFIG_USE_IOCP
