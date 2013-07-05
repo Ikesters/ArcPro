@@ -1,5 +1,6 @@
 /*
- * ArcScript Scripts for Arcemu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2008-2011 Arcemu Team
  * Copyright (C) 2007 Moon++ <http://www.moonplusplus.com/>
  *
@@ -57,7 +58,7 @@ extern LuaEngine g_luaMgr;
 #define sLuaMgr g_luaMgr
 #define sLuaEventMgr g_luaMgr.LuaEventMgr
 
-Arcemu::Gossip::Menu *Menu;
+Arcpro::Gossip::Menu *Menu;
 
 #define GET_LOCK sLuaMgr.getLock().Acquire();
 #define RELEASE_LOCK sLuaMgr.getLock().Release();
@@ -265,50 +266,50 @@ class LuaEngine
 		void HyperCallFunction(const char*, int);
 		void CallFunctionByReference(int);
 		void DestroyAllLuaEvents();
-		ARCEMU_INLINE bool ExecuteCall(uint8 params = 0, uint8 res = 0);
-		ARCEMU_INLINE void EndCall(uint8 res = 0);
+		ARCPRO_INLINE bool ExecuteCall(uint8 params = 0, uint8 res = 0);
+		ARCPRO_INLINE void EndCall(uint8 res = 0);
 		//Wrappers
-		ARCEMU_INLINE Unit* CheckUnit(lua_State* L, int narg)
+		ARCPRO_INLINE Unit* CheckUnit(lua_State* L, int narg)
 		{
 			if(L == NULL) return ArcLuna<Unit>::check(lu, narg);
 			else return ArcLuna<Unit>::check(L, narg);
 		}
-		ARCEMU_INLINE GameObject* CheckGo(lua_State* L, int narg)
+		ARCPRO_INLINE GameObject* CheckGo(lua_State* L, int narg)
 		{
 			if(L == NULL) return ArcLuna<GameObject>::check(lu, narg);
 			else return ArcLuna<GameObject>::check(L, narg);
 		}
-		ARCEMU_INLINE Item* CheckItem(lua_State* L, int narg)
+		ARCPRO_INLINE Item* CheckItem(lua_State* L, int narg)
 		{
 			if(L == NULL) return ArcLuna<Item>::check(lu, narg);
 			else return ArcLuna<Item>::check(L, narg);
 		}
-		ARCEMU_INLINE WorldPacket* CheckPacket(lua_State* L, int narg)
+		ARCPRO_INLINE WorldPacket* CheckPacket(lua_State* L, int narg)
 		{
 			if(L == NULL) return ArcLuna<WorldPacket>::check(lu, narg);
 			else return ArcLuna<WorldPacket>::check(L, narg);
 		}
-		ARCEMU_INLINE uint64 CheckGuid(lua_State* L, int narg)
+		ARCPRO_INLINE uint64 CheckGuid(lua_State* L, int narg)
 		{
 			if(L == NULL) return GUID_MGR::check(lu, narg);
 			else return GUID_MGR::check(L, narg);
 		}
-		ARCEMU_INLINE Object* CheckObject(lua_State* L, int narg)
+		ARCPRO_INLINE Object* CheckObject(lua_State* L, int narg)
 		{
 			if(L == NULL) return ArcLuna<Object>::check(lu, narg);
 			else return ArcLuna<Object>::check(L, narg);
 		}
-		ARCEMU_INLINE TaxiPath* CheckTaxiPath(lua_State* L, int narg)
+		ARCPRO_INLINE TaxiPath* CheckTaxiPath(lua_State* L, int narg)
 		{
 			if(L == NULL) return ArcLuna<TaxiPath>::check(lu, narg);
 			else return ArcLuna<TaxiPath>::check(L, narg);
 		}
-		ARCEMU_INLINE Spell* CheckSpell(lua_State* L, int narg)
+		ARCPRO_INLINE Spell* CheckSpell(lua_State* L, int narg)
 		{
 			if(L == NULL) return ArcLuna<Spell>::check(lu, narg);
 			else return ArcLuna<Spell>::check(L, narg);
 		}
-		ARCEMU_INLINE Aura* CheckAura(lua_State* L, int narg)
+		ARCPRO_INLINE Aura* CheckAura(lua_State* L, int narg)
 		{
 			if(L == NULL) return ArcLuna<Aura>::check(lu, narg);
 			else return ArcLuna<Aura>::check(L, narg);
@@ -337,41 +338,41 @@ class LuaEngine
 		void PushSqlResult(QueryResult* res, lua_State* L = NULL);
 		void PushAura(Aura* aura, lua_State* L = NULL);
 
-		ARCEMU_INLINE void PUSH_BOOL(bool bewl)
+		ARCPRO_INLINE void PUSH_BOOL(bool bewl)
 		{
 			if(bewl)
 				lua_pushboolean(lu, 1);
 			else
 				lua_pushboolean(lu, 0);
 		}
-		ARCEMU_INLINE void PUSH_NIL(lua_State* L = NULL)
+		ARCPRO_INLINE void PUSH_NIL(lua_State* L = NULL)
 		{
 			if(L == NULL)
 				lua_pushnil(lu);
 			else
 				lua_pushnil(L);
 		}
-		ARCEMU_INLINE void PUSH_INT(int32 value)
+		ARCPRO_INLINE void PUSH_INT(int32 value)
 		{
 			lua_pushinteger(lu, value);
 		}
-		ARCEMU_INLINE void PUSH_UINT(uint32 value)
+		ARCPRO_INLINE void PUSH_UINT(uint32 value)
 		{
 			lua_pushnumber(lu, value);
 		}
-		ARCEMU_INLINE void PUSH_FLOAT(float value)
+		ARCPRO_INLINE void PUSH_FLOAT(float value)
 		{
 			lua_pushnumber(lu, value);
 		}
-		ARCEMU_INLINE void PUSH_STRING(const char* str)
+		ARCPRO_INLINE void PUSH_STRING(const char* str)
 		{
 			lua_pushstring(lu, str);
 		}
 		void RegisterCoreFunctions();
 
-		ARCEMU_INLINE Mutex & getLock() { return call_lock; }
-		ARCEMU_INLINE Mutex & getcoLock() { return co_lock; }
-		ARCEMU_INLINE lua_State* getluState() { return lu; }
+		ARCPRO_INLINE Mutex & getLock() { return call_lock; }
+		ARCPRO_INLINE Mutex & getcoLock() { return co_lock; }
+		ARCPRO_INLINE lua_State* getluState() { return lu; }
 
 		LuaObjectBinding* getUnitBinding(uint32 Id)
 		{
@@ -438,16 +439,16 @@ class LuaEngine
 			HM_NAMESPACE::hash_map<uint32, LuaGossip*>::iterator itr = m_gogAIScripts.find(id);
 			return (itr == m_gogAIScripts.end()) ? NULL : itr->second;
 		}
-		ARCEMU_INLINE std::multimap<uint32, LuaCreature*> & getLuCreatureMap() { return m_cAIScripts; }
-		ARCEMU_INLINE std::multimap<uint32, LuaGameObjectScript*> & getLuGameObjectMap() { return m_gAIScripts; }
-		ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, LuaQuest*> & getLuQuestMap() { return m_qAIScripts; }
-		ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, LuaInstance*> & getLuInstanceMap() { return m_iAIScripts; }
-		ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, LuaGossip*> & getUnitGossipInterfaceMap() { return m_unitgAIScripts; }
-		ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, LuaGossip*> & getItemGossipInterfaceMap() { return m_itemgAIScripts; }
-		ARCEMU_INLINE HM_NAMESPACE::hash_map<uint32, LuaGossip*> & getGameObjectGossipInterfaceMap() { return m_gogAIScripts; }
-		ARCEMU_INLINE std::set<int> & getThreadRefs() { return m_pendingThreads; }
-		ARCEMU_INLINE std::set<int> & getFunctionRefs() { return m_functionRefs; }
-		ARCEMU_INLINE std::map< uint64, std::set<int> > & getObjectFunctionRefs() { return m_objectFunctionRefs; }
+		ARCPRO_INLINE std::multimap<uint32, LuaCreature*> & getLuCreatureMap() { return m_cAIScripts; }
+		ARCPRO_INLINE std::multimap<uint32, LuaGameObjectScript*> & getLuGameObjectMap() { return m_gAIScripts; }
+		ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, LuaQuest*> & getLuQuestMap() { return m_qAIScripts; }
+		ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, LuaInstance*> & getLuInstanceMap() { return m_iAIScripts; }
+		ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, LuaGossip*> & getUnitGossipInterfaceMap() { return m_unitgAIScripts; }
+		ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, LuaGossip*> & getItemGossipInterfaceMap() { return m_itemgAIScripts; }
+		ARCPRO_INLINE HM_NAMESPACE::hash_map<uint32, LuaGossip*> & getGameObjectGossipInterfaceMap() { return m_gogAIScripts; }
+		ARCPRO_INLINE std::set<int> & getThreadRefs() { return m_pendingThreads; }
+		ARCPRO_INLINE std::set<int> & getFunctionRefs() { return m_functionRefs; }
+		ARCPRO_INLINE std::map< uint64, std::set<int> > & getObjectFunctionRefs() { return m_objectFunctionRefs; }
 
 		HM_NAMESPACE::hash_map<int, EventInfoHolder*> m_registeredTimedEvents;
 
@@ -693,7 +694,7 @@ class LuaEngine
 					lua_pushfstring(L, "%s (%s)", GetTClassName<T>(), buff);
 					return 1;
 				}
-				ARCEMU_INLINE static void tostring(char* buff, void* obj)
+				ARCPRO_INLINE static void tostring(char* buff, void* obj)
 				{
 					sprintf(buff, "%p", obj);
 				}

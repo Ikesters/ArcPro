@@ -1,5 +1,6 @@
 /*
- * ArcScript Scripts for Arcemu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2008-2011 Arcemu Team
  * Copyright (C) 2007 Moon++ <http://www.moonplusplus.com/>
  *
@@ -1406,7 +1407,7 @@ class LuaCreature : public CreatureAIScript
 		LuaCreature(Creature* creature) : CreatureAIScript(creature), m_binding(NULL) {}
 		~LuaCreature()
 		{}
-		ARCEMU_INLINE void SetUnit(Creature* ncrc) { _unit = ncrc; }
+		ARCPRO_INLINE void SetUnit(Creature* ncrc) { _unit = ncrc; }
 		void OnCombatStart(Unit* mTarget)
 		{
 			CHECK_BINDING_ACQUIRELOCK
@@ -1796,7 +1797,7 @@ class LuaGameObjectScript : public GameObjectAIScript
 	public:
 		LuaGameObjectScript(GameObject* go) : GameObjectAIScript(go), m_binding(NULL) {}
 		~LuaGameObjectScript() {}
-		ARCEMU_INLINE GameObject* getGO() { return _gameobject; }
+		ARCPRO_INLINE GameObject* getGO() { return _gameobject; }
 		void OnCreate()
 		{
 			CHECK_BINDING_ACQUIRELOCK
@@ -1908,10 +1909,10 @@ class LuaGameObjectScript : public GameObjectAIScript
 		LuaObjectBinding* m_binding;
 };
 
-class LuaGossip : public Arcemu::Gossip::Script
+class LuaGossip : public Arcpro::Gossip::Script
 {
 	public:
-		LuaGossip() : Arcemu::Gossip::Script(), m_unit_gossip_binding(NULL), m_item_gossip_binding(NULL), m_go_gossip_binding(NULL) {}
+		LuaGossip() : Arcpro::Gossip::Script(), m_unit_gossip_binding(NULL), m_item_gossip_binding(NULL), m_go_gossip_binding(NULL) {}
 		~LuaGossip()
 		{
 			typedef HM_NAMESPACE::hash_map<uint32, LuaGossip*> MapType;
@@ -2382,7 +2383,7 @@ InstanceScript* CreateLuaInstance(MapMgr* pMapMgr)
 	return pLua;
 }
 
-Arcemu::Gossip::Script* CreateLuaUnitGossipScript(uint32 id)
+Arcpro::Gossip::Script* CreateLuaUnitGossipScript(uint32 id)
 {
 	LuaGossip* pLua = NULL;
 	LuaObjectBinding* pBinding = sLuaMgr.getLuaUnitGossipBinding(id);
@@ -2407,7 +2408,7 @@ Arcemu::Gossip::Script* CreateLuaUnitGossipScript(uint32 id)
 	}
 	return pLua;
 }
-Arcemu::Gossip::Script* CreateLuaItemGossipScript(uint32 id)
+Arcpro::Gossip::Script* CreateLuaItemGossipScript(uint32 id)
 {
 	LuaGossip* pLua = NULL;
 	LuaObjectBinding* pBinding = sLuaMgr.getLuaItemGossipBinding(id);
@@ -2433,7 +2434,7 @@ Arcemu::Gossip::Script* CreateLuaItemGossipScript(uint32 id)
 	}
 	return pLua;
 }
-Arcemu::Gossip::Script* CreateLuaGOGossipScript(uint32 id)
+Arcpro::Gossip::Script* CreateLuaGOGossipScript(uint32 id)
 {
 	LuaGossip* pLua = NULL;
 	LuaObjectBinding* pBinding = g_luaMgr.getLuaGOGossipBinding(id);
@@ -2461,7 +2462,7 @@ Arcemu::Gossip::Script* CreateLuaGOGossipScript(uint32 id)
 
 void LuaEngine::Startup()
 {
-	Log.Notice("LuaEngineMgr", "Arcemu Lua Engine ( ALE ) %s: Loaded", ARCH);
+	Log.Notice("LuaEngineMgr", "ArcEmu Lua Engine ( ALE ) %s: Loaded", ARCH);
 	//Create a new global state that will server as the lua universe.
 	lu = lua_open();
 
@@ -2498,7 +2499,7 @@ void LuaEngine::Startup()
 
 	for(LuaObjectBindingMap::iterator itr = m_unit_gossipBinding.begin(); itr != m_unit_gossipBinding.end(); ++itr)
 	{
-		Arcemu::Gossip::Script* gs = CreateLuaUnitGossipScript(itr->first);
+		Arcpro::Gossip::Script* gs = CreateLuaUnitGossipScript(itr->first);
 		if(gs != NULL)
 		{
 			m_scriptMgr->register_creature_gossip(itr->first, gs);
@@ -2508,7 +2509,7 @@ void LuaEngine::Startup()
 
 	for(LuaObjectBindingMap::iterator itr = m_item_gossipBinding.begin(); itr != m_item_gossipBinding.end(); ++itr)
 	{
-		Arcemu::Gossip::Script* gs = CreateLuaItemGossipScript(itr->first);
+		Arcpro::Gossip::Script* gs = CreateLuaItemGossipScript(itr->first);
 		if(gs != NULL)
 		{
 			m_scriptMgr->register_item_gossip(itr->first, gs);
@@ -2518,7 +2519,7 @@ void LuaEngine::Startup()
 
 	for(LuaObjectBindingMap::iterator itr = m_go_gossipBinding.begin(); itr != m_go_gossipBinding.end(); ++itr)
 	{
-		Arcemu::Gossip::Script* gs = CreateLuaGOGossipScript(itr->first);
+		Arcpro::Gossip::Script* gs = CreateLuaGOGossipScript(itr->first);
 		if(gs != NULL)
 		{
 			m_scriptMgr->register_go_gossip(itr->first, gs);
@@ -2910,7 +2911,7 @@ void LuaEngine::Restart()
 		GMAP::iterator it = gMap.find(itr->first);
 		if(it == gMap.end())
 		{
-			Arcemu::Gossip::Script* gs = CreateLuaUnitGossipScript(itr->first);
+			Arcpro::Gossip::Script* gs = CreateLuaUnitGossipScript(itr->first);
 			if(gs != NULL)
 			{
 				m_scriptMgr->register_creature_gossip(itr->first, gs);
@@ -2931,7 +2932,7 @@ void LuaEngine::Restart()
 		GMAP::iterator it = gMap.find(itr->first);
 		if(it == gMap.end())
 		{
-			Arcemu::Gossip::Script* gs = CreateLuaItemGossipScript(itr->first);
+			Arcpro::Gossip::Script* gs = CreateLuaItemGossipScript(itr->first);
 			if(gs != NULL)
 			{
 				m_scriptMgr->register_item_gossip(itr->first, gs);
@@ -2952,7 +2953,7 @@ void LuaEngine::Restart()
 		GMAP::iterator it = gMap.find(itr->first);
 		if(it == gMap.end())
 		{
-			Arcemu::Gossip::Script* gs = CreateLuaGOGossipScript(itr->first);
+			Arcpro::Gossip::Script* gs = CreateLuaGOGossipScript(itr->first);
 			if(gs != NULL)
 			{
 				m_scriptMgr->register_go_gossip(itr->first, gs);

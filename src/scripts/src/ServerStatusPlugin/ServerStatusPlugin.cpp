@@ -1,5 +1,6 @@
 /*
- * ArcScript Scripts for ArcEmu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2008-2011 Arcemu Team <http://arcemu.org/>
  * Copyright (C) 2007 Moon++ <http://www.moonplusplus.com/>
  *
@@ -18,7 +19,7 @@
  */
 
 #include "StdAfx.h"
-#include "../../../arcemu-shared/git_version.h"
+#include "../../../arcpro-shared/git_version.h"
 
 #define SKIP_ALLOCATOR_SHARING 1
 #include <ScriptSetup.h>
@@ -260,9 +261,9 @@ void StatDumper::DumpStats()
 	{
 		// Dump server information.
 #ifdef WIN32
-		fprintf(f, "    <platform>ArcEmu %s %s/%s-Win-%s (www.ArcEmu.org)</platform>\n", BUILD_TAG, BUILD_HASH_STR, CONFIG, ARCH);
+		fprintf(f, "    <platform>ArcPro %s %s/%s-Win-%s (www.arcpro.sexyi.am)</platform>\n", BUILD_TAG, BUILD_HASH_STR, CONFIG, ARCH);
 #else
-		fprintf(f, "    <platform>ArcEmu %s %s/%s-%s (www.ArcEmu.org)</platform>\n", BUILD_TAG, BUILD_HASH_STR, PLATFORM_TEXT, ARCH);
+		fprintf(f, "    <platform>ArcPro %s %s/%s-%s (www.arcpro.sexyi.am)</platform>\n", BUILD_TAG, BUILD_HASH_STR, PLATFORM_TEXT, ARCH);
 #endif
 
 		char uptime[80];

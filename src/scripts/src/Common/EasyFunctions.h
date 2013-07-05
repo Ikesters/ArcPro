@@ -1,5 +1,6 @@
 /*
- * Moon++ Scripts for Ascent MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2005-2007 Ascent Team <http://www.ascentemu.com/>
  * Copyright (C) 2007-2008 Moon++ Team <http://www.moonplusplus.info/>
  *
@@ -60,7 +61,7 @@ class SCRIPT_DECL EasyFunctions
 		void WaypointCreate(Creature* pCreature , float x, float y, float z, float o, uint32 waittime, uint32 flags, uint32 modelid)
 		{
 			PrintMessage("Function call: WaypointCreate()");
-			ARCEMU_ASSERT(pCreature != NULL);
+			ARCPRO_ASSERT(pCreature != NULL);
 
 			if(!pCreature->m_custom_waypoint_map)
 				pCreature->m_custom_waypoint_map = new WayPointMap;
@@ -88,7 +89,7 @@ class SCRIPT_DECL EasyFunctions
 		// makes the creatures AI to use the custom waypoints.
 		void EnableWaypoints(Creature* creat)
 		{
-			ARCEMU_ASSERT(creat != NULL);
+			ARCPRO_ASSERT(creat != NULL);
 			if(!creat->m_custom_waypoint_map)
 				return;
 
@@ -99,7 +100,7 @@ class SCRIPT_DECL EasyFunctions
 		void DeleteWaypoints(Creature* creat)
 		{
 			PrintMessage("Function call: DeleteWaypoints()");
-			ARCEMU_ASSERT(creat != NULL);
+			ARCPRO_ASSERT(creat != NULL);
 
 			if(creat->m_custom_waypoint_map == NULL)
 				return;
@@ -118,8 +119,8 @@ class SCRIPT_DECL EasyFunctions
 		Creature* SpawnCreature(Player* pThis, uint32 entry, float posX, float posY, float posZ, float posO, uint32 duration = 0, uint32 phase = 1)
 		{
 			PrintMessage("Function call: SpawnCreature()");
-			ARCEMU_ASSERT(pThis != NULL);
-			ARCEMU_ASSERT(pThis->IsInWorld());
+			ARCPRO_ASSERT(pThis != NULL);
+			ARCPRO_ASSERT(pThis->IsInWorld());
 
 			CreatureProto* p = CreatureProtoStorage.LookupEntry(entry);
 
@@ -220,7 +221,7 @@ class SCRIPT_DECL EasyFunctions
 		void CreateCustomWaypointMap(Creature* creat)
 		{
 			PrintMessage("Function call: CreateCustomWaypointMap()");
-			ARCEMU_ASSERT(creat != NULL);
+			ARCPRO_ASSERT(creat != NULL);
 
 			if(creat->m_custom_waypoint_map == NULL)
 			{

@@ -295,7 +295,7 @@ class SERVER_DECL MapMgr : public CellHandler <MapCell>, public EventableObject,
 			SetThreadState(THREADSTATE_TERMINATE);
 			while(thread_running)
 			{
-				Arcpro::Sleep(100);
+				arcpro::Sleep(100);
 			}
 		}
 

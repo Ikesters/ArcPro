@@ -1,5 +1,6 @@
 /*
- * ArcScript Scripts for Arcemu MMORPG Server
+ * ArcPro MMORPG Server
+ * Copyright (C) 2011 - 2013 (http://arcpro.sexyi.am/)
  * Copyright (C) 2008-2011 Arcemu Team
  * Copyright (C) 2007 Moon++ <http://www.moonplusplus.com/>
  *
@@ -36,7 +37,7 @@ class LuaGameObject
 			if( Menu != NULL )
 				delete Menu;
 			
-			Menu = new Arcemu::Gossip::Menu( ptr->GetGUID(), text_id );
+			Menu = new Arcpro::Gossip::Menu( ptr->GetGUID(), text_id );
 			
 			if( autosend )
 				Menu->Send( target );
@@ -124,7 +125,7 @@ class LuaGameObject
 			if( player == NULL )
 				return 0;
 
-			Arcemu::Gossip::Menu::SendQuickMenu( ptr->GetGUID(), text_id, player, itemid, itemicon, itemtext, requiredmoney, moneytext, extra );
+			Arcpro::Gossip::Menu::SendQuickMenu( ptr->GetGUID(), text_id, player, itemid, itemicon, itemtext, requiredmoney, moneytext, extra );
 			
 			return 0;
 		}
